@@ -1,0 +1,211 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href=" {% static 'css/blog.css' %} "
+    />
+    <link
+      rel="website icon"
+      href="{% static 'img/wonderhubblue.png' %}"
+      type="png"
+    />
+  </head>
+
+  <body class="light-theme theme body">
+    {% comment %} <div class="slider">
+      <div class="slides">
+        <input type="radio" name="radio-btn" id="radio1">
+        <input type="radio" name="radio-btn" id="radio2">
+        <input type="radio" name="radio-btn" id="radio3">
+        <input type="radio" name="radio-btn" id="radio4">
+
+        <div class="slide first"><img src="{% static 'img/bg.jpg' %}" alt="">
+          <div class="slide-text">
+            <a href=" {% url 'store' %} ">SHOP NOW</a>
+          </div>
+        </div>
+        <div class="slide"><img src="{% static 'img/bg2.jpg' %}" alt="">
+          <div class="slide-text">
+            <a href=" {% url 'store' %}/brand/phone ">ORDER NOW</a>
+          </div>
+        </div>
+        <div class="slide"><img src="{% static 'img/bg3.jpg' %}" alt="">
+          <div class="slide-text">
+            <a href=" {% url 'wonderhub' %} ">CALL NOW</a>
+          </div>
+        </div>
+        <div class="slide"><img src="{% static 'img/bg4.jpg' %}" alt="">
+          <div class="slide-text">
+            <a href="{% url 'wonderhub' %}#pricing">VIEW PRICING</a>
+          </div>
+        </div>
+        
+        <div class="navigation-auto">
+          <div class="auto-btn1"></div>
+          <div class="auto-btn2"></div>
+          <div class="auto-btn3"></div>
+          <div class="auto-btn4"></div>
+        </div>
+
+      </div>
+
+      <div class="navigation-manual">
+        <label for="radio1" class="manual-btn"></label>
+        <label for="radio2" class="manual-btn"></label>
+        <label for="radio3" class="manual-btn"></label>
+        <label for="radio4" class="manual-btn"></label>
+      </div>
+    </div> {% endcomment %}
+    <div class="nav-wrapper">
+      <nav id="menu" class="theme">
+        <a href=""><img src="{% static 'img/logo/wonderhub.png' %}" height='50' alt=""></a>
+        <input
+          type="checkbox"
+          id="responsive-menu"
+          name="responsive-menu"
+          onclick="updatemenu()"
+        /><label for="responsive-menu"></label>
+        <ul>
+              {% for c in category %}
+              <li><a href=" {% url 'blog-category-filter' c.title %}"> {{c.title}} </a></li>
+              {% endfor %}
+        </ul>
+      </nav>
+      <div class="search-container">
+        <form action=" {% url 'post-search' %} " >
+          <input type="search" name="search" id="search" placeholder="Search..." list='search'>
+          <button type="submit" class="submit-search"><img src=" {% static 'img/search.svg' %} " alt=""></button>
+        </form>
+      </div>
+
+    </div>
+    <div class="body-container">
+      <div class="post-col">{% block content %}{% endblock content %}</div>
+      <div class="post-col2">
+        <div class="sidebar-block">
+          <div class="sidebar-header card-skeleton">TAGS</div>
+          <div class="sidebar-body tag-list">
+            {% for c in category %}
+            <div class="tag-pills card-skeleton"> <a href=""></a> {{c}}</div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="sidebar-block">
+          <div class="sidebar-header card-skeleton">POPULAR POSTS</div>
+          <div class="sidebar-body">
+            {% for p in posts %}
+            <div class="pop-post"><a href=" {% url 'post-detail' p.id %} " class="card-skeleton pop-img"><img src="{{p.image.url}}"  class="hider pop-img" alt=""></a><a href=" {% url 'post-detail' p.id %} "><p class="popular-post card-skeleton">{{p.title}}</p></a></div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="sidebar-block">
+          <div class="sidebar-header card-skeleton">Adverts</div>
+          <div class="sidebar-body">place ads here</div>
+        </div>
+      </div>
+    </div>
+    <div class="theme-btn" id='theme-btn'>    <button class="theme-changer" id="theme-changer" onclick="themechangeL()">DARK</button>
+</div>
+<footer>
+  <div class="footer-logo">
+      <a href=""><img src=" http://localhost:8000/static/img/logo/wonderhub.png" alt="" /></a>
+  </div>
+  <div class="footer-desc">I create Website, mobile and Desktop apps</div>
+  <hr>
+  <div class="footer-contact">
+      <ul class="">Contacts
+          <li> <img src="facebook.svg" alt=""> Facebook</li>
+          <li> <img src="instagram.svg" alt=""> Instagram</li>
+          <li> <img src="twitter.svg" alt=""> Twitter</li>
+          <li> <img src="whatsapp.svg" alt=""> Whatsapp</li>
+          <li> <img src="Gmail.svg" alt=""> Gmail</li>
+      </ul>
+
+  </div>
+  <hr>
+  <div class="copyright">Jonathan Nwosu </div>
+</footer>
+  </body>
+  <script>
+    const skeleton = document.querySelectorAll(".card-skeleton");
+    const hider = document.querySelectorAll(".hider");
+    window.setTimeout(removeSkeleton, 1500);
+    function removeSkeleton() {
+      skeleton.forEach((element) => {
+        element.classList.remove("card-skeleton");
+      });
+      hider.forEach((element) => {
+        element.classList.remove("hider");
+      });
+    }
+  </script>
+  <script>
+    const lighttheme = document.querySelectorAll(".light-theme");
+    const darktheme = document.querySelectorAll(".dark-theme");
+    const themeselect = document.querySelectorAll(".theme");
+    const themebtn = document.getElementById("theme-btn");
+    function themechangeL(){
+      themebtn.innerHTML = `<button class="theme-changer" id="theme-changer" onclick="themechangeD()">DARK</button>
+      `
+      themeselect.forEach((element) => {
+        element.classList.remove("light-theme");
+        element.classList.add("dark-theme");
+      });
+      
+    }
+    function themechangeD(){
+      themebtn.innerHTML = `<button class="theme-changer" id="theme-changer" onclick="themechangeL()">LIGHT</button>
+      `
+      themeselect.forEach((element) => {
+        element.classList.remove("dark-theme");
+        element.classList.add("light-theme");
+      });
+      
+    }
+
+    function likepost(){
+      const likecount = document.getElementById('like-count');
+      let postid = event.target.dataset.postid
+      const postlikecount = event.target
+      
+
+      console.log("post id is", postid);
+      data = "sent"
+
+      let url = `http://127.0.0.1:8000/blog/post/${postid}/like`;
+        fetch(url, {
+          method: "POST", // or 'PUT'
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Success:", data);
+            
+            postlikecount.parentElement.children[0].innerHTML = `  ${data.likes} `
+          });
+          
+
+
+    }
+
+  </script>
+  <script>
+    var counter = 1;
+    setInterval(function(){
+      document.getElementById('radio'+ counter).checked = true;
+      counter++;
+      if(counter > 4){
+        counter = 1;
+      }
+    }, 5000);
+  </script>
+</html>

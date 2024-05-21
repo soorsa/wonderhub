@@ -1,0 +1,59 @@
+{% extends 'shop/base.html' %}
+    {% load static %}
+
+{% block content %}
+
+
+<div class="card-check">
+  <div id="cartqty" class="gen-font">Items: {{cart.cartquantity}} </div>
+  <div><h3><strong id="grandtotal" class="gen-font">Total: ₦{{cart.grandtotal | floatformat:2}}</strong></h3></div>
+</div>
+<center>
+<a class="checkout-button" href = "{% url 'checkout' %}">Checkout →</a>
+</center>
+
+
+
+    <!-- Cart Section -->
+<div class = 'card' >
+  <div class="table-container">
+<table class="table">
+  <center>
+    <thead>
+      <tr class="table-items">
+        <th scope="col"></th>
+        <th scope="col"><h3><strong>Item</strong></h3></th>
+        <th scope="col"><h3><strong>Price</strong></h3></th>
+        <th scope="col"><h3><strong>Quantity</strong></h3></th>
+        <th scope="col"><h3><strong>Total</strong></h3></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for item in cartitems %}
+      <tr class="table-items">
+        <th scope="row"><div id = "cart_image"><img src ='{{item.product.image.url}}'></div></th>
+        <td><p>{{item.product.title}}</p></td>
+        <td><p>₦{{item.product.price}}</p></td>
+        <td> <button class="updatecart  " data-action="add" data-product="{{item.product_id}}"> + </button> <!--<input type = 'number'data-product="{{item.product.product_id}}" class = 'quantity' value = "{{item.quantity}}" style = 'width: 50px; padding-left: 5px'>--> <strong id="itemqty"> {{item.quantity}} </strong> <button class="updatecart" data-action="remove" data-product="{{item.product_id}}"> - </button></td>
+        <td id="subtotal"><h3>₦{{item.subtotal | floatformat:2}}</h3></td>
+      </tr>
+      {% endfor %}
+      <tr class="table-items">
+        <th scope="row"></th>
+        <td><h3></h3></td>
+        <td><h3></h3>TOTAL</td>
+        <td></td>
+        <td id = 'total'><h3><strong>₦{{cart.grandtotal | floatformat:2}}</strong></h3></td>
+      </tr>
+      
+      
+    </tbody>
+  </center>
+  </table>
+</div>
+</div>
+<center>
+<a class="checkout-button" href = "{% url 'checkout' %}">Checkout →</a>
+</center>
+{% endblock %}

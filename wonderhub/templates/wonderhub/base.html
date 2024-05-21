@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>-->    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Titan+One">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<link
+    rel="stylesheet"
+    type="text/css"
+    href=" {% static 'css/wonderhub.css' %} "
+  />
+
+</head>
+<body>
+  {% include 'wonderhub/message.html' %}
+    <nav class="menu-container">
+      <!-- burger menu -->
+        <input type="checkbox" class="checkbox" aria-label="Toggle menu" name="toggle-menu" id="toggle-menu" />
+        <label for="toggle-menu" class="toggle-label bx bxs-category bx-sm material-icons "> menu</label>
+
+        <a href=" {% url 'wonderhub' %} " class="menu-logo">
+          <img src=" {% static 'img/logo/wonderhub.png' %} " alt="" />
+        </a>
+        <!-- logo -->
+  
+      <!-- SEARCH BOX -->
+      <div class="search-box-wrapper">
+        <form action=" {% url 'filtered_courses' %} " class=''>
+          <input type="search" name="search" placeholder="search" id=""> 
+          <button class='bx bx-search bx-sm material-icons ' type='submit' >search</button>
+        </form>
+      </div>
+    
+      <!-- menu items -->
+      <div class="menu">
+        <ul>
+          <li>
+            <details>
+              <summary>
+                Courses
+              </summary>
+              <ul>
+                <li class="cat-nav"><a href='{% url "filtered_courses" %}'>All courses</a></li>
+                {% for category in categories %}
+                {% if category.sub_category.all %}
+                <li class="cat-nav">
+                  <details>
+                    <summary>
+                      <a href="{% url 'course-by-cat' category.title %}" class="cat-nav"> {{category.title}} </a> 
+                      <b>▾</b>
+                    </summary>
+                    <div class="cat-sub-menu">
+                        {% for sub_category in category.sub_category.all %}
+                        <p class='bx bx-x'> <a href="{% url 'course-by-cat' sub_category.title %}">
+                          {{sub_category.title}} 
+                        </a></p>
+                        {% endfor %}
+      
+                    </div>
+                      
+                  </details>
+                </li>
+                {% else %}
+                <li class="cat-nav"><a href=" {% url 'course-by-cat' category.title %} ">{{category.title}}</a></li>
+                {% endif %}
+                {% endfor %}
+                
+      
+              </ul>
+            </details>
+          </li>
+          <li><a href="{% url 'all-instructors' %}">Instructors</a></li>
+        </ul>
+        {% if user.is_authenticated %}
+        <ul>
+          
+          {% if user.instructor %}
+            <li><a href="{% url 'instructor-dashboard' %}"> {{user.first_name|capfirst}} </a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% elif user.student %}
+            <li><a href="{% url 'student-dashboard' %}">{{user.first_name|capfirst}}</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}">{{user.username|capfirst}}</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% endif %}            
+        </ul>
+        {% else %}
+        <ul>
+          <li>
+            <a href=" {% url 'student-signup' %} "> Sign-up </a>
+          </li>
+          <li>
+            <a href="{% url 'login' %}"> Login </a>
+          </li>
+        </ul>
+        {% endif %}
+      </div>
+    </nav>
+    
+    <div class="content-container">
+      {% block content %}{% endblock content %}
+    </div>
+
+</body>
+</html>

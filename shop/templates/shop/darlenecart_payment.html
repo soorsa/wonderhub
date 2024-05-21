@@ -1,0 +1,110 @@
+{% extends 'shop/base.html' %}
+    {% load static %}
+
+{% block content %}
+<div class="checkout-container">
+<div class="form-card">
+  <form><script src="https://js.paystack.co/v1/inline.js"></script><button class="checkout-button payment-btn" onclick="payWithPaystack()" type="button"><span class="spinner-grow text-light spinner-grow-sm mr-2"></span>  Pay <span>₦</span>{{cart.grandtotal | floatformat:2}} with PayStack</button></form>
+  <hr style="color:gold; width:80%;">
+  <center>
+  <div style="color:gold; font-size:20px;">
+    <h2>Shipping Summary</h2>
+    <p>NAME: {{cart.full_name}} </p>
+    <p>EMAIL: {{cart.email}}</p>
+    <p>PHONE NO: {{cart.phone_number}} </p>
+    <p>DELIVERY ADDRESS: {{cart.delivery_address}},{{cart.lga}} {{cart.state}}</p>
+  </div>
+  </center>
+</div>
+    <!-- Cart Section -->
+      <div class = 'summary-card'>
+          <div class="uk-width-xlarge uk-margin">
+              <div class="uk-card uk-card-small uk-card-default uk-card-body"><table class="table">
+                  <thead>
+                    <tr>
+                      
+                      <h2>Order Summary</h2>
+                      <h3><strong>Total: ₦{{cart.grandtotal|floatformat:'2'}}</strong><h3></h3>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   
+                    {% for item in cartitems %}
+                    <tr>
+                      
+                      <td scope="row"><div id = "cart_image"><img src = ' {{item.product.image.url}} '></div></td>
+                      <td><h3>{{item.product.title}}</h3></td>
+                      <td><h3>x{{item.quantity}}</h3></td>
+                      <td><h3>₦{{item.product.price}}</h3></td>
+                      <td><h3></h3></td>
+                      <td><h3>₦{{item.subtotal}}</h3></td>
+                    </tr>
+                   {% endfor %}
+                    
+                  </tbody>
+                </table></div></div>
+
+          
+      </div>
+</div>
+<script>
+  function payWithPaystack(){
+    var handler = PaystackPop.setup({
+      key: 'pk_live_533947b627d98727651a32d5cba9c2b72979f3c7',
+      email: '{{cart.email}}',
+      amount: {{cart.grandtotal}}00 ,
+      currency: "NGN",
+      ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+      metadata: {
+         custom_fields: [
+            {
+                display_name: "Mobile Number",
+                variable_name: "mobile_number",
+                value: "{{cart.full_name}}"
+            }
+         ]
+      },
+      callback: function(response){
+          // alert('success. transaction ref is ' + response.reference);
+         // window.open('{% url 'payment'%}', '_self');
+         confirm()
+      },
+      onClose: function(){
+          alert('window closed');
+      }
+    });
+    handler.openIframe();
+  }
+</script>
+<script>
+  confirm()
+  function confirm(){
+
+    const data = { cart_total: {{cart.grandtotal}} };
+
+    let url = " {% url 'confirm-payment' %} "
+
+    fetch(url, {
+    method: 'POST', // or 'PUT'
+    headers: {
+    'Content-Type': 'application/json',
+    'X-CSRFToken': csrftoken
+    },
+    body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+    console.log('Success:', data);
+    alert('Payment made successfully')
+    window.location.href=" {%url 'store' %} "
+    })
+    .catch((error) => {
+    console.error('Error:', error);
+    });
+
+    
+  }
+  
+</script>
+
+{% endblock %}

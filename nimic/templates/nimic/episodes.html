@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=" {% static 'css/nimic.css' %} ">
+
+    <title>{{comic.title}}-NIMIC STUDIO</title>
+</head>
+<body>
+    <div class="body">
+        <div class="comic-detail-card">
+            <img src=" {{comic.image.url}} " alt="">
+            <div class="comic-detail-content">
+                <h1>
+                <a href='http://127.0.0.1:8000/nimic/episodes/${list[i].comic_id}'>{{comic.title}}</a>
+                </h1>
+                <p>Edited by <strong> {{comic.author}} </strong> </p>
+                <p>categories: <span> {% for cat in comic.category.all %} {{cat.title}} {% endfor %} </span></p>
+                <article> {{comic.description}} </article>
+            </div>
+            </div>
+            <div class="episode-list-container">
+                <div class="episode-list-header">Episodes</div>
+                {% for episode in episodes %}
+                <div class="episode">
+                    <img src=" {{episode.image.url}} " alt="">
+                    <div> Ep{{episode.number}} - {{episode.title}}</div>
+                </div>
+                {% endfor %}
+            </div>
+    </div>
+</body>
+</html>

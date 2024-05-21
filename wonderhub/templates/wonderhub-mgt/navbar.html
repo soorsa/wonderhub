@@ -1,0 +1,11 @@
+<nav>
+    <div class="nav-title">wonderHUB Manager</div>
+    <div class="nav-auth">
+        {% if user.is_authenticated %}
+        <div class="">{{user.username}}</div>
+        <div class="">Logout</div>
+        {% else %}
+        <div class="">Login</div>
+        {% endif %}
+    </div>
+</nav>

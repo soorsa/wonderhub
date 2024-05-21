@@ -1,0 +1,222 @@
+{% load static %}
+<div class="inst-dash-container">
+    <section id="home" class="dash-home">
+        <div class="home-greeting">
+            <div>Hello {% if user.first_name %}{{user.first_name|capfirst}}... {% else %}{{user.username|capfirst}}...{% endif %}</div>
+            <img src="{% static 'img/res/greeting.svg' %}" alt="" >
+        </div>
+        <div class="about-inst">
+            <div class="a-i-img-name">
+                <img src="{{user.instructor.image.url}}" width='150px' height='150px' alt="">
+                <div>{{user.instructor.full_name|upper}}</div>
+                <em class="mute">@{{user.username}}</em>
+                <div >{{user.instructor.title|upper}}</div>    
+                <div class="edit-profile-btn-cont">
+                    <a href="#update-profile">Edit Profile</a>
+                </div>
+            </div>
+            {% comment %} <div class="a-i-content">{{user.instructor.about}}</div> {% endcomment %}
+
+        </div>
+        <div class="home-about-any-cont">
+            <div class="any-card">
+                <div class="any-card-number">{{user.instructor.total_enrollment}}</div>
+                <div class="any-card-text">student(s)</div>
+            </div>
+            <div class="any-card">
+                <div class="any-card-number">{{my_courses.count}}</div>
+                <div class="any-card-text">course(s)</div>
+            </div>
+            <div class="any-card">
+                <div class="any-card-number">₦{{user.instructor.total_earnings}}</div>
+                <div class="any-card-text">Earned</div>
+            </div>
+            <div class="any-card">
+                <div class="any-card-number">₦{{user.instructor.balance}}</div>
+                <div class="any-card-text">Balance</div>
+                <details>
+                    <summary>Make Withdrawal</summary>
+                    <div class="withdrawal-form-container">
+                        <form action=" {% url 'make-withdrawal' %} " method="post">
+                            {% csrf_token %}
+                            <input type="number" name="withdarwalAmount" id="" placeholder='Enter amount'>
+                            <button type="submit">withdraw</button>
+                        </form>
+                    </div>
+                </details>
+            </div>
+        </div>
+        <div class="about-inst-analytics-cont">
+            <table>
+                <tr>
+                    <th>Total students</th>
+                    <td>{{user.instructor.total_enrollment}}</td>
+                </tr>
+                <tr>
+                    <th>Total Earnings</th>
+                    <td>₦{{user.instructor.total_earnings}}</td>
+                </tr>
+                <tr>
+                    <th>Number of courses</th>
+                    <td>{{my_courses.count}} course(s)</td>
+                </tr>
+            </table>
+        </div>
+    
+    </section>
+    <section id="MyCourses" class="MyCourses hider">
+        <div class="my-lesson-list-container">
+            <h2>MY COURSES</h2>
+            <div class="filtered wrapper">
+                {% for c in my_courses %}
+                <div class="lesson-list">
+                    <a href="{% url 'course-detail' c.course_id %}">
+                        <img src="{{c.image.url}}" width='100px' height="100px" alt="">
+                    </a>
+                    <div class="lesson-list-title-nd-btn">
+                        <p><a href="{% url 'course-detail' c.course_id %}">{{c.title|truncatewords:20}} </a></p>
+                        <div class="course-btns-wrapper">
+                            <a class="primary" href="{% url 'update-course' c.course_id %}">update</a>
+                            <a class="danger" href="">delete</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <div class="my-lesson-list-container">
+            <h2>Unapproved courses</h2>
+            <div class="filtered wrapper">
+                {% for c in my_courses %}
+                <div class="lesson-list">
+                    <a href="{% url 'course-detail' c.course_id %}">
+                        <img src="{{c.image.url}}" width='100px' height="100px" alt="">
+                    </a>
+                    <div class="lesson-list-title-nd-btn">
+                        <p><a href="{% url 'course-detail' c.course_id %}">{{c.title|truncatewords:20}} </a></p>
+                        <div class="course-btns-wrapper">
+                            <a class="primary" href="{% url 'update-course' c.course_id %}">update</a>
+                            <a class="danger" href="">del</a>
+                            <a class="warning" href="">submit</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </section>
+    <section id="create-course" class="dash-create-course hider">
+        <div class="create-container">
+            <div>Create a New courses</div>
+            <ul>
+                <li>Upload vides</li>
+                <li>Upload audio</li>
+                <li>upload text or PDF documents(reading materials)</li>
+                <li>and add create lessons for your courses</li>
+            </ul>
+            <a class="create-course-btn" href="{% url 'create-course' %}">Create New course</a>
+        </div>
+
+    </section>
+    <section id="earnings" class=" earnigs hider">
+        <div class="earnings-any-cont">
+            <table>
+                <tr>
+                    <th>Total Students</th>
+                    <td> {{user.instructor.total_enrollment}} </td>
+                </tr>
+                <tr>
+                    <th>Total Earnings</th>
+                    <td> ₦{{user.instructor.total_earnings}} </td>
+                </tr>
+                <tr>
+                    <th>Balance</th>
+                    <td>₦{{user.instructor.balance}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="inst-earnings-wrapper">
+            <div class="filter-bar">
+                <h2>Filter Enrollments</h2>
+                <form method="get">
+                    <div>
+                        <label for="id_search">date Enrolled</label>
+                        {{ filter_by_date.form.start_date }}
+                    </div>
+                    <div>
+                        <label for="id_instructor">paid out</label>
+                        {{filter_by_date.form.paid}}
+                    </div>
+                    
+                    <button type="submit">Apply</button>
+                </form>
+            </div>
+            <div class="qs-list-container">
+                {% for x in filter_by_date.qs %}
+                <li><b>{{x.student}}</b> enrolled for <b>{{x.course}}</b> on <em>{{x.start_date}}</em> <b class='success' style="padding:2px 5px;border-radius:5px; text-wrap:nowrap;font-size:larger;">+₦{{x.calc_payable}}</b></li>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="inst-earnings-wrapper">
+            <div class="filter-bar">
+                <h2>Transaction History</h2>
+                <form method="get">
+                    <div>
+                        <label for="id_search">date</label>
+                        {{ withdrawals_filter.form.date }}
+                    </div>
+                    <div>
+                        <label for="id_instructor">status</label>
+                        {{withdrawals_filter.form.status}}
+                    </div>
+                    
+                    <button type="submit">Apply</button>
+                </form>
+            </div>
+            <div class="qs-list-container">
+                {% for x in withdrawals_filter.qs %}
+                <li><em class="{{x.status}}">{{x.status}}</em> withdrawal on {{x.date}} <b style=" font-size:larger; padding:2px 5px; border-radius:5px; text-wrap:nowrap;" class='error'>-₦{{x.amount}}</b> </li>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="inst-earnings-wrapper">
+            <h2>My Courses</h2>
+            {% for c in my_courses %}
+            <details>
+                <summary><span>view</span> <b>{{c.title}}</b></summary>
+                <ul>
+                    <li><i class="material-icons"></i> Enrollments: {{c.students.count}}</li>
+                    <li><i class="material-icons">paid</i> Earnings: ₦{{c.earnings}} </li>
+                </ul>
+            </details>
+            {% endfor %}
+        </div>
+    </section>
+    <section id="update-profile" class="update-profile hider">
+        <form action="" method="post" enctype="multipart/form-data" class="inst-dash-form form">
+            <div><img src="{{user.instructor.image.url}}" width='150px' height='150px' alt=""></div>
+            {% csrf_token %}
+            {{form.as_div}}
+            <button type="submit">Update</button>
+        </form>
+
+        <form action="" method="post" enctype="multipart/form-data" class="inst-dash-form form" style="margin-top:20px;">
+            <div>PAY OUT DETAILS</div>
+            <legend>Bank Details</legend>
+            {% csrf_token %}
+            {{b_form.as_div}}
+            <button type="submit">Submit</button>
+        </form>
+
+    </section>
+
+</div>
+
+<script src="{% static 'js/dashboard.js' %}"></script>

@@ -1,0 +1,69 @@
+{% extends 'shop/adminbase.html' %}
+    {% load static %}
+
+{% block content %}
+<div align="center" class="admin-container">
+  <div class="products-container gen-con">
+    <div class="cont-title">
+      <div class="title">PRODUCTS</div>
+      <div class="add-content"><a href="">+</a></div>
+
+      <div class="prod-list">
+        {% for p in products %}
+        
+        <div class="prod-card">
+          <img src=" {{p.image.url}} " alt="">
+          <div class="prod"> {{p.title}} </div>
+        </div>
+        {% endfor %}
+
+      </div>
+
+    </div>
+  </div>
+
+<div class="cart-container gen-con">
+  <div class="cont-title">
+    <div class="title">Customer Orders</div>
+    <div class="add-content"><a href="">+</a></div>
+
+    <div class="prod-list">
+      {% for c in cart %}
+      {% if c.full_name %}
+      <div class="customer-cart-card">
+        <h3 align="center">
+          <a href="{% url 'staff-detail' c.cart_id %}">{{c.full_name}}'s cart</a>
+        </h3>
+        <p align="center">cart products: <span align="right" class="cart-badge"> {{c.cartquantity}} </span></p>
+        <p>ORDERED:  {{c.ordered}} </p>
+      </div>
+      
+      {% elif c.customer %}
+      <div class="customer-cart-card">
+        <h3 align="center">
+          <a href="{% url 'staff-detail' c.cart_id %}">{{c.customer}}'s cart</a>
+        </h3>
+        <p align="center">cart products: <span align="right" class="cart-badge"> {{c.cartquantity}} </span></p>
+        <input type="checkbox" value="{{c.ordered}}"><span>order</span>
+      </div>
+      {% else %}
+      <div class="customer-cart-card">
+        <h3 align="center">
+          <a href="{% url 'staff-detail' c.cart_id %}">{{c.device_id}}'s cart</a>
+        </h3>
+        <p align="center">cart products: <span align="right" class="cart-badge"> {{c.cartquantity}} </span></p>
+        <input type="checkbox" value="{{c.ordered}}"><span>order</span>
+      </div>
+      {% endif %}
+      {% endfor %}
+      
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+
+{% endblock %}
+

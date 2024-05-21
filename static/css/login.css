@@ -1,0 +1,155 @@
+:root {
+    --midnight-color: #2B333D;
+    --midnight-color-2: #03001C;
+    --primary-midnight: #10001c;
+    --primary-color: #4f2460;
+    --secondary-color: #f5dee1;
+    --dark-primary-color: #1b0c20;
+}
+
+body {
+    /* background-color: purple; */
+    background: url(http://127.0.0.1:8000/static/img/nohat2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: monospace;
+}
+
+.container {
+    /* background: var(--primary-midnight); */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    backdrop-filter: blur(5px);
+    padding: 45px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    position: relative;
+    margin: 100px auto;
+    max-width: 400px;
+}
+
+legend {
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 10px white;
+}
+
+form {
+    top: 100px;
+    z-index: 1;
+    max-width: 300px;
+    margin: auto;
+}
+
+.errorlist {
+    font-size: small;
+    color: white;
+    background-color: rgba(253, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 5px 0;
+    padding-inline-start: 40px;
+}
+
+.form-wrapper {
+    margin-bottom: 5px;
+    display: flex;
+}
+
+form label {
+    display: block;
+    margin: auto;
+    color: white;
+}
+
+input {
+    border-radius: 5px;
+    width: 80%;
+    margin: 0 0 20px 0;
+    padding: 0.7rem 10%;
+    border: 1px solid gray;
+    /* background-color: var(--midnight-color-2); */
+    background-color: #03001c4d;
+    color: gray;
+}
+
+input:focus,
+input:active {
+    border: 1px solid white;
+    color: white;
+    box-shadow: 0 0 5px white;
+}
+
+.login-btn {
+    background-color: green;
+    color: white;
+    width: 100%;
+    height: 40px;
+    font-weight: bolder;
+    border-radius: 5px;
+    border: none;
+    transition: 0.7s ease;
+}
+
+.login-btn:active,
+.login-btn:focus {
+    background-color: blue;
+    transition: .7s ease;
+}
+
+.divider {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 1rem 0;
+    align-items: center;
+    font-size: 1rem;
+    color: white;
+}
+
+.line {
+    height: 1px;
+    background-color: gray;
+    color: gray;
+    flex: 1 1 0%;
+}
+
+.register-btns-container {
+    margin: auto;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.student-btn,
+.instructor-btn {
+    width: 80%;
+    padding: 0.7rem 10%;
+    background-color: var(--primary-midnight);
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.instructor-btn {
+    background-color: slategray;
+}
+
+.instructor-btn:hover {
+    background-color: darkslategray;
+}
+
+.logo {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.logo img {
+    width: 150px;
+    margin: auto;
+}

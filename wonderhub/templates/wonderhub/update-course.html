@@ -1,0 +1,41 @@
+{% extends 'wonderhub/base.html' %}
+{% load static %}
+
+{% block content %}
+<script>
+    document.title="Update {{course.title}} - course"
+</script>
+    <div class="cat-body-container">
+        <div class="update-course-flex">
+            <form action="" method="post" enctype="multipart/form-data" class='form'>
+                <h2>Update {{course.title}}</h2>
+                {% csrf_token %}
+                {{form.as_div}}
+                <button type="submit">Update</button>
+            </form>
+            <div class="side-lesson-list">
+                <h3>{{course.title}}'s Lessons</h3>
+                {% for lesson in lessons %}
+                <div class="lesson-list">
+                    <a href="{% url 'lesson-detail' lesson.lesson_id %}">
+                        <img src="{{lesson.image.url}}" width='70px' height="70px" alt="">
+                    </a>
+                    <div class="lesson-list-title-nd-btn">
+                        <a href="{% url 'lesson-detail' lesson.lesson_id %}">{{lesson.title|truncatewords:10}}</a>
+                        <div class="course-btns-wrapper">
+                            <a class="primary" href="{% url 'update-lesson' lesson.lesson_id %}">update</a>
+                            <a class="danger" href="">delete</a>
+                            <a class="warning" href="">submit</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+
+    </div>
+{% include 'wonderhub/footer.html' %}
+{% endblock content %}
+    

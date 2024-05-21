@@ -1,0 +1,3 @@
+static/mediapost/*
+!static/mediapost/
+!static/mediapost/.gitkeep

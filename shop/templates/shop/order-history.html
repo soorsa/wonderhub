@@ -1,0 +1,53 @@
+{% extends 'shop/base.html' %}
+    {% load static %}
+
+{% block content %}
+
+
+
+
+
+    <!-- Cart Section -->
+<div class = 'card' >
+  <div class="table-container">
+<table class="table">
+  <center>
+    <thead>
+      <tr class="table-items">
+        <th scope="col"></th>
+        <th scope="col"><h3><strong>Items</strong></h3></th>
+        <th scope="col"><h3><strong>Total items</strong></h3></th>
+        <th scope="col"><h3><strong>Total</strong></h3></th>
+        <th scope="col"><h3><strong>Deliver to</strong></h3></th>
+        <th scope="col"><h3><strong>Paid</strong></h3></th>
+        <th scope="col"><h3><strong>Delivered</strong></h3></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for order in orders %}
+      <tr class="table-items order-table-tr">
+        <th scope="row"><div id = "cart_image"><img src =''></div></th>
+        <td>
+        {% for items in order.cartitems.all %}
+        <li>{{items.product.title}}</li>
+        {% endfor %}
+        </td>
+        <td><p>{{order.cartquantity}} items</p></td>
+        <td id="subtotal"><h3>₦{{order.grandtotal | floatformat:2}}</h3></td>
+        <td><p></p>{{order.delivery_address}} - {{order.lga}} - {{order.state}}</td>
+        <td><p> {{order.ordered}} </p></td>
+        <td><p>{{order.order_completed}}</p></td>
+      </tr>
+      {% endfor %}
+      
+      
+    </tbody>
+  </center>
+  </table>
+</div>
+</div>
+<center>
+<a class="checkout-button" href = "{% url 'checkout' %}">Checkout →</a>
+</center>
+{% endblock %}

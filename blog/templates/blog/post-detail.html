@@ -1,0 +1,156 @@
+{% extends 'blog/base.html' %} {% load static %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{post.title}} - WonderHub[Blog]</title>
+  </head>
+  <body>
+    <div class="post-detail-card">
+      <div class="deatil-img">
+        <img class="detail-img" src="{{post.image.url}}" alt="{{post.title}}" />
+      </div>
+      <h1 class="detail-title">{{post.title}}</h1>
+      <div class="author-detail">
+        <p><em>posted by</em><strong> {{post.author}} </strong></p>
+        <span>
+          <div class="like-view-n-share">
+            <a
+              class="like-btn card-skeleton"
+              data-postid="{{post.id}}"
+              onclick="likepost()"
+              ><div
+                class="like hider"
+                id="like-count"
+                data-postid="{{post.id}}"
+              >
+                {{post.likes}}
+              </div></a
+            >
+            <div class="card-skeleton">
+              <div class="view hider">{{post.views}}</div>
+            </div>
+            <div class="card-skeleton">
+              <div class="share hider">share</div>
+            </div>
+          </div>
+        </span>
+      </div>
+      <hr />
+      <div class="post-detail-content">{{post.content|safe}}</div>
+    </div>
+
+    <div>
+      <h3>What do you think?</h3>
+      <form
+        action=""
+        method="POST"
+        method="post"
+        class="comment-form"
+        onsubmit="sendcomment()"
+      >
+        {% csrf_token %}
+        <div class="form-wrapper">
+          <input
+            type="text"
+            name="name"
+            id="comment-name"
+            placeholder="Enter your name"
+          />
+        </div>
+        <div class="form-wrapper">
+          <input
+            type="email"
+            name="email"
+            id="comment-email"
+            placeholder="Enter your Email"
+          />
+        </div>
+        <div class="form-wrapper">
+          <textarea
+            type="text"
+            name="comment"
+            id="comment-content"
+            placeholder="What's on your mind"
+          ></textarea>
+        </div>
+        <button class="comment-submit" type="submit" data-post="{{post.id}}">
+          submit
+        </button>
+      </form>
+
+      <div class="comment-container">
+        <h3>Comments</h3>
+        <div class="comment-wrapper" id="comment-wrapper">
+          un cleared
+        </div>
+
+      </div>
+    </div>
+  </body>
+  <script>
+    commentList()
+    function commentList(){
+      let url = "/blog/api/post/{{post.pk}}/comment"
+      fetch(url)
+        .then((response) => response.json())
+        .then(function(data){
+            let list = data
+            let commentWrapper =  document.querySelectorAll(".comment-wrapper")
+            commentWrapper[0].innerHTML = ""
+
+
+            for (var i=0; i < list.length; i++){
+              let item = `
+              <div class="comment-block">
+                <div class="comment-author-cont">
+                  <div class="comment-author-icon"></div>
+                  <div class="comment-author"> ${list[i].name} </div>
+                </div>
+                <div class="comment-content">${list[i].content}</div>
+              </div>
+                            
+                  `
+              commentWrapper[0].innerHTML += item
+              
+          }
+        })
+    }
+    function sendcomment(){
+    let form = document.querySelectorAll(".comment-form");
+        event.preventDefault();
+        console.log('clicked', form);
+
+        let formData = new FormData(form[0]);
+        let postId = {{post.pk}};
+        let data = {};
+
+        for (const [Key, value] of formData.entries()){
+          data[Key] = value;
+        }
+        let url = "/blog/post/{{post.pk}}/comment";
+        fetch(url, {
+          method: "POST", // or 'PUT'
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Success:", data);
+            form[0].reset();
+            commentList()
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+
+      }
+  </script>
+</html>
+
+{% endblock %}

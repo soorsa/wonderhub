@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WonderHUB Shop</title>
+   <link rel ='stylesheet' href = "{% static 'css/cart.css' %}">
+    <link rel="stylesheet" type="text/css" href=" {% static 'css/store.css' %} ">
+
+
+    <script>
+      let user = "{{request.user}}"
+
+    </script>
+    <script> 
+
+  
+
+      function getToken(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getToken('csrftoken');
+    </script>
+
+    <script type="text/javascript">
+
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    function uuidv4() {
+      return 'xxxxxxxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
+
+    let device_id = getCookie('device_id')
+    if (device_id == null || device_id == undefined){
+      device_id = uuidv4()
+    }
+
+    document.cookie = 'device_id=' + device_id + ";domain=;path=/"
+      
+    </script>
+
+
+
+
+
+</head>
+<body>
+
+<!-- nav-bar -->
+{% comment %}
+    <ul class="nav-bar">
+    <li style="float: left;" class="nav-active"><a href="{% url 'store' %}" > WonderStore</a></li>
+    </li>
+      <li style="float: right; margin-right: 15px; right: 25px;" id="" class="counter"><a href="{% url 'cart' %}"><strong id="cart" style="position: absolute; top: 5px; right: 10px; ">{{cart.cartquantity}}</strong></a></li>
+    <li style="float: right;"><a href=" {% url 'cart' %} " ><img src="{% static 'img/cart.svg' %}" class="cart-logo"></a></li>
+  </ul>
+<center>
+  <div class="search-bar">
+    <form action="{% url 'product-search' %}" style="width:50%;">
+      <input style=" height:30px; color:black;" class="checkout-form" type="search" placeholder="search" aria-label="search" name="search">
+      <button type="submit">></button>
+    </form>
+  </div>
+</center>
+
+{% endcomment %}
+
+
+<nav class="menu-container">
+  <!-- burger menu -->
+  <input type="checkbox" class="checkbox" aria-label="Toggle menu" />
+  <a href=" {% url 'cart' %} " class="cart-container">
+    <img class="cart" src=" {% static 'img/cart.svg' %} ">
+    <div class="counter" id="cart"> {{cart.cartquantity}} </div>
+  </a>
+  <img src=" {% static 'img/apps.svg' %} " alt="" class='checkbox-toggle'>
+  
+  <!-- logo -->
+  <a href=" {% url 'store' %} " class="menu-logo">
+    <img src=" {% static 'img/logo/wonderstore2.png' %} " alt="" />
+  </a>
+
+  {% comment %}
+    search box
+  {% endcomment %}
+  <div class="search-bar">
+    <form action="{% url 'product-search' %}" class="search-form">
+      <input class="search-input" type="search" placeholder="search" aria-label="search" name="search">
+      <button type="submit" class="search-btn"></button>
+    </form>
+  </div>
+
+
+
+  <!-- menu items -->
+  <div class="menu">
+    <ul>
+      <li class="cat-nav">
+        <a class="cat-nav"> Categories </a>
+        <ul class="cat-sub-menu">
+          {% for category in categorys %}
+            <li> <a href=" {% url 'shop-category-filter' category.title %} ">{{category.title}} </a></li>
+          {% endfor %}
+        </ul>
+      </li>
+      <li class="brand-nav">
+        <a class="brand-nav"> Brands </a>
+        <ul class="brand-sub-menu">
+          {% for brand in brands %}
+          <li><a href=" {% url 'shop-brand-filter' brand.title %} "> {{brand.title}} </a></li>
+          {% endfor %}
+        </ul>
+      </li>
+      <li>
+        <a href=" {% url 'blog-home' %} " class="blog-nav"> Blog </a>
+      </li>
+      <li>
+        <a href=" {% url 'store' %} " class="shop-nav"> Store </a>
+      </li>
+    </ul>
+    {% if user.is_authenticated %}
+    <ul>
+      <li><a href=" {% url 'history' %} ">Order history</a></li>
+      <li><a href=""> {{user.username|capfirst}} </a></li>
+    </ul>
+    {% else %}
+    <ul>
+      <li>
+        <a href=" {% url 'register' %} "> Sign-up </a>
+      </li>
+      <li>
+        <a href="#login"> Login </a>
+      </li>
+    </ul>
+    {% endif %}
+  </div>
+</nav>
+
+<!-- nav-bar ends -->
+{% if user.is_authenticated %}
+<div class="auth-notification">
+<p>Welcome {{user.username}} ! </p>
+</div>
+{% else %}
+<div class="auth-notification">
+<p>Please Login to start shopping... <a href="http://localhost:8000">LOGIN</a></p>
+</div>
+{% endif %}
+  {% if categorys %}
+<center><div class="cat-bar" >CATEGORIES</div></center>
+<div class= "cat-container">
+  {% for category in categorys %}
+ <div class="cat-item">
+   <img src=" {% static 'images/penguins.jpg' %} " class="cat-image">
+   <div class="overlay"> <a href="{% url 'shop-category-filter' category.title %}">{{category.title}} </a></div>
+ </div>
+  {% endfor %}
+</div>
+
+<center><div class="cat-bar">BRANDS</div></center>
+
+<div class= "cat-container">
+  {% for brand in brands %}
+ <div class="cat-item">
+   <img src=" {% static 'images/penguins.jpg' %} " class="cat-image">
+   <div class="overlay"> <a href="{% url 'shop-brand-filter' brand.title %}">{{brand.title}} </a></div>
+ </div>
+  {% endfor %}
+</div>
+  {% endif %}
+
+      {% block content %}
+      {% endblock %}
+
+
+<footer>
+  <div class="footer-cont">
+    <div class="footer-brand">
+      <img src="http://127.0.0.1:8000/static/img/logo/wonderstore.png" alt="">
+    </div><hr>
+    <div class="footer-desc">
+      WonderSTORE sells all kinds of phones and laptop accessories. Your one stop shop for all GADGETS.
+    </div><hr>
+    <div class="footer-social">
+      <div class="facebook">WonderHUB</div>
+      <div class="twitter">Twitter</div>
+      <div class="instagram">Intagram</div>
+      <div class="whatsapp">Whatsapp</div>
+    </div>
+    <div class="copyright">WonderHUB copyright @ 2023</div>
+    <div class="pwd-by">Powered by <i class="box-logo">THE BO</i></div>
+  </div>
+</footer>
+
+
+
+
+
+<!--    <script src = "{% static 'js/cart.js' %}"></script>-->
+<script type="text/javascript">
+  let btns = document.getElementsByClassName('addtocart')
+for(let i = 0; i < btns.length; i++){
+  btns[i].addEventListener('click', function(e){
+    let product_id = e.target.dataset.product
+    let action = e.target.dataset.action
+    console.log(product_id)
+    if(user=='AnonymousUser'){
+      console.log('You are not signed in')
+      addToCart(product_id, action)
+    }
+
+    else{
+      addToCart(product_id, action)
+    }
+  })
+}
+
+
+function addToCart(p_id, act){
+  const data = {product_id: p_id, action: act};
+
+
+let url = 'http://127.0.0.1:8000/shop/updatecart/'
+fetch(url, {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+    'X-CSRFToken': csrftoken
+  },
+  body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+  document.getElementById('cart').innerHTML = `${data.cartquantity}`
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+
+}
+
+
+/* let inputfields = document.getElementsByTagName('input')
+for(let i =0; i<inputfields.length; i++){
+  inputfields[i].addEventListener('change', updateQuantity)
+  
+}
+
+function updateQuantity(e){
+  let inputvalue = e.target.value
+  let product_id = e.target.dataset.product
+
+  const data = {p_id: product_id, in_val: inputvalue};
+let url = '/updatequantity'
+
+  fetch(url, {
+    method: 'POST', // or 'PUT'
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrftoken
+    },
+    body: JSON.stringify(data),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+    e.target.parentElement.parentElement.children[4].innerHTML = `<h3>$${data.subtotal.toFixed(2)}</h3>`
+    document.getElementById('total').innerHTML = `<h3><strong>$${data.grandtotal.toFixed(2)}</strong></h3> `
+    document.getElementById('cart').innerHTML = `<h4>${data.quantity}</h4>`
+    
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
+
+
+}
+*/
+
+let updbtns = document.getElementsByClassName('updatecart')
+for(let i = 0; i < updbtns.length; i++){
+  updbtns[i].addEventListener('click', function(e){
+    let product_id = e.target.dataset.product
+    let action = e.target.dataset.action
+    let event = e.target
+    console.log(product_id)
+    if(user=='AnonymousUser'){
+      console.log('You are not signed in')
+      upToCart(product_id, action, event)
+    }
+
+    else{
+      upToCart(product_id, action, event)
+    }
+  })
+}
+
+
+function upToCart(p_id, act, evt){
+  const data = {product_id: p_id, action: act, event: evt};
+
+
+let url = 'http://127.0.0.1:8000/shop/updatequantity/'
+fetch(url, {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+    'X-CSRFToken': csrftoken
+  },
+  body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+  document.getElementById('total').innerHTML = `<h3><strong>₦${data.grandtotal.toFixed(2)}</strong></h3> `
+  document.getElementById('grandtotal').innerHTML = `Total: ₦${data.grandtotal.toFixed(2)} `
+  document.getElementById('cart').innerHTML = `${data.cartquantity}`
+  evt.parentElement.parentElement.children[3].children[1].innerHTML = `${data.quantity}`
+  document.getElementById('cartqty').innerHTML = `Items: ${data.cartquantity} `
+  evt.parentElement.parentElement.children[4].innerHTML = `<h3>₦${data.subtotal.toFixed(2)}</h3>`
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+
+}
+
+</script>
+</body>
+</html>

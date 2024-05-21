@@ -1,0 +1,70 @@
+{% extends 'wonderhub/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    {% comment %} <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% if user.student %}
+        <title> {{user.student.full_name}}'s Dashboard </title>
+        {% elif user.instructor %}
+        <title> {{user.instructor.full_name}}'s Dashboard </title>   
+        {% endif %}
+    </head> {% endcomment %}
+    {% if user.student %}
+    <script>
+        document.title="{{user.student.full_name}}'s dashboard"
+    </script>
+    {% elif user.instructor %}
+    <script>
+        document.title="{{user.instructor.full_name}}'s dashboard"
+    </script>
+    {% endif %}
+    <body>
+        <div class="cat-body-container">
+            <div class="student-dash">
+                <div class="home-greeting">
+                    <div>Hello {% if user.first_name %}{{user.first_name|capfirst}}... {% else %}{{user.username|capfirst}}...{% endif %}</div>
+                    <img src="{% static 'img/res/greeting.svg' %}" alt="" >
+                </div>
+                <div class="student-dash-flex">
+                    <form action="" method="post" enctype="multipart/form-data" class="form">
+                        <div><img src="{{user.student.image.url}}" width='150px' height='150px' alt=""></div>
+                        {% csrf_token %}
+                        {{form.as_div}}
+                        <button type="submit">Update</button>
+                    </form>
+        
+                    {% comment %} <div class="dash-enrolled-c">
+                        <h2>Enrolled courses</h2>
+                        {% for c in my_courses %}
+                        <div class="d-e-c-courses">
+                            <img src="{{c.image.url}}" alt="">
+                            <div>{{c.title}} <br><br> <a href="{% url 'course-detail' c.course_id %}">Continue</a></div>
+                        </div>
+                        {% endfor %}           
+                    </div> {% endcomment %}
+                    <div class="dash-enrolled-c">
+                        <h2>Enrolled courses</h2>
+                        <div class="d-e-c-flex">
+                            {% for c in my_courses %}
+                            <div class="d-e-c-courses">
+                                <img src="{{c.image.url}}" alt="">
+                                <div>{{c.title}} <br><br> <a href="{% url 'course-detail' c.course_id %}">Continue</a></div>
+                            </div>
+                            {% endfor %}           
+                        </div>
+                    </div>      
+                
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    {% include 'wonderhub/footer.html' %}
+    {% endblock content %}
+    

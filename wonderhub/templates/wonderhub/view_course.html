@@ -1,0 +1,180 @@
+{% extends 'wonderhub/base.html' %}
+{% load static %}
+{% block content %}
+<script>
+    document.title="{{course.title}}"
+</script>
+<div class="cat-body-container">
+    <div class="course-detail-block">
+        <h2>{{ course.title }}</h2>
+        <img src="{{course.image.url}}" alt="">
+        <div class="course-block-detail">
+            <img src="http://localhost:8000/static/img/profile.svg" alt="">
+            <span>{{course.instructor}}</span><br>
+            <small>@{{course.instructor.instructor.username}} </small>
+            <div class='student-n-rating'>
+                <div>students: {% with students=course.students.count %}{{students}}{% endwith %}</div> 
+                <div>{{course.stars|floatformat:1}} ⭐</div>
+            </div>
+            <div class="enroll-n-test">
+
+                {% if user.student %}
+                {% if course.price < 400 %}
+                <a href="{% url 'course-enroll' course.course_id %}" class='enroll-btn'>Enroll for Free</a>
+                {% else %}
+                <a href="{% url 'course-enroll' course.course_id %}" class='enroll-btn'>Enroll for ₦{{course.price}}</a>
+                {% endif %}
+                {% elif user.instructor == course.instructor %}
+                <a href="{% url 'update-course' course.course_id %}" class='edit-btn'>🖊 Edit Course</a>
+                {% else %}
+                
+                    <a href="" class='enroll-btn'>
+                    {% if course.price < 400 %}Free
+                    {% else %}
+                    ₦{{course.price}}
+                    {% endif %}
+                    </a>
+                
+                {% endif %}
+                {% for quiz in quizzes %}
+                <a href="{% url 'take-quiz' quiz.id %}" class='take-test-btn'>Take Quiz</a>
+                {% endfor %}
+            </div>
+            <details>
+                <summary>About this Course ▼ </summary>
+                <div class="course-description"> {{course.description}} </div>
+            </details>
+        </div>
+    </div>
+
+
+<div class="lesson-list-container">
+    <h2>{{course.title|upper}} LESSONS</h2>
+    {% for lesson in lessons %}
+    <div class="lesson-list">
+        <a href="{% url 'lesson-detail' lesson.lesson_id %}">
+            <img src="{{lesson.image.url}}" width='100px' height="100px" alt="">
+        </a>
+        <div class="lesson-list-title-nd-btn">
+            <a href="{% url 'lesson-detail' lesson.lesson_id %}" class="light-text">{{lesson.title}}</a>
+            {% if user.instructor %}
+            {% if user.instructor == course.instructor %}
+            <div class="course-btns-wrapper">
+                <a class="primary" href="{% url 'update-lesson' lesson.lesson_id %}">update</a>
+                <a class="danger" href="">delete</a>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="flex-col-2">
+    {% if request.user.instructor %}
+    <div class="instructor-update-bubble">Hi, <b>{{request.user.instructor.full_name}}</b> Do you want to Update this course? <br> <a href=" {% url 'update-course' course.course_id %} ">Update</a></div>
+    <div class="instructor-update-bubble">Do you want to create lessons? <br> <a href="{% url 'create-lesson' course.course_id %}">Add +</a></div>
+    {% endif %}
+
+    {% if hide_form %}
+    {% if user_review %}
+    <div class="review-success">Thank you for your review</div>
+    <div class="my-review-bubble">
+        <div class="user-info-b"> <img src="http://localhost:8000/static/img/profile.svg" alt="">
+            <span> {{user_review.user.student.username}} </span> 
+        </div>
+        <div class="rating-b">
+            {% if user_review.star == 1 %}⭐ 
+            {% elif user_review.star == 2 %} ⭐⭐ 
+            {% elif user_review.star == 3 %} ⭐⭐⭐ 
+            {% elif user_review.star == 4 %} ⭐⭐⭐⭐ 
+            {% elif user_review.star == 5 %} ⭐⭐⭐⭐⭐
+            {% endif %}
+        </div>
+        <div class="review-info-b">{{user_review.review}}</div>
+    </div>
+    {% endif %}
+    {% else %}
+        
+    <div class='rating-wrapper'>
+            <form action="" method='post' class="form">
+            <legend>Please rate this course</legend>
+                <div class="star-wrapper">
+                    {% csrf_token %}
+                    {{form.star}}
+                    <div class="star-labels">
+                        <label class="bx bx-star bx-sm star material-icons" for='id_star_0'>star_outline</label>
+                        <label class="bx bx-star bx-sm star material-icons" for='id_star_1'>star_outline</label>
+                        <label class="bx bx-star bx-sm star material-icons" for='id_star_2'>star_outline</label>
+                        <label class="bx bx-star bx-sm star material-icons" for='id_star_3'>star_outline</label>
+                        <label class="bx bx-star bx-sm star material-icons" for='id_star_4'>star_outline</label>
+                    </div>
+                </div>
+                {{form.review}}
+                <button type="submit">Submit</button>
+            </form>
+    </div>
+    {% endif %}
+    <div class="all-reviews-wrapper">
+        <details class="review-bubble-wrapper">
+            <summary class='view-review'>view reviews</summary>
+            <div class="review-scroll-cont">
+
+            {% for review in course.ratings.all %}
+            <div class="review-bubble">
+                <div class="user-info-b"> <img src="http://localhost:8000/static/img/profile.svg" alt=""><span> {{review.user.student.username}} </span> </div>
+                <div class="rating-b">
+                    {% if review.star == 1 %}⭐ 
+                    {% elif review.star == 2 %} ⭐⭐ 
+                    {% elif review.star == 3 %} ⭐⭐⭐ 
+                    {% elif review.star == 4 %} ⭐⭐⭐⭐ 
+                    {% elif review.star == 5 %} ⭐⭐⭐⭐⭐
+                    {% endif %}
+                </div>
+                <div class="review-info-b">{{review.review}}</div>
+            </div>
+            {% endfor %}
+            </div>
+        </details>
+    </div>
+
+    {% if my_enrolled_courses %}
+    <div class="dash-enrolled-c">
+        <h2>Enrolled courses</h2>
+        <div class="d-e-c-flex">
+            {% for c in my_enrolled_courses %}
+            <div class="d-e-c-courses">
+                <img src="{{c.image.url}}" alt="">
+                <div>{{c.title}} <br><br> 
+                    <div style="color: lightgreen;"><span>&check;</span> enrolled</div>
+                </div>
+            </div>
+            {% endfor %}           
+        </div>
+    </div>      
+    {% endif %}
+    
+</div>
+
+<script>
+    const allStar = document.querySelectorAll('.star-labels .star')
+
+    allStar.forEach((item, idx)=>{
+        item.addEventListener('click', function () {
+            allStar.forEach(i=> {
+                i.classList.replace('bxs-star', 'bx-star')
+                i.innerHTML = `star_outline`
+            })
+            for(let i=0; i<allStar.length; i++) {
+                if(i <= idx) {
+                    allStar[i].classList.replace('bx-star', 'bxs-star')
+                    allStar[i].innerHTML = `star`
+
+                }
+            }
+        })
+    })
+
+</script>
+
+{% include 'wonderhub/footer.html' %}
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends 'shop/base.html' %}
+    {% load static %}
+
+{% block content %}
+       
+
+<div class="prod-bar">PRODUCTS</div>
+<div class = 'home-container'>
+
+        {% for product in products %}
+
+     <div class="product">
+       <div class="imgbox">
+         <img src=" {{product.image.url}} ">
+       </div>
+       <div class="details">
+             <h2><a href=" {% url 'product-detail' product.product_id %} " style="text-decoration: none;"> {{product.title}} </a></br> <span><a href="{% url 'shop-brand-filter' product.brand %}" style="text-decoration: none; font-size: 1.7vw;"> {{product.brand}} </a></span> </h2>
+             <div class="price"> ${{product.price}} </div>
+             <center>
+              <a href="{% url 'shop-category-filter' product.category %}" style="text-decoration: none; font-size: 1.5vw;">{{product.category}}</a>
+             <p style="font-size: 1.5vw" class=" {{product.tag}} tag"> {{product.tag}} </p>
+           </center>
+             <a  class=" addtocart" data-action = 'add' data-product= "{{product.product_id}}">+ Add to Cart</a>
+       </div>
+     </div>   
+        {% endfor %}
+</div>        
+</div>
+
+       
+
+
+
+
+
+{% endblock %}

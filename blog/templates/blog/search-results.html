@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WonderHub Blog</title>
+</head>
+<body>
+            {% for post in posts %}
+            <div class="post-card">
+                <a href="{% url 'post-detail' post.id %}" class="post-img card-skeleton">
+                    <img src=" {{post.image.url}} " class="post-img hider">
+                </a>
+                <div class="post-info">
+                    {% if post.paid %}
+                    <a class="category-link" href=" {% url 'post-reader' post.id %} "  >
+                        <div class="card-skeleton post-title"><strong> {{post.title}} </strong></div>
+                    </a>
+                    {% else %}
+                    <a class="post-link" href=" {% url 'post-detail' post.id %} "  >
+                        <div class="card-skeleton post-title"><strong> {{post.title}} </strong></div>
+                    </a>
+                    {% endif %}
+                    
+                    <div class="card-skeleton post-author"><em>by {{post.author}} </em></div>
+                    <div class=" post-categories"> <strong class="pill card-skeleton"> Category: </strong>{% for cat in post.category.all %} <div class="bk-pill card-skeleton"> {{cat}} </div>{% endfor %} </div>
+                    <article class="post-price card-skeleton">{{post.content|safe|truncatewords_html:10}} </article>
+                    <div class="like-view-n-share">
+                        <a  class="like-btn card-skeleton" data-postid="{{post.id}}" onclick="likepost()"><div class="like hider" id="like-count" data-postid="{{post.id}}">{{post.likes}}</div></a>
+                        <div class=" card-skeleton"><div class="view hider">{{post.views}}</div></div>
+                        <div class=" card-skeleton"><div class="share hider">share</div></div>
+                    </div>
+                </div>            
+            </div>
+            
+            {% endfor %}
+
+
+</body>
+</html>
+{% endblock %}

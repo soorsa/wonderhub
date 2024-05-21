@@ -1,0 +1,251 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href=" {% static 'css/web-dev.css' %} "
+    />
+
+    <title>WonderHub Blog</title>
+  </head>
+
+  <body>
+    <section class="curved-navbar">
+      <div class="curved-navbar-background"></div>
+      <nav class="menu-container">
+        <!-- burger menu -->
+        <input type="checkbox" aria-label="Toggle menu" />
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <!-- logo -->
+        <a href=" {% url 'wonderhub' %} " class="menu-logo">
+          <img src=" {% static 'img/logo/wonderhub.png' %} " alt="" />
+        </a>
+
+        <!-- menu items -->
+        <div class="menu">
+          <ul>
+            <li>
+              <a href="#services" class="services-nav"> Services </a>
+            </li>
+            <li>
+              <a href="#pricing" class="pricing-nav"> Pricing </a>
+            </li>
+            <li>
+              <a href=" {% url 'blog-home' %} " class="blog-nav"> Blog </a>
+            </li>
+            <li>
+              <a href=" {% url 'store' %} " class="shop-nav"> Store </a>
+            </li>
+          </ul>
+          <ul>
+            
+            {% if user.is_authenticated %}
+
+            <li>
+              <a href=" {% url 'logout' %} "> Logout </a>
+            </li>
+            <li>
+              <a href=""> {{user.username}} </a>
+            </li>
+              
+            {% else %}
+
+            <li>
+              <a href=" {% url 'register' %} "> SignUp </a>
+            </li>
+            <li>
+              <a href="{% url 'login' %}"> LogIn </a>
+            </li>
+              
+            {% endif %}
+              
+          </ul>
+        </div>
+      </nav>
+      <!--        <div class="navbar-block">
+            <div class="navlogo">WonderHub</div>
+            <div class="nav-right">
+                <div class="nav-text">Blog |</div>
+                <div class="nav-text">Services |</div>
+                <div class="nav-text">Pricing |</div>
+                <div class="nav-text">Contacts</div>
+            </div>
+        </div>-->
+      <center>WONDERHUB</center>
+      <div class="hero-container">
+        <div class="hero1 hero">
+          <div id="containerAnimation" class="container-bottom-to-up">
+            <p class="hero-text bottom-to-up">WE CREATE WEBISTE!</p>
+            <p class="hero-text bottom-to-up">
+              get an affordable website from wonder hub today
+            </p>
+            <p class="hero-text bottom-to-up">
+              buy affordable gadgets: phones, power banks, laptops and other
+              device accessories
+            </p>
+            <div class="btn-container">
+              {% comment %}
+              <div class="shop-btn">View Templates</div>
+              {% endcomment %}
+              <div class="contact-btn">
+                <div class="ct-btn call-btn">Call</div>
+                <div class="ct-btn chat-btn">chat</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="section-container">
+      <div class="section" id="services">
+        <div class="section-header">our services</div>
+        <div class="section-content">
+          <div class="service-card">
+            <img src="{% static 'img/bg3.jpg' %}" alt="" />
+            <div class="service-card-content">
+              <h2>Web Development</h2>
+              <p>
+                Do you need a website, we create websites. Benefits of a website
+                are legitmacy, improves marketing
+              </p>
+              <a href="#pricing">view pricing</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <img src="{% static 'img/bg3.jpg' %}" alt="" />
+            <div class="service-card-content">
+              <h2>UI and UX</h2>
+              <p>
+                Do you need a website, we create websites. Benefits of a website
+                are legitmacy, improves marketing
+              </p>
+              <a href="#pricing">view pricing</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <img src="{% static 'img/bg3.jpg' %}" alt="" />
+            <div class="service-card-content">
+              <h2>Web Hosting</h2>
+              <p>
+                Do you need a website, we create websites. Benefits of a website
+                are legitmacy, improves marketing
+              </p>
+              <a href="#pricing">view pricing</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <img src="{% static 'img/bg3.jpg' %}" alt="" />
+            <div class="service-card-content">
+              <h2>Branding and Logo Design</h2>
+              <p>
+                Do you need a website, we create websites. Benefits of a website
+                are legitmacy, improves marketing
+              </p>
+              <a href="#pricing">view pricing</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section" id="pricing">
+        <div class="section-header">Pricing</div>
+        <div class="pricing-card-container">
+          <div class="pricing-card">
+            <div class="pricing-card-header">Personal / Portfolio Website</div>
+            <ul>
+              <li>6 pages max</li>
+              <li>free logo Design</li>
+              <li>1 year free maintainace</li>
+              <li>SEO</li>
+              <li>fast page load</li>
+              <li>site security</li>
+              <li>free user-interface and graphic design</li>
+            </ul>
+            <div class="price">₦ 99,000.00</div>
+            <div class="price-btn-container">
+              <div class="price-call-btn">call</div>
+              <div class='price-chat-btn'>chat</div>
+              <div class="price-order-btn">order</div>
+            </div>
+          </div>
+          <div class="pricing-card">
+            <div class="pricing-card-header">Bussiness / Company Website</div>
+            <ul>
+              <li>6 pages max</li>
+              <li>free logo Design</li>
+              <li>1 year free maintainace</li>
+              <li>SEO</li>
+              <li>fast page load</li>
+              <li>site security</li>
+              <li>free user-interface and graphic design</li>
+            </ul>
+            <div class="price">₦ 99,000.00</div>
+            <div class="price-btn-container">
+              <div class="price-call-btn">call</div>
+              <div class="price-chat-btn">chat</div>
+              <div class="price-order-btn">order</div>
+            </div>
+          </div>
+          <div class="pricing-card">
+            <div class="pricing-card-header">E-commerce / Online Store</div>
+            <ul>
+              <li>6 pages max</li>
+              <li>free logo Design</li>
+              <li>1 year free maintainace</li>
+              <li>SEO</li>
+              <li>fast page load</li>
+              <li>site security</li>
+              <li>free user-interface and graphic design</li>
+            </ul>
+            <div class="price">₦ 99,000.00</div>
+            <div class="price-btn-container">
+              <div class="price-call-btn">call</div>
+              <div class="price-chat-btn">chat</div>
+              <div class="price-order-btn">order</div>
+            </div>
+          </div>
+          <div class="pricing-card">
+            <div class="pricing-card-header">CMS, Blogs / Media Website</div>
+            <ul>
+              <li>6 pages max</li>
+              <li>free logo Design</li>
+              <li>1 year free maintainace</li>
+              <li>SEO</li>
+              <li>fast page load</li>
+              <li>site security</li>
+              <li>free user-interface and graphic design</li>
+            </ul>
+            <div class="price">₦ 99,000.00</div>
+            <div class="price-btn-container">
+              <div class="price-call-btn">call</div>
+              <div class="price-chat-btn">chat</div>
+              <div class="price-order-btn">order</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section" id="projects">
+        <div class="section-header">our clients</div>
+        <div class="clients-slide-container">
+          <div class="clients-slide"><img src=" {% static 'img/bg.jpg' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/wonderhub.png' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/wonderstore.png' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/wonderstore2.png' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/thumb-up.png' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/bg.jpg' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/bg2.jpg' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/bg3.jpg' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/bg4.jpg' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/wonderhubblue.png' %} " alt="" class="clients"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

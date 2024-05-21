@@ -1,0 +1,29 @@
+{% extends 'wonderhub/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="cat-body-container">
+    <h2>{{category_filter.title|upper}} COUSRES</h2>
+    <div class="filtered wrapper ">
+    {% for course in courses %}
+      <div class="course-box">
+        <img src=" {{course.image.url}} " alt="">
+        <div class="course-detail">
+          <div class="course-detail-title"><a href='{% url "course-detail" course.course_id %}'>{{course.title}}</a></div>
+          <div><i>By {{course.instructor}} </i></div>
+          <div class='student-n-rating'>
+            {% comment %} <div>students: {% with students=course.students.count %}{{students}}{% endwith %}
+            </div> {% endcomment %}
+            <div class="">{% if course.price < 400 %}Free {% else %}₦{{course.price}}{% endif %}</div>
+            <div>4.5 ⭐</div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+</div>
+{% include 'wonderhub/footer.html' %}
+<script>
+  document.title="{{category_filter.title}} Courses - wonderHUB"
+</script>
+{% endblock content %}

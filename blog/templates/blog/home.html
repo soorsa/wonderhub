@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WonderHub Stack - [Blog]</title>
+</head>
+<body>
+
+    <div>
+        <h2>ROUTES</h2>
+        <h3>ADMIN SITE</h3>
+        <div>
+            <a href=" http://127.0.0.1:8000/admin ">Admin site</a>
+        </div>
+        <hr>
+        <h4>Blog routes</h4>
+        <div>
+            <a href="{% url 'frontend-post-list' %}"> Blog [Frontend] </a><br>
+            <a href=" {% url 'api-postlist' %} ">Blog API [post list]</a><br>
+            <a href="{% url 'api-categorylist' %}">Blog API [catgory list]</a>
+        </div>
+        <hr>
+        <h4>User Routes</h4>
+        <div>
+            <a href=" {% url 'register' %} "> Register </a><br>
+            <a href=" {% url 'registerApi' %} "> User API [user list] </a>
+        </div>
+        <hr>
+        <h4>Nimic Routes</h4>
+        <div>
+            <a href="{% url 'nimic' %}">NIMIC</a><br>
+            <a href=" {% url 'nimic-upload' %} "> NIMIC - upload comic images </a>
+        </div>
+    </div>
+{% for post in posts %}
+<div class="post">
+    <h3> <a href=" {% url 'post-detail' post.id %} ">{{post.title}}</a> </h3>
+    <em>{{post.author}}</em>
+    <hr>
+    {% for cat in post.category.all %}
+        <small>{{cat}}</small>   
+    {% endfor %}
+    <p>{{post.content|safe}}</p>
+</div>
+{% endfor %}  
+</body>
+</html>
+<style>
+    .post{
+        background: black;
+        color: white;
+        border-radius: 8px;
+        width: 400px;
+    }
+</style>

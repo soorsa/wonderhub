@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login.css' %} ">
+    <title>WonderHUB - Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <a href="{% url 'wonderhub' %}">
+                <img src=" {% static 'img/logo/wonderhub.png' %} " alt="WonderHUB">
+            </a>
+        </div>
+        <legend>LogIn</legend>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form}}
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        <div class="divider">
+            <div class="line"></div>
+            <div class="">Or SignUp</div>
+            <div class="line"></div>
+        </div>
+        <div class="register-btns-container">
+            <a href="{% url 'student-signup' %}" class="student-btn">Register</a>
+            <a href="{% url 'instructor-signup' %}" class="instructor-btn">Become a tutor</a>
+        </div>
+    </div>
+</body>
+</html>

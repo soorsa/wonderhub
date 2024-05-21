@@ -1,0 +1,28 @@
+body {
+    font-family: monospace;
+}
+
+nav {
+    background-color: darkblue;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.nav-title {
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+nav .nav-auth {
+    display: flex;
+}
+
+.g-container {
+    margin-top: 80px;
+}

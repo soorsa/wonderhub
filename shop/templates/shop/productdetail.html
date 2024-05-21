@@ -1,0 +1,35 @@
+{% extends 'shop/base.html' %}
+    {% load static %}
+
+{% block content %}
+
+<center>
+<div class="product-detail">
+  <div class="product-img-container">
+    <img src=" {{product.image.url}} " class="product-image">
+    <img src=" {{product.image2.url}} " class="product-image">
+    <img src=" {{product.image3.url}} " class="product-image">
+  </div>
+  <div class="product-desc">
+    <h2> {{product.title}} </h2>
+    <p> ₦{{product.price}} </p>
+    <hr style="color: gray; background-color: gray; width: 60%;">
+    <h3 >{{product.brand}} <span > {{product.category}} </span></h3> 
+    <center>
+    <h2 class="{{product.tag}}"> {{product.tag}} </h2>
+    </center>
+    <hr style="color: gray; background-color: gray; width: 60%;">
+    <article> {{product.description}} </article>
+    <a  class=" addtocart" data-action = 'add' data-product= "{{product.product_id}}" >+ Add to Cart</a>
+
+  </div>
+</div>
+</center>      
+
+<style type="text/css">
+
+</style>
+
+
+
+{% endblock %}

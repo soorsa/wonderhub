@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/takequiz.css' %}">
+    <title>Take Quiz</title>
+</head>
+<body>
+    <nav>
+        <h1>Take Quiz</h1>
+    </nav>
+    <div class="instructions-div">
+        Please follow all instructions
+        <ul>
+            <li>Do not exit this page</li>
+            <li>Select only one answer</li>
+            <li>sel</li>
+            <li></li>
+        </ul>
+    </div>
+    <form method='post' action="">
+        {% csrf_token %}
+        <div class="div">
+            <ol>
+            {% for question in questions %}
+            <li>{{question.text}}</li>
+            <ul>
+                {% for answer in question.answers.all %}
+                <label>
+                    <input type="radio" name="{{question.id}}" value="{{answer.id}}"> {{answer.text}} 
+                </label><br>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+            </ol>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,469 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <title>Register Instructor</title>
+</head>
+<body>
+
+    <form action="" method="POST">
+        <div class="logo">
+            <a href="{% url 'wonderhub' %}">
+                <img src=" {% static 'img/logo/wonderhub.png' %} " alt="WonderHUB">
+            </a>
+        </div>
+
+        {% csrf_token %}
+        <legend> Register as Instructor </legend>
+
+        <div class="form-wrapper">
+            <!--<input type="text" placeholder="Username" class="form-control">-->
+            {{ form.username }}
+
+            {% comment %} <span class='status-icon'></span>  {% endcomment %}
+
+        </div>
+        <small class="username-error error" ></small>
+        <div class="fst-n-lst-name">
+            <div class="form-wrapper">
+                <!--<input type="text" placeholder="Username" class="form-control">-->
+                {{ form.first_name }}
+
+                {% comment %} <span class='status-icon'></span>  {% endcomment %}
+
+            </div>
+            {% comment %} <small class="first_name-error error" >{{form.first_name.errors}}</small> {% endcomment %}
+            <div class="form-wrapper">
+                <!--<input type="text" placeholder="Username" class="form-control">-->
+                {{ form.last_name }}
+
+                {% comment %} <span class='status-icon'></span>  {% endcomment %}
+
+            </div>
+            {% comment %} <small class="last_name-error error" >{{form.last_name.errors}}</small> {% endcomment %}
+        </div>
+        <div class="form-wrapper">
+            <!--<input type="text" placeholder="Email Address" class="form-control">-->
+            {{ form.email }}
+
+            {% comment %} <span class='email-status-icon status-icon'></span>           {% endcomment %}
+        </div>
+        <small class="email-error error" ></small>
+        <div class="form-wrapper">
+            <!--<input type="text" placeholder="Email Address" class="form-control">-->
+            {{ form.phone_number }}
+
+            {% comment %} <span class='phone_number-status-icon status-icon'></span>           {% endcomment %}
+        </div>
+        <small class="phone_number-error error" >  </small>
+
+        <div class="form-wrapper">
+            <!--<input type="password" placeholder="Password" class="form-control">-->
+            {{ form.password1 }}
+
+            {% comment %} <span class='password-status-icon status-icon'></span>           {% endcomment %}
+        </div>
+        <small class="password-error error" ></small>
+
+        <div class="form-wrapper">
+            <!--<input type="password" placeholder="Confirm Password" class="form-control">-->
+            {{ form.password2 }}
+
+            {% comment %} <span class='password2-status-icon status-icon'></span>           {% endcomment %}
+        </div>
+        <small class="password2-error error" ></small>
+
+
+        <p>Have an account? <a href="{% url 'login' %}">LogIn</a> </p>
+        <button type="submit" class="register-btn">Register
+            <i class="zmdi zmdi-arrow-right"></i>
+        </button>
+    </form>
+
+</body>
+
+{% comment %} <body>
+
+            <form action="" method="POST">
+                {% csrf_token %}
+                <h3 style="text-align: center;"> REGISTER AS INSTRUCTOR </h3>
+
+                <div class="form-wrapper">
+                    <!--<input type="text" placeholder="Username" class="form-control">-->
+                    {{ form.username }}
+
+                    <span class='status-icon'></span> 
+
+                </div>
+                <small class="username-error error" >{{form.username.errors}}</small>
+                <div class="form-wrapper">
+                    <!--<input type="text" placeholder="Username" class="form-control">-->
+                    {{ form.first_name }}
+
+                    <span class='status-icon'></span> 
+
+                </div>
+                <small class="first_name-error error" >{{form.first_name.errors}}</small>
+                <div class="form-wrapper">
+                    <!--<input type="text" placeholder="Username" class="form-control">-->
+                    {{ form.last_name }}
+
+                    <span class='status-icon'></span> 
+
+                </div>
+                <small class="last_name-error error" >{{form.last_name.errors}}</small>
+                <div class="form-wrapper">
+                    <!--<input type="text" placeholder="Email Address" class="form-control">-->
+                    {{ form.email }}
+
+                    <span class='email-status-icon status-icon'></span>          
+                </div>
+                <small class="email-error error" > {{form.email.errors}} </small>
+                <div class="form-wrapper">
+                    <!--<input type="text" placeholder="Email Address" class="form-control">-->
+                    {{ form.phone_number }}
+
+                    <span class='phone_number-status-icon status-icon'></span>          
+                </div>
+                <small class="phone_number-error error" > {{form.phone_number.errors}} </small>
+
+                <div class="form-wrapper">
+                    <!--<input type="password" placeholder="Password" class="form-control">-->
+                    {{ form.password1 }}
+
+                    <span class='password-status-icon status-icon'></span>          
+                </div>
+                <small class="password-error error" >{{form.password1.errors}}</small>
+
+                <div class="form-wrapper">
+                    <!--<input type="password" placeholder="Confirm Password" class="form-control">-->
+                    {{ form.password2 }}
+
+                    <span class='password2-status-icon status-icon'></span>          
+                </div>
+                <small class="password2-error error" >{{form.password2.errors}}</small>
+
+
+                <p>Already a contestant? <a href="#">LogIn</a> </p>
+                <button type="submit" class="register-btn">Register
+                    <i class="zmdi zmdi-arrow-right"></i>
+                </button>
+            </form>
+    
+</body> {% endcomment %}
+{% comment %} <style>
+    body{
+        background-color: darkblue;
+    }
+
+    .container{
+        margin:auto;
+        width:100%;
+        height: 100%;
+    }
+.form-card{
+    background-color: white;
+    width: 400px;
+    border-radius: 58px;
+    box-shadow: 5px 5px 5px black;
+    color: #242424;
+    display: flex;
+    justify-content: center;
+}
+form{
+    position: relative;
+    top: 100px;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form-wrapper{
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.form-control{
+    outline: 1;
+    height: 30px;
+    width: 80%;
+    border-radius: 15px;
+    border-width: 1px;
+    border-color: blue;
+}
+
+.is-invalid{
+    outline: red;
+    border-color: red;
+    height: 30px;
+    border-radius: 15px;
+    border-width: 1px;
+    box-shadow: 0 0 10px red;
+
+}
+
+
+.is-valid{
+    outline: green;
+    border-color: green;
+    height: 30px;
+    border-radius: 15px;
+    border-width: 1px;
+    box-shadow: 0 0 10px green;
+}
+
+
+
+.error{
+    text-align:left;
+    color: red;
+    font: sans-serif;
+    font-size: 12px;
+}
+
+.status-icon{
+    width: 30px; height:30px;
+    border: 1px solid silver;
+    border-radius:50%;
+    margin-left: 10px;
+    position: relative;
+}
+
+.username-error-icon{
+    background-color: red;
+    color: white;
+    height: 30px;
+    width: 30px;
+
+    border-radius: 50%;
+    position: absolute;
+    text-align: center;
+    
+    font: 15px Arial, sans-serif;
+}
+
+.valid-icon{
+    background-color: green;
+    color: white;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    font-size: 15px;
+    text-align: center;
+}
+
+.exclm{
+    position: relative;
+    top: 5px;
+
+}
+
+.exclm-s{
+    position: relative;
+    top: 5px;
+    font-size: 10px;
+}
+
+.register-btn{
+    background-color: blue;
+    color: white;
+    width: 100%;
+    height: 30px;
+    font-weight: bolder;
+    border-radius:15px;
+
+}
+
+
+
+
+
+</style> {% endcomment %}
+
+<script>
+    let usernamefield = document.querySelector('.username');
+    let usernameErrorField = document.querySelector('.username-error');
+    let usernameStatusIcon =  document.querySelector('.status-icon');
+
+    usernamefield.addEventListener("keyup", (e)=> {
+        console.log('typing');
+
+        const usernameVal = e.target.value;
+
+        usernamefield.classList.remove('is-invalid');
+        usernamefield.classList.remove('is-valid');
+        usernameErrorField.innerHTML = ``
+        /*usernameStatusIcon.innerHTML = ``*/
+
+        if  (usernameVal.length > 0) {
+            fetch("http://127.0.0.1:8000/user/user/checker/api", {
+                body:JSON.stringify({username: usernameVal}),
+                method:'POST',
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("data", data);
+                if (data.username_error){
+                    usernamefield.classList.add('is-invalid');
+                    usernameErrorField.innerHTML = `<ul><li>${data.username_error}</li></ul>`
+                    usernameStatusIcon.innerHTML = `<div class="username-error-icon" > <b class="exclm"> ! </b></div>`
+                }
+                if (data.username_valid){
+                    usernamefield.classList.remove('is-invalid');
+                    usernamefield.classList.add('is-valid');
+                    usernameStatusIcon.innerHTML = `<div class="valid-icon"><b class="exclm-s">&#x2713;</b></div>`
+                }
+            } );
+        }
+    });
+</script>
+<script>
+    let emailfield = document.querySelector('.email');
+    let emailErrorField = document.querySelector('.email-error');
+    let emailStatusIcon =  document.querySelector('.email-status-icon');
+
+    emailfield.addEventListener("keyup", (e)=> {
+        console.log('typing');
+
+        const emailVal = e.target.value;
+
+        emailfield.classList.remove('is-invalid');
+        emailfield.classList.remove('is-valid');
+        emailErrorField.innerHTML = ``
+        /*emailStatusIcon.innerHTML = ``*/
+
+        if  (emailVal.length > 0) {
+            fetch("http://127.0.0.1:8000/user/user/emailchecker/api", {
+                body:JSON.stringify({email: emailVal}),
+                method:'POST',
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("data", data);
+                if (data.email_error){
+                    emailfield.classList.add('is-invalid');
+                    emailErrorField.innerHTML = `<ul><li>${data.email_error}</li></ul>`
+                    emailStatusIcon.innerHTML = `<div class="username-error-icon" ><b class="exclm">!</b></div>`
+                }
+                if (data.email_valid){
+                    emailfield.classList.remove('is-invalid');
+                    emailfield.classList.add('is-valid');
+                    emailStatusIcon.innerHTML = `<div class="valid-icon"><b class="exclm-s">&#x2713;</b></div>`
+                }
+            } );
+        }
+    });
+</script>
+<script>
+    let passwordField = document.querySelector('.password');
+    let passwordField2 = document.querySelector('.password2');
+    let passwordErrorField = document.querySelector('.password-error');
+    let passwordErrorField2 = document.querySelector('.password2-error');
+    let passwordStatusIcon = document.querySelector('.password-status-icon');
+    let passwordStatusIcon2 = document.querySelector('.password2-status-icon');
+
+    passwordField.addEventListener("keyup", (e)=> {
+        console.log('typing password');
+
+        const passwordVal = e.target.value;
+        
+        passwordField.classList.remove("is-invalid");
+        passwordField.classList.remove("is-valid");
+        /*passwordStatusIcon.innerHTML = ``*/
+        passwordErrorField.innerHTML = ``
+
+
+        if (passwordVal.length > 0){
+            if (passwordVal.length < 8) {
+                passwordField.classList.add("is-invalid");
+                passwordErrorField.innerHTML = `<ul><li>Your password is too short</li></ul>`
+                passwordStatusIcon.innerHTML = `<div class="username-error-icon" ><b class="exclm">!</b></div>`
+            }
+    
+        }
+        if (passwordVal.length >= 8){
+            passwordField.classList.remove("is-invalid");
+            passwordField.classList.add("is-valid");
+            passwordStatusIcon.innerHTML = `<div class="valid-icon"><b class="exclm-s">&#x2713;</b></div>`
+        }
+    }  );
+
+    passwordField2.addEventListener("keyup", (e)=> {
+        console.log('confirming password');
+
+        const passwordVal2 = e.target.value;
+
+        passwordField2.classList.remove("is-invalid");
+        passwordField2.classList.remove('is-valid');
+        passwordErrorField2.innerHTML = ``
+        /*passwordStatusIcon2.innerHTML = ``*/
+
+
+        if (passwordVal2.length > 6){
+            
+            if (passwordVal2 !== passwordField.value) {
+                console.log('passwords dont match!');
+                passwordField2.classList.add("is-invalid");
+                passwordErrorField2.innerHTML = `<ul><li>The two passwords don't match</li></ul>`
+                passwordStatusIcon2.innerHTML = `<div class="username-error-icon" ><b class="exclm">!</b></div>`
+
+            }
+            if (passwordVal2 == passwordField.value){
+                passwordField2.classList.remove("is-invalid");
+                passwordField2.classList.add('is-valid');
+                passwordErrorField2.innerHTML = ``
+                passwordStatusIcon2.innerHTML = `<div class="valid-icon"><b class="exclm-s">&#x2713;</b></div>`
+            }
+    
+        }
+
+    });
+</script>
+<script>
+    const firstNameField =  document.querySelector('.firstname');
+    const lastNameField = document.querySelector('.lastname');
+
+    firstNameField.addEventListener('keyup', (e)=>{
+        let firstNameVal = e.target.value;
+        firstNameField.classList.remove('is-invalid');
+        firstNameField.classList.remove('is-valid');
+
+        if (firstNameVal.length < 2){
+            firstNameField.classList.add('is-invalid');
+            firstNameField.classList.remove('is-valid');
+        }
+        else{
+            firstNameField.classList.add('is-valid')
+            firstNameField.classList.remove('is-invalid');
+        }
+
+    })
+
+    lastNameField.addEventListener('keyup', (e)=>{
+        let lastNameVal = e.target.value;
+        lastNameField.classList.remove('is-invalid');
+        lastNameField.classList.remove('is-valid');
+
+        if (lastNameVal.length < 2){
+            lastNameField.classList.add('is-invalid');
+            lastNameField.classList.remove('is-valid');
+        }
+        else{
+            lastNameField.classList.add('is-valid')
+            lastNameField.classList.remove('is-invalid');
+        }
+
+    })
+   
+</script>
+
+</html>
+

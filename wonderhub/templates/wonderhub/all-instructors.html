@@ -1,0 +1,44 @@
+{% extends 'wonderhub/base.html' %}
+{% load static %}
+{% block content %}
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> WonderHUB's instructors </title>   
+</head>
+
+<div class="cat-body-container">
+  <div class="body-desc">
+    <p>Connecting you to <b>Instructors and Mentors</b> from all the world.</p>
+    <img src="{% static 'img/res/online-learning-amico.svg' %}" alt="">
+  </div>
+    <h2>INSTRUCTORS</h2>
+    <div class="wrapper">
+    {% for instructor in instructors %}
+    <div class="profile-card">
+        <img src="{{instructor.image.url}}" alt="">
+        <div class="profile-detail">
+          <a href="{% url 'course-by-instructor' instructor.instructor.username %}">
+            <div> {{instructor.full_name}} </div>
+            <small> <i>@{{instructor.instructor.username}} </i> </small>
+          </a>
+          <div>{{instructor.title}}</div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+</div>
+{% include 'wonderhub/footer.html' %}
+<script>
+    var counter = 1;
+    setInterval(function(){
+      document.getElementById('radio'+ counter).checked = true;
+      counter++;
+      if(counter > 4){
+        counter = 1;
+      }
+    }, 5000);
+  </script>
+
+{% endblock content %}

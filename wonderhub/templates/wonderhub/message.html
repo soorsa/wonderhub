@@ -1,0 +1,9 @@
+{% if messages %}
+<div class="message-bubble-container">
+{% for message in messages %}
+<li class="message-bubble {{message.tags}}">
+    {{message}}
+</li>
+{% endfor %}
+</div>
+{% endif %}

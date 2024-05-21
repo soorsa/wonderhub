@@ -1,0 +1,110 @@
+{% extends 'wonderhub/base.html' %}
+{% load static %}
+{% block content %}
+<script>
+    document.title= "{{user.instructor.full_name}}'s Dashboard"
+</script>
+{% include 'wonderhub/dash-sections.html' %}
+
+
+
+<div class="area">
+</div>
+<nav class="dash-menu">
+    <ul>
+        <li>
+            <a href="#home" onclick="showSection('home');">
+                <i class="fa material-icons fa-2x">home</i>
+                <span class="nav-text">
+                    Home
+                </span>
+            </a>
+            
+        </li>
+        <li class="has-subnav">
+            <a href="#MyCourses" onclick="showSection('my courses');">
+                <i class="fa material-icons fa-2x">school</i>
+                <span class="nav-text">
+                    My Courses
+                </span>
+            </a>
+            
+        </li>
+        <li class="has-subnav">
+            <a href="#create-course" onclick="showSection('create courses')">
+                <i class="fa material-icons fa-2x">playlist_add</i>
+                <span class="nav-text">
+                    Create New Courses
+                </span>
+            </a>
+            
+        </li>
+        <li class="has-subnav">
+            <a href="#earnings" onclick="showSection('earnings')">
+                <i class="fa material-icons fa-2x">monetization_on</i>
+                <span class="nav-text">
+                    Earnings
+                </span>
+            </a>
+            
+        </li>
+        <li>
+            <a href="#update-profile" onclick="showSection('profile update')">
+                <i class="fa material-icons fa-2x">manage_accounts</i>
+                <span class="nav-text">
+                    Update Profile
+                </span>
+            </a>
+        </li>
+    </ul>
+
+</nav>
+<nav class="dash-menu-mobile">
+        <div>
+            <a href="#home" onclick="showSection('home');">
+                <i class="fa material-icons fa-2x">home</i>
+                <span class="nav-text">
+                    Home
+                </span>
+            </a>
+            
+        </div>
+        <div class="has-subnav">
+            <a href="#MyCourses" onclick="showSection('my courses');">
+                <i class="fa material-icons fa-2x">school</i>
+                <span class="nav-text">
+                    My Courses
+                </span>
+            </a>
+            
+        </div>
+        <div class="has-subnav">
+            <a href="#create-course" onclick="showSection('create courses')">
+                <i class="fa material-icons fa-2x">playlist_add</i>
+                <span class="nav-text">
+                    Create New Courses
+                </span>
+            </a>
+            
+        </div>
+        <div class="has-subnav">
+            <a href="#earnings" onclick="showSection('earnings')">
+                <i class="fa material-icons fa-2x">monetization_on</i>
+                <span class="nav-text">
+                    Earnings
+                </span>
+            </a>
+            
+        </div>
+        <div>
+            <a href="#update-profile" onclick="showSection('profile update')">
+                <i class="fa material-icons fa-2x">manage_accounts</i>
+                <span class="nav-text">
+                    Update Profile
+                </span>
+            </a>
+        </div>
+
+
+</nav>
+{% endblock content %}

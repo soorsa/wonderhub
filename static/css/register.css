@@ -1,0 +1,165 @@
+    body {
+        background: url(http://127.0.0.1:8000/static/img/nohat2.jpg);
+        background-repeat: no-repeat;
+        font-family: monospace;
+    }
+    
+    legend {
+        font-size: 1.5rem;
+        color: white;
+        text-align: center;
+        text-shadow: 0 0 10px white;
+        padding: 10px 0;
+    }
+    
+    .container {
+        margin: auto;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .form-card {
+        background-color: white;
+        width: 400px;
+        border-radius: 58px;
+        box-shadow: 5px 5px 5px black;
+        color: #242424;
+        display: flex;
+        justify-content: center;
+    }
+    
+    form {
+        position: relative;
+        z-index: 1;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+        backdrop-filter: blur(5px);
+        max-width: 360px;
+        margin: 50px auto;
+        padding: 45px;
+        border-radius: 5px;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    
+    form a {
+        color: lightblue;
+        font-weight: bolder;
+    }
+    
+    .form-wrapper {
+        margin-bottom: 5px;
+        display: flex;
+    }
+    
+    .form-control {
+        padding: 0.7rem 10%;
+        width: 80%;
+        border-radius: 5px;
+        /* background-color: #03001c4d; */
+        background: rgba(0, 0, 0, 0.548);
+        border: 1px solid white;
+        color: white;
+    }
+    
+    .fst-n-lst-name {
+        display: flex;
+        justify-content: space-between;
+        gap: 5px;
+    }
+    
+    .is-invalid {
+        outline: red;
+        border-color: red;
+        border-width: 1px;
+        box-shadow: 0 0 2px red;
+    }
+    
+    .is-valid {
+        outline: red;
+        border: 1px solid lawngreen;
+        box-shadow: 0 0 2px lightgreen;
+    }
+    
+    .error {
+        text-align: left;
+        color: darkred;
+        font: sans-serif;
+        font-size: xx-small;
+    }
+    
+    .error ul {
+        margin: auto;
+    }
+    
+    .error ul li {
+        padding-bottom: 5px;
+    }
+    
+    .status-icon {
+        width: 30px;
+        height: 30px;
+        border: 1px solid silver;
+        border-radius: 50%;
+        margin-left: 10px;
+        position: relative;
+    }
+    
+    .username-error-icon {
+        background-color: red;
+        color: white;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        position: absolute;
+        text-align: center;
+        font: 15px Arial, sans-serif;
+    }
+    
+    .valid-icon {
+        background-color: green;
+        color: white;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        font-size: 15px;
+        text-align: center;
+    }
+    
+    .exclm {
+        position: relative;
+        top: 5px;
+    }
+    
+    .exclm-s {
+        position: relative;
+        top: 5px;
+        font-size: 10px;
+    }
+    
+    .register-btn {
+        background-color: green;
+        color: white;
+        width: 100%;
+        height: 40px;
+        font-weight: bolder;
+        border-radius: 5px;
+        border: none;
+        transition: 0.7s ease;
+    }
+    
+    .register-btn:active,
+    .register-btn:focus {
+        background-color: blue;
+        transition: .7s ease;
+    }
+    
+    .logo {
+        width: 100%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .logo img {
+        width: 150px;
+        margin: auto;
+    }

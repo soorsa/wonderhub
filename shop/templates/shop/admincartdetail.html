@@ -1,0 +1,18 @@
+{% extends 'shop/adminbase.html' %}
+    {% load static %}
+
+{% block content %}
+
+
+<div> {{cart.customer}}-{{cart.device_id}} </div>
+<div>quantity {{cart.cartquantity}} </div>
+<div>Total ₦{{cart.grandtotal | floatformat:2}} </div>
+<div>Ordered - {{cart.ordered}} </div>
+<div>Paid - {{cart.order_completed}} </div>
+<div>Shipping - {{cart.delivery_address}} </div>
+<h2>products</h2>
+{% for c in cartitems %}
+<p> {{c.product.title}} - {{c.quantity}}*{{c.product.price}} -- ₦{{c.subtotal | floatformat:2}}</p>
+{% endfor %}
+
+{% endblock %}

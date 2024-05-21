@@ -1,0 +1,8 @@
+{% load static %}
+<div class="withdrawal-form-container">
+    <form action=" {% url 'make-withdrawal' %} " method="post">
+        {% csrf_token %}
+        <input type="number" name="amount" id="" placeholder='Enter amount'>
+        <button type="submit">withdraw</button>
+    </form>
+</div>

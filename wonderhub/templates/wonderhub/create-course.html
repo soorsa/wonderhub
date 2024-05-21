@@ -1,0 +1,18 @@
+{% extends 'wonderhub/base.html' %}
+{% load static %}
+
+{% block content %}
+<script>document.title = "Create your course on wonderHUB"</script>
+<div class="cat-body-container">
+    <h2>Create New Course</h2>
+<form action="" method="post" enctype="multipart/form-data" class='form'>
+    {% csrf_token %}
+    {{form.as_div}}
+    <button type="submit">Create</button>
+</form>
+
+</div>
+{% include 'wonderhub/footer.html' %}
+    
+{% endblock content %}
+    

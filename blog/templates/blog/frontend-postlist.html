@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOG-frontend</title>
+</head>
+<style>
+    body{
+        background-color: skyblue;
+    }
+    .nav-bar {
+        background: purple;
+        color: white;
+        width: 100%;
+        height: 80px;
+        text-align: center;
+    }
+
+    .reload{
+        background-color: green;
+        height: 50px;
+        width: 50px;
+        border-radius:50%;
+        color:white;
+    }
+
+    .list-container {
+        background-color: skyblue;
+        width: 100%;
+        margin-top: 50px;
+    }
+
+    .post{
+        background-color: #fff;
+        color: black;
+        border-radius: 8px;
+        margin-top: 10px;
+        text-align:center;
+        width: 75%;
+        margin:auto;
+    }
+
+    .post-head{
+        background-color: silver;
+
+    }
+
+    .view-btn{
+        height: 50px;
+        width: 50px;
+        border-radius:50%;
+        background-color: blue;
+        color: white;
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+    .like-btn{
+        height: 50px;
+        width: 50px;
+        border-radius:50%;
+        background-color: pink;
+        color:black;
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+</style>
+<script>
+    postlist()
+    function postlist(){
+        var url = 'http://127.0.0.1:8000/api/postlist'
+        fetch(url)
+        .then((response) => response.json())
+        .then(function(data){
+            console.log('Data:', data)
+            var list = data
+            var bdy = document.getElementById('body')
+            bdy.innerHTML = ""
+
+            for (var i=0; i < list.length; i++){
+                item = ` <div class='post'>
+                    <div class="post-head">
+                        <h3 data-id='${list[i].id}'>${list[i].title}</h3>
+                        <span>by ${list[i].author} </span>
+                        <span>Likes: ${list[i].likes} </span>
+                        <span>Views: ${list[i].views} </span>
+                        <em> categories: ${list[i].category} </em>
+                    </div>
+                    <div class="post-body">
+                        <p> ${list[i].content} </p>
+                    </div>
+                    <a href="http://127.0.0.1:8000/api/post/${list[i].id}"> view</a>
+                    <div class="btn-container">
+                        <button class="view-btn">view</button>
+                        <button class="like-btn" onclick="likepost()">like</button>
+                    </div>
+                </div> 
+                    `
+                
+                bdy.innerHTML += item
+                
+            }
+        
+        })
+        
+    
+    }
+
+    function likepost(){
+        console.log("post liked")
+    }
+
+</script>
+<body>
+    <div class="nav-bar">Post list</div>
+    <button class="reload" id="reload" onclick="postlist()">refresh</button>
+    <div class="list-container"  id="body"></div>
+</body>
+</html>

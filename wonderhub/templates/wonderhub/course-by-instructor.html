@@ -1,0 +1,35 @@
+{% extends 'wonderhub/base.html' %}
+{% load static %}
+{% block content %}
+<script>document.title= "{{course_filter.full_name}}'s Courses" </script>
+<div class="cat-body-container">
+  <div class="instructor-container">
+    <img src="{{course_filter.image.url}}" alt="">
+    <div class="instructor-detail-wrapper">
+      <small><i>@{{course_filter.instructor.username}}</i></small>
+      <div><strong>{{course_filter.full_name}}</strong></div>
+      <div><strong>{{course_filter.title|upper}}</strong></div>
+      <div>{{courses.count}} courses</div>
+      <div class=""> {{course_filter.total_enrollment}} students </div>
+    </div>
+  </div>
+    <h2>{{course_filter.full_name|upper}} COUSRES</h2>
+    <div class="filtered wrapper">
+    {% for course in courses %}
+      <div class="course-box">
+        <img src=" {{course.image.url}} " alt="">
+        <div class="course-detail">
+          <div><a href='{% url "course-detail" course.course_id %}'>{{course.title}}</a></div>
+          <div><i>By {{course.instructor}} </i></div>
+          <div class='student-n-rating'>
+            {% comment %} <div>students: {% with students=course.students.count %}{{students}}{% endwith %}</div>  {% endcomment %}
+            <div class="">{% if course.price < 400 %}Free {% else %}₦{{course.price}}{% endif %}</div>
+            <div>4.5 ⭐</div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+</div>
+{% include 'wonderhub/footer.html' %}
+{% endblock content %}

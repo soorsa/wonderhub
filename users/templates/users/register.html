@@ -1,0 +1,336 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Users</title>
+</head>
+<body>
+
+    {% if form.errors %}
+        {% for error in form.errors %}
+        <p> {{error.errors}} </p>
+        {% endfor %}
+    {% endif %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                <h3 style="text-align: center;"> JOIN TODAY </h3>
+
+                <div class="form-wrapper">
+                    <!--<input type="text" placeholder="Username" class="form-control">-->
+                    {{ form.username }}
+
+                    <span class='status-icon'></span> 
+
+                </div>
+                <small class="username-error error" >{{form.username.errors}}</small>
+
+                <div class="form-wrapper">
+                    <!--<input type="text" placeholder="Email Address" class="form-control">-->
+                    {{ form.email }}
+
+                    <span class='email-status-icon status-icon'></span>          
+                </div>
+                <small class="email-error error" > {{form.email.errors}} </small>
+
+                <div class="form-wrapper">
+                    <!--<input type="password" placeholder="Password" class="form-control">-->
+                    {{ form.password1 }}
+
+                    <span class='password-status-icon status-icon'></span>          
+                </div>
+                <small class="password-error error" >{{form.password1.errors}}</small>
+
+                <div class="form-wrapper">
+                    <!--<input type="password" placeholder="Confirm Password" class="form-control">-->
+                    {{ form.password2 }}
+
+                    <span class='password2-status-icon status-icon'></span>          
+                </div>
+                <small class="password2-error error" >{{form.password2.errors}}</small>
+
+
+                <p>Already a contestant? <a href="#">LogIn</a> </p>
+                <button type="submit" class="register-btn">Register
+                    <i class="zmdi zmdi-arrow-right"></i>
+                </button>
+            </form>
+    
+</body>
+<style>
+    body{
+        background-color: darkblue;
+    }
+
+    .container{
+        margin:auto;
+        width:100%;
+        height: 100%;
+    }
+.form-card{
+    background-color: white;
+    width: 400px;
+    border-radius: 58px;
+    box-shadow: 5px 5px 5px black;
+    color: #242424;
+    display: flex;
+    justify-content: center;
+}
+form{
+    position: relative;
+    top: 100px;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form-wrapper{
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.form-control{
+    outline: 1;
+    height: 30px;
+    width: 80%;
+    border-radius: 15px;
+    border-width: 1px;
+    border-color: blue;
+}
+
+.is-invalid{
+    outline: red;
+    border-color: red;
+    height: 30px;
+    border-radius: 15px;
+    border-width: 1px;
+    box-shadow: 0 0 10px red;
+
+}
+
+
+.is-valid{
+    outline: green;
+    border-color: green;
+    height: 30px;
+    border-radius: 15px;
+    border-width: 1px;
+    box-shadow: 0 0 10px green;
+}
+
+
+
+.error{
+    text-align:left;
+    color: red;
+    font: sans-serif;
+    font-size: 12px;
+}
+
+.status-icon{
+    width: 30px; height:30px;
+    border: 1px solid silver;
+    border-radius:50%;
+    margin-left: 10px;
+    position: relative;
+}
+
+.username-error-icon{
+    background-color: red;
+    color: white;
+    height: 30px;
+    width: 30px;
+
+    border-radius: 50%;
+    position: absolute;
+    text-align: center;
+    
+    font: 15px Arial, sans-serif;
+}
+
+.valid-icon{
+    background-color: green;
+    color: white;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    font-size: 15px;
+    text-align: center;
+}
+
+.exclm{
+    position: relative;
+    top: 5px;
+
+}
+
+.exclm-s{
+    position: relative;
+    top: 5px;
+    font-size: 10px;
+}
+
+.register-btn{
+    background-color: blue;
+    color: white;
+    width: 100%;
+    height: 30px;
+    font-weight: bolder;
+    border-radius:15px;
+
+}
+
+
+
+
+
+</style>
+
+<script>
+    var usernamefield = document.querySelector('.username');
+    var usernameErrorField = document.querySelector('.username-error');
+    var usernameStatusIcon =  document.querySelector('.status-icon');
+
+    usernamefield.addEventListener("keyup", (e)=> {
+        console.log('typing');
+
+        const usernameVal = e.target.value;
+
+        usernamefield.classList.remove('is-invalid');
+        usernamefield.classList.remove('is-valid');
+        usernameErrorField.innerHTML = ``
+        usernameStatusIcon.innerHTML = ``
+
+        if  (usernameVal.length > 0) {
+            fetch("http://127.0.0.1:8000/user/user/checker/api", {
+                body:JSON.stringify({username: usernameVal}),
+                method:'POST',
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("data", data);
+                if (data.username_error){
+                    usernamefield.classList.add('is-invalid');
+                    usernameErrorField.innerHTML = `<ul><li>${data.username_error}</li></ul>`
+                    usernameStatusIcon.innerHTML = `<div class="username-error-icon" > <b class="exclm"> ! </b></div>`
+                }
+                if (data.username_valid){
+                    usernamefield.classList.remove('is-invalid');
+                    usernamefield.classList.add('is-valid');
+                    usernameStatusIcon.innerHTML = `<div class="valid-icon"><b class="exclm-s">&#x2713;</b></div>`
+                }
+            } );
+        }
+    });
+</script>
+<script>
+    var emailfield = document.querySelector('.email');
+    var emailErrorField = document.querySelector('.email-error');
+    var emailStatusIcon =  document.querySelector('.email-status-icon');
+
+    emailfield.addEventListener("keyup", (e)=> {
+        console.log('typing');
+
+        const emailVal = e.target.value;
+
+        emailfield.classList.remove('is-invalid');
+        emailfield.classList.remove('is-valid');
+        emailErrorField.innerHTML = ``
+        emailStatusIcon.innerHTML = ``
+
+        if  (emailVal.length > 0) {
+            fetch("http://127.0.0.1:8000/user/user/emailchecker/api", {
+                body:JSON.stringify({email: emailVal}),
+                method:'POST',
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("data", data);
+                if (data.email_error){
+                    emailfield.classList.add('is-invalid');
+                    emailErrorField.innerHTML = `<ul><li>${data.email_error}</li></ul>`
+                    emailStatusIcon.innerHTML = `<div class="username-error-icon" ><b class="exclm">!</b></div>`
+                }
+                if (data.email_valid){
+                    emailfield.classList.remove('is-invalid');
+                    emailfield.classList.add('is-valid');
+                    emailStatusIcon.innerHTML = `<div class="valid-icon"><b class="exclm-s">&#x2713;</b></div>`
+                }
+            } );
+        }
+    });
+</script>
+<script>
+    var passwordField = document.querySelector('.password');
+    var passwordField2 = document.querySelector('.password2');
+    var passwordErrorField = document.querySelector('.password-error');
+    var passwordErrorField2 = document.querySelector('.password2-error');
+    var passwordStatusIcon = document.querySelector('.password-status-icon');
+    var passwordStatusIcon2 = document.querySelector('.password2-status-icon');
+
+    passwordField.addEventListener("keyup", (e)=> {
+        console.log('typing password');
+
+        const passwordVal = e.target.value;
+        
+        passwordField.classList.remove("is-invalid");
+        passwordField.classList.remove("is-valid");
+        passwordStatusIcon.innerHTML = ``
+        passwordErrorField.innerHTML = ``
+
+
+        if (passwordVal.length > 0){
+            if (passwordVal.length < 8) {
+                passwordField.classList.add("is-invalid");
+                passwordErrorField.innerHTML = `<ul><li>Your password is too short</li></ul>`
+                passwordStatusIcon.innerHTML = `<div class="username-error-icon" ><b class="exclm">!</b></div>`
+            }
+    
+        }
+        if (passwordVal.length >= 8){
+            passwordField.classList.remove("is-invalid");
+            passwordField.classList.add("is-valid");
+            passwordStatusIcon.innerHTML = `<div class="valid-icon"><b class="exclm-s">&#x2713;</b></div>`
+        }
+    }  );
+
+    passwordField2.addEventListener("keyup", (e)=> {
+        console.log('confirming password');
+
+        const passwordVal2 = e.target.value;
+
+        passwordField2.classList.remove("is-invalid");
+        passwordField2.classList.remove('is-valid');
+        passwordErrorField2.innerHTML = ``
+        passwordStatusIcon2.innerHTML = ``
+
+
+        if (passwordVal2.length > 6){
+            
+            if (passwordVal2 !== passwordField.value) {
+                console.log('passwords dont match!');
+                passwordField2.classList.add("is-invalid");
+                passwordErrorField2.innerHTML = `<ul><li>The two passwords don't match</li></ul>`
+                passwordStatusIcon2.innerHTML = `<div class="username-error-icon" ><b class="exclm">!</b></div>`
+
+            }
+            if (passwordVal2 == passwordField.value){
+                passwordField2.classList.remove("is-invalid");
+                passwordField2.classList.add('is-valid');
+                passwordErrorField2.innerHTML = ``
+                passwordStatusIcon2.innerHTML = `<div class="valid-icon"><b class="exclm-s">&#x2713;</b></div>`
+            }
+    
+        }
+
+    });
+</script>
+
+</html>
+

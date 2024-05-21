@@ -1,0 +1,55 @@
+:root {
+    --midnight-color: #2B333D;
+    --midnight-color-2: #03001C;
+    --primary-midnight: #10001c;
+    --primary-color: #4f2460;
+    --secondary-color: #f5dee1;
+    --second-white: #e4e5e4;
+    --dark-primary-color: #1b0c20;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: helvetica;
+    background-color: var(--secondary-color);
+}
+
+a {
+    text-decoration: none;
+}
+
+.become-instructor-sections {
+    width: 100%;
+    height: 100vh;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.become-instructor-sections div {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.become-instructor-sections img {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.scrolldown-btn {
+    padding: 10px;
+    border-radius: 50%;
+    background-color: var(--primary-midnight);
+    color: white;
+}
+
+@media only screen and (max-width:500px) {
+    .become-instructor-sections img {
+        width: 250px;
+        margin: auto;
+    }
+}
