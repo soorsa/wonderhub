@@ -130,7 +130,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 if RENDER:
-    MEDIA_URL = 'static/mediapost/'
+    MEDIA_URL = '/mediapost/'
 else:
     MEDIA_URL = '/mediapost/'
 
