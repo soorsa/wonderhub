@@ -131,10 +131,11 @@ STATICFILES_DIRS = [
 ]
 if RENDER:
     MEDIA_URL = '/mediapost/'
+    MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(BASE_DIR, 'static/mediapost'))
 else:
     MEDIA_URL = '/mediapost/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'static/mediapost')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/mediapost')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
