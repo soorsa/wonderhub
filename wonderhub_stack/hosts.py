@@ -11,5 +11,5 @@ host_patterns = patterns(
     host(r'www', 'wonderhub_stack.urls', name='www'),
     host(r'academy', 'blog.urls', name='academy'),
 )
-if settings.RENDER:
-    urlpatterns += staticfiles_urlpatterns()
+# if settings.RENDER:
+#     urlpatterns += staticfiles_urlpatterns()
