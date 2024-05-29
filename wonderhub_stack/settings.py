@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ze^l1vtu57*_jdrpnz-v&9i*9o$=0g-%5o&_7y%x$6^xc!35^7
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-RENDER =True
+RENDER =False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_subdomains',
     'blog',
     'nimic',
     'wonderhub',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django_subdomains.middleware.SubdomainURLRoutingMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -59,6 +61,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'wonderhub_stack.urls'
+
+SUBDOMAIN_URLCONFS = {
+    None: 'wonderhub_stack.urls',  # no subdomain
+    'academy': 'wonderhub_stack.blog.urls',
+}
 
 TEMPLATES = [
     {
