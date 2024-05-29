@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_subdomains',
     'blog',
     'nimic',
     'wonderhub',
@@ -47,10 +46,11 @@ INSTALLED_APPS = [
     'shop',
     'ckeditor',
     'rest_framework',
+    'django_hosts',
 ]
 
 MIDDLEWARE = [
-    'django_subdomains.middleware.SubdomainURLRoutingMiddleware',
+    'django_hosts.middleware.HostsRequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -58,14 +58,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
 ROOT_URLCONF = 'wonderhub_stack.urls'
 
-SUBDOMAIN_URLCONFS = {
-    None: 'wonderhub_stack.urls',  # no subdomain
-    'academy': 'wonderhub_stack.blog.urls',
-}
+ROOT_HOSTCONF = 'wonderhub_stack.hosts'
+DEFAULT_HOST = 'www'
+
+# SUBDOMAIN_URLCONFS = {
+#     None: 'wonderhub_stack.urls',  # no subdomain
+#     'academy': 'wonderhub_stack.blog.urls',
+# }
 
 TEMPLATES = [
     {
