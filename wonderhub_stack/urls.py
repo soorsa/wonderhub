@@ -24,7 +24,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('wonderhub.urls')),
-    path('blog/', include('blog.urls')),
+    # path('blog/', include('blog.urls')),
     path('shop/', include('shop.urls')),
     path('user/', include('users.urls')),
     path('nimic/', include('nimic.urls')),
