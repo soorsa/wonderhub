@@ -1,4 +1,5 @@
 {% load static %}
+{% load hosts %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,7 +90,7 @@ href="https://fonts.googleapis.com/css?family=Titan+One">
             <li><a href="{% url 'student-dashboard' %}">{{user.first_name|capfirst}}</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
           {% else %}
-            <li><a href="{% url 'login' %}">{{user.username|capfirst}}</a></li>
+            <li><a href="{% host_url 'login' host '' %}">{{user.username|capfirst}}</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
           {% endif %}            
         </ul>
@@ -99,7 +100,7 @@ href="https://fonts.googleapis.com/css?family=Titan+One">
             <a href=" {% url 'student-signup' %} "> Sign-up </a>
           </li>
           <li>
-            <a href="{% url 'login' %}"> Login </a>
+            <a href="{% host_url 'login' %}"> Login </a>
           </li>
         </ul>
         {% endif %}

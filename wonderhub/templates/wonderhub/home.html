@@ -1,53 +1,9 @@
 {% extends 'wonderhub/base.html' %}
 {% load static %}
+{% load hosts %}
 {% block content %}
 {% include 'wonderhub/loading.html' %}
 
-<!--<div class="slider">
-    <div class="slides">
-      <input type="radio" name="radio-btn" id="radio1">
-      <input type="radio" name="radio-btn" id="radio2">
-      <input type="radio" name="radio-btn" id="radio3">
-      <input type="radio" name="radio-btn" id="radio4">
-
-      <div class="slide first"><img src="{% static 'img/bg.jpg' %}" alt="">
-        <div class="slide-text">
-          <a href=" {% url 'store' %} ">SHOP NOW</a>
-        </div>
-      </div>
-      <div class="slide"><img src="{% static 'img/bg2.jpg' %}" alt="">
-        <div class="slide-text">
-          <a href=" {% url 'store' %}/brand/phone ">ORDER NOW</a>
-        </div>
-      </div>
-      <div class="slide"><img src="{% static 'img/bg3.jpg' %}" alt="">
-        <div class="slide-text">
-          <a href=" {% url 'wonderhub' %} ">CALL NOW</a>
-        </div>
-      </div>
-      <div class="slide"><img src="{% static 'img/bg4.jpg' %}" alt="">
-        <div class="slide-text">
-          <a href="{% url 'wonderhub' %}#pricing">VIEW PRICING</a>
-        </div>
-      </div>
-      
-      <div class="navigation-auto">
-        <div class="auto-btn1"></div>
-        <div class="auto-btn2"></div>
-        <div class="auto-btn3"></div>
-        <div class="auto-btn4"></div>
-      </div>
-
-    </div>
-
-    <div class="navigation-manual">
-      <label for="radio1" class="manual-btn"></label>
-      <label for="radio2" class="manual-btn"></label>
-      <label for="radio3" class="manual-btn"></label>
-      <label for="radio4" class="manual-btn"></label>
-    </div>
-  </div>
--->
 <div class="hero">
   <span></span><span></span><span></span><span></span><span></span>
   <span></span><span></span><span></span><span></span><span></span>
@@ -66,7 +22,7 @@
       <p><b>Come</b> Explore A <b>Wonder</b> Way To <b>Learn</b></p>
       <em>never stop learning.</em>
       <div>
-        <a href="{% url 'login' %}" class='hero-login'>Sign In</a>
+        <a href="{% host_url 'login' host 'www' %}" class='hero-login'>Sign In</a>
         <a href="{% url 'student-signup' %}">Get Started</a>
       </div>
     </div>
