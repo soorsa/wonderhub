@@ -18,8 +18,9 @@
         <legend>LogIn</legend>
         <form action="" method="post">
             {% csrf_token %}
-            {{form}}
-            <button type="submit" class="login-btn">Login</button>
+            <input type="text" name="username" id="id_username" autofocus autocomplete="username" autocapitalize='none' required placeholder="Username">
+            <input type="password" name="password" id="id_password" required placeholder="Password">
+            <button type="submit" class="login-btn">L O G I N</button>
         </form>
         <div class="divider">
             <div class="line"></div>

@@ -1,15 +1,16 @@
 :root {
-    --midnight-color: #2B333D;
-    --midnight-color-2: #03001C;
+    --midnight-color: #2b333d;
+    --midnight-color-2: #03001c;
     --primary-midnight: #10001c;
     --primary-color: #4f2460;
+    --lavender: #f5e7fe;
     --secondary-color: #f5dee1;
     --dark-primary-color: #1b0c20;
 }
 
 body {
-    /* background-color: purple; */
-    background: url(http://127.0.0.1:8000/static/img/nohat2.jpg);
+    background-color: var(--primary-midnight);
+    /* background: url(http://127.0.0.1:8000/static/img/nohat2.jpg); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -26,6 +27,12 @@ body {
     position: relative;
     margin: 100px auto;
     max-width: 400px;
+}
+
+@media screen and (max-width: 399px) {
+    .container {
+        margin: 90% auto auto auto;
+    }
 }
 
 legend {
@@ -66,11 +73,11 @@ input {
     border-radius: 5px;
     width: 80%;
     margin: 0 0 20px 0;
-    padding: 0.7rem 10%;
+    padding: 1rem 10%;
     border: 1px solid gray;
     /* background-color: var(--midnight-color-2); */
     background-color: #03001c4d;
-    color: gray;
+    color: var(--lavender);
 }
 
 input:focus,
@@ -81,8 +88,8 @@ input:active {
 }
 
 .login-btn {
-    background-color: green;
-    color: white;
+    background-color: var(--lavender);
+    color: var(--primary-midnight);
     width: 100%;
     height: 40px;
     font-weight: bolder;
@@ -93,8 +100,9 @@ input:active {
 
 .login-btn:active,
 .login-btn:focus {
-    background-color: blue;
-    transition: .7s ease;
+    background-color: var(--primary-color);
+    color: var(--lavender);
+    transition: 0.7s ease;
 }
 
 .divider {

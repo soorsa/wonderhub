@@ -26,6 +26,7 @@ href="https://fonts.googleapis.com/css?family=Titan+One">
       <!-- burger menu -->
         <input type="checkbox" class="checkbox" aria-label="Toggle menu" name="toggle-menu" id="toggle-menu" />
         <label for="toggle-menu" class="toggle-label bx bxs-category bx-sm material-icons "> menu</label>
+        <label for="toggle-menu" class="toggle-cancel bx bxs-category bx-sm material-icons "> cancel</label>
 
         <a href=" {% url 'wonderhub' %} " class="menu-logo">
           <img src=" {% static 'img/logo/wonderhub.png' %} " alt="" />
@@ -100,7 +101,7 @@ href="https://fonts.googleapis.com/css?family=Titan+One">
             <a href=" {% url 'student-signup' %} "> Sign-up </a>
           </li>
           <li>
-            <a href="{% host_url 'login' %}"> Login </a>
+            <a href="{% url 'login' %}"> Login </a>
           </li>
         </ul>
         {% endif %}

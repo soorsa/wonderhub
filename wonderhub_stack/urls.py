@@ -24,7 +24,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('wonderhub.urls')),
-    path('', include('blog.urls')),
+    path('blog/', include('blog.urls')),
     path('shop/', include('shop.urls')),
     path('user/', include('users.urls')),
     path('nimic/', include('nimic.urls')),
@@ -35,8 +35,8 @@ urlpatterns = [
 ]
 
 urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # if settings.RENDER:
 #     urlpatterns += staticfiles_urlpatterns()
 # else:
 #     # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
