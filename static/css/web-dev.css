@@ -2,8 +2,24 @@ body {
     overflow-x: hidden;
     font-family: Sans-Serif;
     margin: 0;
-    background-color: pink;
+    background-color: white;
     scroll-behavior: smooth;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --midnight-color: #2b333d;
+    --midnight-color-2: #03001c;
+    --primary-midnight: #10001c;
+    --primary-color: #4f2460;
+    --pale-purple: #cbc3e3;
+    --lavender: #f5e7fe;
+    --secondary-color: #ffb5d7;
+    --second-white: #e4e5e4;
+    --dark-primary-color: #1b0c20;
 }
 
 .services-nav::before {
@@ -30,16 +46,14 @@ body {
 
 .menu-container {
     position: fixed;
+    top: 0;
     width: 100%;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
     background: rgba(0, 0, 0, 0.438);
     color: #000000;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding: 10px 30px;
     z-index: 99;
     -webkit-user-select: none;
     user-select: none;
@@ -94,7 +108,7 @@ body {
     border-radius: 3px;
     z-index: 1;
     transform-origin: 4px 0px;
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 }
 
 .menu-container span:first-child {
@@ -182,7 +196,7 @@ body {
         /* to stop flickering of text in safari */
         transform-origin: 0% 0%;
         transform: translateX(0%);
-        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
     }
     .menu-container input:checked~.menu {
         transform: translateX(-100%);
@@ -228,7 +242,8 @@ body {
 .curved-navbar {
     position: relative;
     color: aliceblue;
-    height: 80vh;
+    /* height: 80vh; */
+    width: 100%;
 }
 
 .curved-navbar-background {
@@ -236,13 +251,13 @@ body {
     z-index: 1;
     width: 100%;
     height: 100%;
-    background: url(http://127.0.0.1:8000/static/img/wonderhubblue.png) no-repeat;
+    background: url(http://127.0.0.1:8000/static/img/hero_bg.jpg) no-repeat;
     background-size: cover;
     background-position: center;
-    filter: brightness(30%);
+    filter: brightness(80%);
     animation: slideshow 5s linear 5s infinite;
-    border-bottom-left-radius: 50% 41%;
-    border-bottom-right-radius: 50% 41%;
+    /* border-bottom-left-radius: 50% 41%;
+    border-bottom-right-radius: 50% 41%; */
 }
 
 .hero-text {
@@ -253,28 +268,28 @@ body {
     0%,
     100% {
         background: url(http://127.0.0.1:8000/static/img/bg.jpg) no-repeat;
-        background-size: cover;
-        background-position: center;
+        /* background-size: cover;
+        background-position: center; */
     }
     20% {
         background: url(http://127.0.0.1:8000/static/img/wonderhubblue.png) no-repeat;
-        background-size: cover;
-        background-position: center;
+        /* background-size: cover;
+        background-position: center; */
     }
     40% {
         background: url(http://127.0.0.1:8000/static/img/bg4.png) no-repeat;
-        background-size: cover;
-        background-position: center;
+        /* background-size: cover;
+        background-position: center; */
     }
     60% {
         background: url(http://127.0.0.1:8000/static/img/bg3.jpg) no-repeat;
-        background-size: cover;
-        background-position: center;
+        /* background-size: cover;
+        background-position: center; */
     }
     80% {
         background: url(http://127.0.0.1:8000/static/img/bg2.jpg) no-repeat;
-        background-size: cover;
-        background-position: center;
+        /* background-size: cover;
+        background-position: center; */
     }
     /*
     100% {
@@ -284,11 +299,12 @@ body {
     }*/
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width: 800px) {
     .curved-navbar {
         position: relative;
         color: white;
-        height: 80vh;
+        /* height: 60vh; */
+        width: 100%;
     }
     .curved-navbar-background {
         background: url(http://127.0.0.1:8000/static/img/wonderhubblue.png) no-repeat;
@@ -298,8 +314,8 @@ body {
         z-index: 1;
         height: 100%;
         width: 100%;
-        border-bottom-left-radius: 40% 31%;
-        border-bottom-right-radius: 40% 31%;
+        /* border-bottom-left-radius: 40% 31%;
+        border-bottom-right-radius: 40% 31%; */
     }
 }
 
@@ -320,26 +336,38 @@ body {
 
 .hero-container {
     width: 100%;
-    height: 150px;
+    /* height: 150px; */
     background: transparent;
-    position: absolute;
+    /* position: absolute; */
     margin-top: 100px;
     z-index: 2;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    color: var(--primary-midnight);
 }
 
 .hero1 {
     margin-top: 20px;
-    width: 100%;
+    width: 50%;
     height: 100%;
     padding: 10px;
     background: transparent;
 }
 
+.hero-img {
+    width: 50%;
+}
+
+.hero-img img {
+    width: 100%;
+}
+
 .hero-text {
-    width: 65%;
-    margin: 0 auto;
+    /* width: 50%; */
+    margin: 0 0;
     font-weight: bold;
-    text-align: center;
+    text-align: justify;
     text-transform: uppercase;
 }
 
@@ -402,7 +430,7 @@ body {
     padding-right: 20px;
     padding-left: 20px;
     box-shadow: 0 2px 5px 0 rgba(3, 6, 26, 0.15);
-    transition: .5s all ease-in-out;
+    transition: 0.5s all ease-in-out;
 }
 
 .call-btn:hover {
@@ -484,7 +512,7 @@ body {
     }
 }
 
-@media screen and (max-width:700px) {
+@media screen and (max-width: 700px) {
     .contact-btn {
         width: 150px;
     }
@@ -550,7 +578,7 @@ body {
     font-weight: bold;
     font-size: 16px;
     color: #ffffff;
-    background: linear-gradient(90deg, #0066CC 0%, #d62828 100%);
+    background: linear-gradient(90deg, #0066cc 0%, #d62828 100%);
     padding: 30px 30px;
     border: none;
     box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
@@ -563,7 +591,7 @@ body {
     transition: 327ms;
     padding: 30px 40px;
     transform: translateY(-0px);
-    background: linear-gradient(90deg, #d62828 0%, #0066CC 100%);
+    background: linear-gradient(90deg, #d62828 0%, #0066cc 100%);
     color: #ffffff;
     border: none;
 }
@@ -571,19 +599,35 @@ body {
 
 /* animate text */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 .container-bottom-to-up {
     overflow: hidden;
 }
 
 .bottom-to-up {
     animation: 1s bottom-to-up forwards;
-    text-align: center;
+    text-align: justify;
 }
 
 @keyframes bottom-to-up {
     from {
         transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.right-to-left {
+    transition: 2s;
+    animation: 1s right-to-left forwards;
+}
+
+@keyframes right-to-left {
+    from {
+        transform: translateX(100px);
         opacity: 0;
     }
     to {
@@ -602,18 +646,18 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     position: relative;
-    font-family: 'Open Sans', sans-serif;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto", sans-serif;
     letter-spacing: 0.5rem;
-    text-shadow: 0.05em 0 0 rgba(255, 0, 0, .75), -0.025em -.05em 0 rgba(0, 255, 0, .75), 0.025em .05em 0 rgba(0, 0, 255, .75);
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.025em -0.05em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
 }
 
 .glitch2Bedore {
     font-size: 50px;
     font-weight: 700;
     text-transform: uppercase;
-    font-family: 'Open Sans', sans-serif;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-style: italic;
     letter-spacing: 0.5rem;
     color: white;
@@ -621,25 +665,25 @@ body {
 
 @keyframes glitch {
     0% {
-        text-shadow: 0.05em 0 0 rgba(255, 0, 0, .75), -0.025em -.05em 0 rgba(0, 255, 0, .75), 0.025em .05em 0 rgba(0, 0, 255, .75);
+        text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.025em -0.05em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
     }
     14% {
-        text-shadow: 0.05em 0 0 rgba(255, 0, 0, .75), -0.025em -.05em 0 rgba(0, 255, 0, .75), 0.025em .05em 0 rgba(0, 0, 255, .75);
+        text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.025em -0.05em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
     }
     15% {
-        text-shadow: -0.05em -.025em 0 rgba(255, 0, 0, .75), 0.025em 0.025em 0 rgba(0, 255, 0, .75), -0.05em -.05em 0 rgba(0, 0, 255, .75);
+        text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
     }
     49% {
-        text-shadow: -0.05em -.025em 0 rgba(255, 0, 0, .75), 0.025em 0.025em 0 rgba(0, 255, 0, .75), -0.05em -.05em 0 rgba(0, 0, 255, .75);
+        text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
     }
     50% {
-        text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, .75), 0.05em 0 0 rgba(0, 255, 0, .75), 0 -0.05em 0 rgba(0, 0, 255, .75);
+        text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
     }
     99% {
-        text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, .75), 0.05em 0 0 rgba(0, 255, 0, .75), 0 -0.05em 0 rgba(0, 0, 255, .75);
+        text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
     }
     100% {
-        text-shadow: -0.025em 0 0 rgba(255, 0, 0, .75), -0.025em -0.025em 0 rgba(0, 255, 0, .75), -0.025em -0.05em 0 rgba(0, 0, 255, .75);
+        text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75), -0.025em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
     }
 }
 
@@ -699,7 +743,7 @@ body {
     color: white;
 }
 
-@media screen and (max-width:700px) {
+@media screen and (max-width: 700px) {
     .service-card-content h2 {
         font-size: medium;
     }
@@ -789,7 +833,7 @@ body {
     width: 100%;
 }
 
-@media screen and (max-width:700px) {
+@media screen and (max-width: 700px) {
     .pricing-card {
         width: 300px;
     }
@@ -818,6 +862,6 @@ body {
         transform: translateX(200px);
     }
     to {
-        transform: translateX( -4000px);
+        transform: translateX(-4000px);
     }
 }

@@ -240,6 +240,7 @@ a {
     height: 50px;
     width: 150px;
     z-index: 1;
+    object-fit: contain;
 }
 
 .search-box-wrapper form {
@@ -456,6 +457,7 @@ summary b {
         width: 100px;
         height: 50px;
         z-index: 1;
+        object-fit: contain;
     }
     .search-box-wrapper input {
         width: 100px;
@@ -821,7 +823,7 @@ summary b {
     margin: auto;
 }
 
-@media screen and (max-width: 399px) {
+@media screen and (max-width: 499px) {
     .home-body-container {
         width: 98%;
     }

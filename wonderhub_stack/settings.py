@@ -40,9 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'nimic',
     'wonderhub',
     'users',
+    'webservies',
     'shop',
     'ckeditor',
     'rest_framework',
@@ -62,6 +62,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'wonderhub_stack.urls'
+# PARENT_HOST = 'wonderhub.com:8000'
+PARENT_HOST = 'wonderhub.africa'
 
 ROOT_HOSTCONF = 'wonderhub_stack.hosts'
 DEFAULT_HOST = 'www'

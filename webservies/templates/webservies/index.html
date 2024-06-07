@@ -1,4 +1,5 @@
 {% load static %}
+{% load hosts %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,7 +17,7 @@
 
   <body>
     <section class="curved-navbar">
-      <div class="curved-navbar-background"></div>
+      {% comment %} <div class="curved-navbar-background"></div> {% endcomment %}
       <nav class="menu-container">
         <!-- burger menu -->
         <input type="checkbox" aria-label="Toggle menu" />
@@ -25,7 +26,7 @@
         <span></span>
 
         <!-- logo -->
-        <a href=" {% url 'wonderhub' %} " class="menu-logo">
+        <a href="/" class="menu-logo">
           <img src=" {% static 'img/logo/wonderhub.png' %} " alt="" />
         </a>
 
@@ -44,6 +45,9 @@
             <li>
               <a href=" {% url 'store' %} " class="shop-nav"> Store </a>
             </li>
+            <li>
+              <a href="{% host_url 'wonderhub' host 'academy' %}" class="services-nav"> Academy </a>
+            </li>
           </ul>
           <ul>
             
@@ -53,7 +57,7 @@
               <a href=" {% url 'logout' %} "> Logout </a>
             </li>
             <li>
-              <a href=""> {{user.username}} </a>
+              <a href="{% url 'login' %}"> {{user.username}} </a>
             </li>
               
             {% else %}
@@ -70,16 +74,6 @@
           </ul>
         </div>
       </nav>
-      <!--        <div class="navbar-block">
-            <div class="navlogo">WonderHub</div>
-            <div class="nav-right">
-                <div class="nav-text">Blog |</div>
-                <div class="nav-text">Services |</div>
-                <div class="nav-text">Pricing |</div>
-                <div class="nav-text">Contacts</div>
-            </div>
-        </div>-->
-      <center>WONDERHUB</center>
       <div class="hero-container">
         <div class="hero1 hero">
           <div id="containerAnimation" class="container-bottom-to-up">
@@ -101,6 +95,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="hero-img">
+          <img src="{% static 'img/hero_bg.jpg' %}" alt="" class="right-to-left">
         </div>
       </div>
     </section>

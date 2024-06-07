@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class NimicConfig(AppConfig):
+class WebserviesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'nimic'
+    name = 'webservies'
