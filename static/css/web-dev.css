@@ -24,19 +24,19 @@ html {
 }
 
 .services-nav::before {
-    content: url(http://127.0.0.1:8000/static/img/new-construction.svg);
+    content: url(/static/img/new-construction.svg);
 }
 
 .blog-nav::before {
-    content: url(http://127.0.0.1:8000/static/img/line_style.svg);
+    content: url(/static/img/line_style.svg);
 }
 
 .pricing-nav::before {
-    content: url(http://127.0.0.1:8000/static/img/payment.svg);
+    content: url(/static/img/payment.svg);
 }
 
 .shop-nav::before {
-    content: url(http://127.0.0.1:8000/static/img/store.svg);
+    content: url(/static/img/store.svg);
 }
 
 @keyframes shop {
@@ -75,6 +75,7 @@ html {
 .menu-container a {
     text-decoration: none;
     color: #0c0b0b;
+    color: white;
     transition: color 0.3s ease;
 }
 
@@ -345,10 +346,11 @@ html {
 }
 
 .hero-container {
-    width: 100%;
+    width: 80%;
     /* height: 150px; */
     background: transparent;
     /* position: absolute; */
+    margin: auto;
     margin-top: 100px;
     z-index: 2;
     display: flex;
@@ -357,16 +359,24 @@ html {
     color: var(--primary-midnight);
 }
 
+@media screen and (max-width: 500px) {
+    .hero-container {
+        width: 90%;
+    }
+}
+
 .hero1 {
     margin-top: 20px;
     width: 50%;
     height: 100%;
     padding: 10px;
+    /* padding-left: 50px; */
     background: transparent;
 }
 
 .hero-img {
     width: 50%;
+    /* padding-right: 50px; */
 }
 
 .hero-img img {
@@ -375,16 +385,16 @@ html {
 
 .hero-text {
     /* width: 50%; */
-    margin: 0 0;
+    /* margin: 0 0; */
     font-weight: bold;
-    text-align: justify;
-    text-transform: uppercase;
+    text-align: left;
+    /* text-transform: uppercase; */
 }
 
 .btn-container {
     margin-top: 30px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 
@@ -422,8 +432,8 @@ html {
 .contact-btn {
     /* width: 300px; */
     display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
+    justify-content: flex-start;
+    /* padding: 10px 20px; */
     gap: 20px;
 }
 
@@ -432,7 +442,7 @@ html {
     text-decoration: none;
     font-size: small;
     text-transform: uppercase;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     padding: 10px 20px;
     transition: 0.5s all ease-in-out;
 }
@@ -452,7 +462,7 @@ html {
 }
 
 .call-btn::before {
-    content: url(http://localhost:8000/static/img/phone-call.svg);
+    content: url(/static/img/phone-call.svg);
     display: inline-block;
     height: 20px;
     width: 20px;
@@ -463,7 +473,7 @@ html {
 }
 
 .chat-btn::before {
-    content: url(http://localhost:8000/static/img/whatsapp.svg);
+    content: url(/static/img/whatsapp.svg);
     display: inline-block;
     height: 20px;
     width: 20px;
@@ -479,7 +489,7 @@ html {
 }
 
 .call-btn {
-    animation: wiggle 4s 2s infinite;
+    /* animation: wiggle 4s 2s infinite; */
     background-color: blue;
     color: white;
 }
@@ -521,7 +531,7 @@ html {
         font-size: x-small;
     }
     .call-btn::before {
-        content: url(http://localhost:8000/static/img/phone-call.svg);
+        content: url(/static/img/phone-call.svg);
         display: inline-block;
         height: 15px;
         width: 15px;
@@ -530,7 +540,7 @@ html {
         margin-right: 5px;
     }
     .chat-btn::before {
-        content: url(http://localhost:8000/static/img/whatsapp.svg);
+        content: url(/static/img/whatsapp.svg);
         display: inline-block;
         height: 15px;
         width: 15px;
@@ -606,7 +616,7 @@ html {
 
 .bottom-to-up {
     animation: 1s bottom-to-up forwards;
-    text-align: justify;
+    text-align: left;
 }
 
 @keyframes bottom-to-up {
@@ -698,6 +708,13 @@ html {
     justify-content: center;
 }
 
+.services-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
 .section {
     margin: auto;
     margin-top: 30px;
@@ -707,40 +724,69 @@ html {
 }
 
 .section-header {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-weight: bolder;
     font-size: large;
     text-align: center;
-    padding: 20px;
-    background-color: purple;
+    padding: 10px;
+    /* background-color: purple; */
     color: white;
+    color: var(--primary-midnight);
     margin-bottom: 50px;
+    border-radius: 8px;
+    width: 50%;
+    max-width: -webkit-fill-available;
+}
+
+.section-content {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
 }
 
 .service-card {
-    position: relative;
+    /* position: relative; */
     text-align: center;
-    margin-top: 5px;
+    /* margin-top: 5px; */
     margin-bottom: 5px;
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--pale-purple);
+    padding: 5px;
+    align-items: center;
+}
+
+.service-card:hover {
+    box-shadow: 0 0 20px var(--pale-purple);
 }
 
 .service-card img {
-    height: 100%;
-    width: 90%;
-    filter: brightness(30%);
-    border-radius: 5px;
+    height: 100px;
+    width: 40%;
+    /* filter: brightness(30%);
+    border-radius: 5px; */
 }
 
-.service-card img:hover {
+
+/* .service-card img:hover {
     filter: brightness(30%) blur(2px);
-}
+} */
 
 .service-card-content {
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
+    transform: translate(-50%, -50%); */
+    color: var(--primary-midnight);
+}
+
+@media screen and (max-width: 429px) {
+    .section-header {
+        width: 100%;
+    }
+    .section-content {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 700px) {
@@ -756,16 +802,12 @@ html {
 }
 
 .service-card-content a {
-    padding: 10px;
+    padding: 5px;
     background-color: pink;
     color: black;
     text-decoration: none;
-    display: none;
     transition: all ease-in-out;
-}
-
-.service-card-content:hover a {
-    display: block;
+    border-radius: 5px;
 }
 
 .pricing-card-container {
@@ -790,7 +832,7 @@ html {
 }
 
 .pricing-card ul {
-    list-style: url(http://127.0.0.1:8000/static/img/check_circle.svg);
+    list-style: url(/static/img/check_circle.svg);
     list-style-position: inside;
 }
 
