@@ -47,7 +47,7 @@
               <a href=" {% url 'store' %} " class="shop-nav"> Store </a>
             </li>
             <li>
-              <a href="{% host_url 'wonderhub' host 'academy' %}" class="services-nav"> Academy </a>
+              <a href="{% host_url 'wonderhub' host 'academy' %}" class="school-nav"> Academy </a>
             </li>
           </ul>
           <ul>
@@ -78,7 +78,7 @@
       <div class="hero-container">
         <div class="hero1 hero">
           <div id="containerAnimation" class="container-bottom-to-up">
-            <p class="hero-text bottom-to-up">WELCOME TO WONDERHUB!</p>
+            <p class="hero-text hero-text-header top-to-bottom">WELCOME TO WONDERHUB!</p>
             <p class="hero-text bottom-to-up">
               We build websites and apps that build your business.
             </p>
@@ -94,7 +94,8 @@
           </div>
         </div>
         <div class="hero-img">
-          <img src="{% static 'img/res/webdevicespana.svg' %}" alt="" class="right-to-left">
+          <!--<img src="{% static 'img/res/webdevicespana.svg' %}" alt="" class="right-to-left">-->
+          <img src="{% static 'img/res/Hand_coding_bro.svg' %}" alt="" class="right-to-left">
         </div>
       </div>
     </section>
@@ -102,7 +103,7 @@
       <div class="section services-section" id="services">
         <div class="section-header">
           <h2>Our Services</h2>
-          <img src="{% static 'img/res/Hand_coding_bro.svg' %}" alt="">
+          <img src="{% static 'img/res/Customer_relationship_management_bro.svg' %}" alt="">
           <p>We offer a range of web development to software services.</p>
         </div>
         <div class="section-content">
@@ -229,19 +230,35 @@
           </div>
         </div>
       </div>
+      <div class="section" id="partners">
+        <h2>Our Partners</h2>
+        <p>
+          Do you need a website, we create websites. Benefits of a website are legitmacy, improves marketing
+        </p>
+
+        <div class="partner-container">
+          <img src="{% static 'img/slack.svg' %}" alt="">
+          <img src="{% static 'img/codepen.svg' %}" alt="">
+          <img src="{% static 'img/github.svg' %}" alt="">
+          <img src="{% static 'img/slack_dark.svg' %}" alt="">
+        </div>
+      </div>
       <div class="section" id="projects">
-        <div class="section-header">our clients</div>
+        <h2>Our Clients</h2>
         <div class="clients-slide-container">
-          <div class="clients-slide"><img src=" {% static 'img/bg.jpg' %} " alt="" class="clients"></div>
-          <div class="clients-slide"><img src=" {% static 'img/logo/wonderhub.png' %} " alt="" class="clients"></div>
-          <div class="clients-slide"><img src=" {% static 'img/logo/wonderstore.png' %} " alt="" class="clients"></div>
-          <div class="clients-slide"><img src=" {% static 'img/logo/wonderstore2.png' %} " alt="" class="clients"></div>
-          <div class="clients-slide"><img src=" {% static 'img/logo/thumb-up.png' %} " alt="" class="clients"></div>
-          <div class="clients-slide"><img src=" {% static 'img/bg.jpg' %} " alt="" class="clients"></div>
-          <div class="clients-slide"><img src=" {% static 'img/bg2.jpg' %} " alt="" class="clients"></div>
-          <div class="clients-slide"><img src=" {% static 'img/bg3.jpg' %} " alt="" class="clients"></div>
-          <div class="clients-slide"><img src=" {% static 'img/bg4.jpg' %} " alt="" class="clients"></div>
-          <div class="clients-slide"><img src=" {% static 'img/wonderhubblue.png' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/alaba.PNG' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/reumssky.png' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/reumssky_global_freight.png' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/ama_blog.PNG' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/darlenenoir.png' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/lmnt2.PNG' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/trustcards.png' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/soosoil.PNG' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/moa.png' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/nomomics.PNG' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/rechargeit.png' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/rosyiyke.PNG' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/lifestyle.png' %} " alt="" class="clients"></div>
         </div>
       </div>
     </div>
