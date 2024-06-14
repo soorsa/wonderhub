@@ -18,21 +18,23 @@ href="https://fonts.googleapis.com/css?family=Titan+One">
     type="text/css"
     href="{% get_static_prefix %}css/wonderhub.css"
   />
+  <link
+  rel="website icon"
+  href="{% static 'img/logo/icon.png' %}"
+  type="png"
+/>
+
 
 </head>
 <body>
   {% include 'wonderhub/message.html' %}
     <nav class="menu-container">
-      <!-- burger menu -->
-        <input type="checkbox" class="checkbox" aria-label="Toggle menu" name="toggle-menu" id="toggle-menu" />
-        <label for="toggle-menu" class="toggle-label bx bxs-category bx-sm material-icons "> menu</label>
-        <label for="toggle-menu" class="toggle-cancel bx bxs-category bx-sm material-icons "> cancel</label>
-
-        <a href=" {% url 'wonderhub' %} " class="menu-logo">
-          <img src=" {% static 'img/logo/wonderhub.png' %} " alt="" />
-        </a>
-        <!-- logo -->
-  
+      
+      <a href=" {% url 'wonderhub' %} " class="menu-logo">
+        <img src=" {% static 'img/logo/wonderhub.png' %} " alt="" />
+      </a>
+      <!-- logo -->
+      
       <!-- SEARCH BOX -->
       <div class="search-box-wrapper">
         <form action=" {% url 'filtered_courses' %} " class=''>
@@ -40,7 +42,11 @@ href="https://fonts.googleapis.com/css?family=Titan+One">
           <button class='bx bx-search bx-sm material-icons ' type='submit' >search</button>
         </form>
       </div>
-    
+      
+      <!-- burger menu -->
+        <input type="checkbox" class="checkbox" aria-label="Toggle menu" name="toggle-menu" id="toggle-menu" />
+        <label for="toggle-menu" class="toggle-label bx bxs-category bx-sm material-icons "> menu</label>
+        <label for="toggle-menu" class="toggle-cancel bx bxs-category bx-sm material-icons "> cancel</label>
       <!-- menu items -->
       <div class="menu">
         <ul>

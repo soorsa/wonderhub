@@ -14,14 +14,23 @@
             {% if lesson.video %}<video height="400px" width="100%" src=" {{lesson.video.url}} " controls id="video"></video>{% endif %}
             {% if lesson.audio %} <audio src="{{lesson.audio.url}}" controls></audio>{% endif %}
             <div class="course-block-detail">
-                <img src="http://localhost:8000/static/img/profile.svg" alt="">
-                <span>{{lesson.course.instructor}}</span><br>
-                <small>@{{lesson.course.instructor.instructor.username}} </small>
-            </div>
-            <details>
-                <summary>Objectives</summary>
-                <p>{{lesson.description}}</p>
-            </details>
+
+                <div class='student-n-rating'>
+                    <img src="http://localhost:8000/static/img/profile.svg" alt="">
+                    <span>{{lesson.course.instructor}}</span> |
+                    <div> {% with students=lesson.course.students.count %}{{students}}{% endwith %} Learner(s)</div> |
+                    <div>{{lesson.course.stars|floatformat:1}} ⭐ Ratings</div> |
+                    <div>{{lessons.count}} Lesson(s)</div>
+                </div>
+    
+                <details>
+                    <summary>Objectives</summary>
+                    <p>{{lesson.description}}</p>
+                </details>
+    
+
+            </div>    
+
         </div>
         
         <div class="lesson-list-container">

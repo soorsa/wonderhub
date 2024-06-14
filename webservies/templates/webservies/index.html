@@ -6,14 +6,30 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="WonderHub is a home technology and development where you can build all your apps and websites.">
+    <meta property="og:title" content="Apps and websites development | WonderHub">
+    <meta property="og:description" content="WonderHub is a home technology and development where you can build all your apps and websites.">
+    <meta property="og:image" content="{% static 'img/logo/icon.png' %}">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="shortcut icon" href="{% static 'img/logo/icon.png' %}">
+    <meta name="theme-color" content="#000000">
+
+
     <link
       rel="stylesheet"
       type="text/css"
       href=" {% static 'css/web-dev.css' %} "
     />
+    <link
+    rel="website icon"
+    href="{% static 'img/logo/icon.png' %}"
+    type="png"
+  />
+
     <script src="{% static 'js/web-dev.js' %}"></script>
 
-    <title>WonderHub Blog</title>
+    <title>WonderHub | Apps and Websites Development</title>
   </head>
 
   <body>
@@ -110,126 +126,120 @@
           <div class="service-card">
             <img src="{% static 'img/res/webdevicespana.svg' %}" alt="" />
             <div class="service-card-content">
-              <div>Web Development</div>
+              <div class="service-card-content-title">Web Development</div>
               <p>
-                Do you need a website, we create websites. Benefits of a website
-                are legitmacy, improves marketing
+                We build responsive web apps that compatible on any devices.
               </p>
-              <a href="#pricing">view pricing</a>
+              <input type="checkbox" name="toggle-service" id="toggle-service">
+              <label for="toggle-service">
+
+                <a>See details</a>
+              </label>
+              <div class="pricing-toggle-container">
+                <label for="toggle-service" style="margin-top:100px; margin-bottom:20px; color:white; text-decoration:underline;">⇽ ← Go Back</label>
+                <div class="pricing-card-container">
+                  <div class="pricing-card">
+                    <div class="pricing-card-header">Personal / Portfolio Website</div>
+                    <ul>
+                      <li>Domain name</li>
+                      <li>1 year web hosting</li>
+                      <li>1 year free technical support</li>
+                      <li>SEO</li>
+                      <li>site security</li>
+
+                    </ul>
+                    <div class="price">₦ 99,999.99</div>
+                    <div class="price-btn-container">
+                      <div class="price-call-btn">call</div>
+                      <div class='price-chat-btn'>chat</div>
+                    </div>
+                  </div>
+                  <div class="pricing-card">
+                    <div class="pricing-card-header">Bussiness / Company Website</div>
+                    <ul>
+                      <li>Domain name</li>
+                      <li>1 year web hosting</li>
+                      <li>Free logo Design</li>
+                      <li>1 year free technical support</li>
+                      <li>SEO | site security</li>
+                    </ul>
+                    <div class="price">₦ 199,999.99</div>
+                    <div class="price-btn-container">
+                      <div class="price-call-btn">call</div>
+                      <div class="price-chat-btn">chat</div>
+                    </div>
+                  </div>
+                  <div class="pricing-card">
+                    <div class="pricing-card-header">E-commerce / Online Store</div>
+                    <ul>
+                      <li>Domain name</li>
+                      <li>1 year web hosting</li>
+                      <li>Free logo Design</li>
+                      <li>1 year free technical support</li>
+                      <li>SEO | site security</li>
+                    </ul>
+                    <div class="price">₦ 299,999.99</div>
+                    <div class="price-btn-container">
+                      <div class="price-call-btn">call</div>
+                      <div class="price-chat-btn">chat</div>
+                    </div>
+                  </div>
+                  <div class="pricing-card">
+                    <div class="pricing-card-header">CMS, Blogs / Media Website</div>
+                    <ul>
+                      <li>Domain name</li>
+                      <li>1 year web hosting</li>
+                      <li>1 year free maintainace</li>
+                      <li>SEO</li>
+                      <li>site security</li>
+                    </ul>
+                    <div class="price">₦ 199,999.99</div>
+                    <div class="price-btn-container">
+                      <div class="price-call-btn">call</div>
+                      <div class="price-chat-btn">chat</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
           <div class="service-card">
             <img src="{% static 'img/res/Progresive_app_rafiki.svg' %}" alt="" />
             <div class="service-card-content">
-              <div>Moblie App development</div>
+              <div class="service-card-content-title">Moblie App development</div>
               <p>
-                Do you need a website, we create websites. Benefits of a website
-                are legitmacy, improves marketing
+                We build cross-platform mobile apps for both Android and IOS.
               </p>
-              <a href="#pricing">view pricing</a>
+              <a href="#pricing">See details</a>
             </div>
           </div>
           <div class="service-card">
             <img src="{% static 'img/res/UI_UX_differences_bro.svg' %}" alt="" />
             <div class="service-card-content">
-              <div>UI and UX</div>
+              <div class="service-card-content-title">UI and UX</div>
               <p>
-                Do you need a website, we create websites. Benefits of a website
-                are legitmacy, improves marketing
+                We design and build your user interface and feautures for you apps or websites.
               </p>
-              <a href="#pricing">view pricing</a>
+              <a href="#pricing">See details</a>
             </div>
           </div>
           <div class="service-card">
             <img src="{% static 'img/res/Static_website_amico.svg' %}" alt="" />
             <div class="service-card-content">
-              <div>Web Hosting / Domain name services</div>
+              <div class="service-card-content-title">Web Hosting / Domain name services</div>
               <p>
-                Do you need a website, we create websites. Benefits of a website
-                are legitmacy, improves marketing
+                Deploy,Host your apps and websites with us, Buy and manage your domains with us.
               </p>
-              <a href="#pricing">view pricing</a>
+              <a href="#pricing">See details</a>
             </div>
           </div>
         </div>
       </div>
-      <div class="section" id="pricing">
+      {% comment %} <div class="section" id="pricing">
         <div class="section-header">Pricing</div>
-        <div class="pricing-card-container">
-          <div class="pricing-card">
-            <div class="pricing-card-header">Personal / Portfolio Website</div>
-            <ul>
-              <li>6 pages max</li>
-              <li>free logo Design</li>
-              <li>1 year free maintainace</li>
-              <li>SEO</li>
-              <li>fast page load</li>
-              <li>site security</li>
-              <li>free user-interface and graphic design</li>
-            </ul>
-            <div class="price">₦ 99,000.00</div>
-            <div class="price-btn-container">
-              <div class="price-call-btn">call</div>
-              <div class='price-chat-btn'>chat</div>
-              <div class="price-order-btn">order</div>
-            </div>
-          </div>
-          <div class="pricing-card">
-            <div class="pricing-card-header">Bussiness / Company Website</div>
-            <ul>
-              <li>6 pages max</li>
-              <li>free logo Design</li>
-              <li>1 year free maintainace</li>
-              <li>SEO</li>
-              <li>fast page load</li>
-              <li>site security</li>
-              <li>free user-interface and graphic design</li>
-            </ul>
-            <div class="price">₦ 99,000.00</div>
-            <div class="price-btn-container">
-              <div class="price-call-btn">call</div>
-              <div class="price-chat-btn">chat</div>
-              <div class="price-order-btn">order</div>
-            </div>
-          </div>
-          <div class="pricing-card">
-            <div class="pricing-card-header">E-commerce / Online Store</div>
-            <ul>
-              <li>6 pages max</li>
-              <li>free logo Design</li>
-              <li>1 year free maintainace</li>
-              <li>SEO</li>
-              <li>fast page load</li>
-              <li>site security</li>
-              <li>free user-interface and graphic design</li>
-            </ul>
-            <div class="price">₦ 99,000.00</div>
-            <div class="price-btn-container">
-              <div class="price-call-btn">call</div>
-              <div class="price-chat-btn">chat</div>
-              <div class="price-order-btn">order</div>
-            </div>
-          </div>
-          <div class="pricing-card">
-            <div class="pricing-card-header">CMS, Blogs / Media Website</div>
-            <ul>
-              <li>6 pages max</li>
-              <li>free logo Design</li>
-              <li>1 year free maintainace</li>
-              <li>SEO</li>
-              <li>fast page load</li>
-              <li>site security</li>
-              <li>free user-interface and graphic design</li>
-            </ul>
-            <div class="price">₦ 99,000.00</div>
-            <div class="price-btn-container">
-              <div class="price-call-btn">call</div>
-              <div class="price-chat-btn">chat</div>
-              <div class="price-order-btn">order</div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      </div> {% endcomment %}
       <div class="section" id="partners">
         <h2>Our Partners</h2>
         <p>
@@ -239,25 +249,25 @@
         <div class="partner-container">
           <img src="{% static 'img/slack.svg' %}" alt="">
           <img src="{% static 'img/codepen.svg' %}" alt="">
-          <img src="{% static 'img/github.svg' %}" alt="">
+          <img src="{% static 'img/Github.svg' %}" alt="">
           <img src="{% static 'img/slack_dark.svg' %}" alt="">
         </div>
       </div>
       <div class="section" id="projects">
         <h2>Our Clients</h2>
         <div class="clients-slide-container">
-          <div class="clients-slide"><img src=" {% static 'img/logo/alaba.PNG' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/alaba.png' %} " alt="" class="clients"></div>
           <div class="clients-slide"><img src=" {% static 'img/logo/reumssky.png' %} " alt="" class="clients"></div>
           <div class="clients-slide"><img src=" {% static 'img/logo/reumssky_global_freight.png' %} " alt="" class="clients"></div>
-          <div class="clients-slide"><img src=" {% static 'img/logo/ama_blog.PNG' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/ama_blog.png' %} " alt="" class="clients"></div>
           <div class="clients-slide"><img src=" {% static 'img/logo/darlenenoir.png' %} " alt="" class="clients"></div>
-          <div class="clients-slide"><img src=" {% static 'img/logo/lmnt2.PNG' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/lmnt2.png' %} " alt="" class="clients"></div>
           <div class="clients-slide"><img src=" {% static 'img/logo/trustcards.png' %} " alt="" class="clients"></div>
-          <div class="clients-slide"><img src=" {% static 'img/logo/soosoil.PNG' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/soosoil.png' %} " alt="" class="clients"></div>
           <div class="clients-slide"><img src=" {% static 'img/logo/moa.png' %} " alt="" class="clients"></div>
-          <div class="clients-slide"><img src=" {% static 'img/logo/nomomics.PNG' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/nomomics.png' %} " alt="" class="clients"></div>
           <div class="clients-slide"><img src=" {% static 'img/logo/rechargeit.png' %} " alt="" class="clients"></div>
-          <div class="clients-slide"><img src=" {% static 'img/logo/rosyiyke.PNG' %} " alt="" class="clients"></div>
+          <div class="clients-slide"><img src=" {% static 'img/logo/rosyiyke.png' %} " alt="" class="clients"></div>
           <div class="clients-slide"><img src=" {% static 'img/logo/lifestyle.png' %} " alt="" class="clients"></div>
         </div>
       </div>

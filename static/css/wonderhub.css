@@ -380,6 +380,7 @@ summary b {
     font-weight: bolder;
     z-index: 1;
     cursor: pointer;
+    transition: transform 2s ease, color 2s ease, display 2s ease;
 }
 
 .toggle-cancel {
@@ -391,6 +392,7 @@ summary b {
 
 .menu-container input:checked~.toggle-label {
     color: white;
+    transform: rotate(45deg) translate(3px, -1px);
     display: none;
 }
 
@@ -450,21 +452,6 @@ summary b {
 }
 
 
-/* mobile styles */
-
-@media only screen and (max-width: 600px) {
-    .menu-logo img {
-        width: 100px;
-        height: 50px;
-        z-index: 1;
-        object-fit: contain;
-    }
-    .search-box-wrapper input {
-        width: 100px;
-    }
-}
-
-
 /* all screen styles */
 
 @media only screen and (max-width: 2067px) {
@@ -483,8 +470,11 @@ summary b {
         position: absolute;
         box-sizing: border-box;
         width: 100%;
+        max-height: 600px;
         left: -100%;
+        left: 0;
         top: -60px;
+        top: -600px;
         border-radius: 10px;
         padding: 150px 50px 50px;
         background: rgba(0, 0, 0, 0.9);
@@ -493,13 +483,15 @@ summary b {
         /* to stop flickering of text in safari */
         transform-origin: 0% 0%;
         transform: translateX(0%);
+        transform: translateY(0%);
         transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
         overflow-y: scroll;
         /* scroll-behavior: smooth; */
         scrollbar-width: thin;
     }
     .menu-container input:checked~.menu {
-        transform: translateX(100%);
+        /* transform: translateX(100%); */
+        transform: translateY(calc(550px));
     }
 }
 
@@ -515,18 +507,11 @@ summary b {
     position: relative;
     overflow: hidden;
     margin-top: 75px;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(http://wonderhub.onrender.com/static/img/nohat3.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/static/img/nohat3.jpg);
     background-repeat: no-repeat;
     background-position: left, bottom;
     background-size: cover;
     border-radius: 10px;
-}
-
-@media screen and (max-width: 399px) {
-    .hero {
-        margin-top: 75px;
-        border-radius: 10px;
-    }
 }
 
 .hero span {
@@ -659,12 +644,6 @@ summary b {
     margin: auto;
     margin-bottom: 30px;
     color: white;
-}
-
-@media only screen and (max-width: 500px) {
-    .hero-text-wrapper div {
-        width: 90%;
-    }
 }
 
 .hero-text-wrapper div p {
@@ -821,12 +800,6 @@ summary b {
 .home-body-container {
     width: 90%;
     margin: auto;
-}
-
-@media screen and (max-width: 499px) {
-    .home-body-container {
-        width: 98%;
-    }
 }
 
 
@@ -988,12 +961,6 @@ summary b {
     color: white;
 }
 
-@media only screen and (max-width: 500px) {
-    .scroll-btn {
-        display: none;
-    }
-}
-
 .scroll-item-wrapper .course-box img {
     width: 200px;
     height: 180px;
@@ -1071,47 +1038,6 @@ summary b {
     color: #464646;
 }
 
-@media only screen and (max-width: 500px) {
-    .course-box {
-        max-width: 150px;
-        min-width: 150px;
-        height: fit-content;
-        border-radius: 5px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: white;
-        color: var(--primary-midnight);
-        box-shadow: 0 0 10px var(--pale-purple);
-    }
-    .filtered .course-box {
-        flex-direction: row;
-        height: 80px;
-        font-size: xx-small;
-    }
-    .scroll-item-wrapper .course-box {
-        min-width: 150px;
-        max-width: 150px;
-    }
-    .scroll-item-wrapper .course-box img {
-        width: 100%;
-        height: 100px;
-    }
-    .course-box img {
-        width: 100%;
-        height: 100px;
-        object-fit: cover;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-    }
-    .filtered .course-detail {
-        padding: 0;
-        padding-left: 10px;
-        display: flex;
-        flex-direction: column;
-    }
-}
-
 .body-desc {
     text-align: center;
     margin-top: 20px;
@@ -1137,15 +1063,6 @@ summary b {
 .body-desc img {
     width: 150px;
     padding: 0 5px;
-}
-
-@media only screen and (max-width: 500px) {
-    .body-desc p {
-        font-size: xx-small;
-    }
-    .body-desc img {
-        width: 25%;
-    }
 }
 
 .profile-card {
@@ -1561,12 +1478,6 @@ h2 {
     color: white;
 }
 
-@media screen and (max-width: 400px) {
-    .form button {
-        width: 100%;
-    }
-}
-
 fieldset {
     border: 1px groove white;
     border-radius: 10px;
@@ -1631,17 +1542,6 @@ fieldset {
 }
 
 
-/* @media screen and (max-width: 400px) {
-    .update-course-flex form {
-        width: 100%;
-        padding: 0;
-    }
-    .update-course-flex .side-lesson-list {
-        width: 100%;
-    }
-} */
-
-
 /* RATING FORM */
 
 .rating-wrapper {
@@ -1659,6 +1559,12 @@ fieldset {
 .flex-col-2>* {
     margin-top: 0;
     margin-bottom: 10px;
+}
+
+@media screen and (max-width: 500px) {
+    .course-detail-screen-container .flex-col-2 {
+        width: 100%;
+    }
 }
 
 @media only screen and (min-width: 900px) {
@@ -2538,4 +2444,79 @@ footer .footer-brand p {
 .hider {
     display: none;
     transition: 8s ease;
+}
+
+
+/* mobile styles */
+
+@media only screen and (max-width: 500px) {
+    .menu-logo img {
+        width: 100px;
+        height: 50px;
+        z-index: 1;
+        object-fit: contain;
+    }
+    .search-box-wrapper input {
+        width: 100px;
+    }
+    .home-body-container {
+        width: 98%;
+    }
+    .hero-text-wrapper div {
+        width: 90%;
+    }
+    .hero {
+        margin-top: 75px;
+        border-radius: 10px;
+    }
+    .scroll-btn {
+        display: none;
+    }
+    .course-box {
+        max-width: 150px;
+        min-width: 150px;
+        height: fit-content;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        color: var(--primary-midnight);
+        box-shadow: 0 0 10px var(--pale-purple);
+    }
+    .filtered .course-box {
+        flex-direction: row;
+        height: 80px;
+        font-size: xx-small;
+    }
+    .scroll-item-wrapper .course-box {
+        min-width: 150px;
+        max-width: 150px;
+    }
+    .scroll-item-wrapper .course-box img {
+        width: 100%;
+        height: 100px;
+    }
+    .course-box img {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .filtered .course-detail {
+        padding: 0;
+        padding-left: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .body-desc p {
+        font-size: xx-small;
+    }
+    .body-desc img {
+        width: 25%;
+    }
+    .form button {
+        width: 100%;
+    }
 }

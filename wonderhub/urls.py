@@ -16,6 +16,7 @@ Including another URLconf
 from fileinput import hook_encoded
 from django.urls import path
 from django.contrib.auth import views as login_views
+from allauth.account import views as allauth_views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -53,7 +54,7 @@ urlpatterns = [
     path('register/student', auth_views.studentRegisteration, name='student-signup'),
     path('register/instructor', auth_views.instructorRegisteration, name='instructor-signup'),
     path("become-an-instructor/", auth_views.becomeInstructorPage, name="become-instructor"),
-    path('login/', login_views.LoginView.as_view(template_name='wonderhub/login.html'), name = 'login'),
+    path('login/', allauth_views.LoginView.as_view(template_name='wonderhub/login.html'), name = 'login'),
     path('logout/', login_views.LogoutView.as_view(template_name='wonderhub/logout.html'), name = 'logout'),
 
 
