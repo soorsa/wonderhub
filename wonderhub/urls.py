@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from fileinput import hook_encoded
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth import views as login_views
 from allauth.account import views as allauth_views
 from django.conf import settings
@@ -54,6 +54,7 @@ urlpatterns = [
     path('register/student', auth_views.studentRegisteration, name='student-signup'),
     path('register/instructor', auth_views.instructorRegisteration, name='instructor-signup'),
     path("become-an-instructor/", auth_views.becomeInstructorPage, name="become-instructor"),
+    path('accounts/', include('allauth.urls')),
     path('login/', allauth_views.LoginView.as_view(template_name='wonderhub/login.html'), name = 'login'),
     path('logout/', login_views.LogoutView.as_view(template_name='wonderhub/logout.html'), name = 'logout'),
 
