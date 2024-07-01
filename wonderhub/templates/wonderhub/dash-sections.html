@@ -201,9 +201,18 @@
     </section>
     <section id="update-profile" class="update-profile hider">
         <form action="" method="post" enctype="multipart/form-data" class="inst-dash-form form">
-            <div><img src="{{user.instructor.image.url}}" width='150px' height='150px' alt=""></div>
+            <div>
+                <img src="{{user.instructor.image.url}}" width='150px' height='150px' alt="" id="chosen-image">
+                <label for="id_image" class="profile-pic-label w-fill p-5 bg-green-500">change</label>
+            </div>
             {% csrf_token %}
-            {{form.as_div}}
+            <div id="upload-profile-image-container">
+                {{form.image}}
+            </div>
+            <div>{{form.full_name}}</div>
+            <div>{{form.title}}</div>
+            <div>{{form.phone_number}}</div>
+            <div>{{form.about}}</div>
             <button type="submit">Update</button>
         </form>
 
@@ -220,3 +229,19 @@
 </div>
 
 <script src="{% static 'js/dashboard.js' %}"></script>
+<script>
+    let uploadButton = document.getElementById("id_image");
+    let chosenImage = document.getElementById("chosen-image");
+    document.getElementById("upload-profile-image-container").classList.add("hider");
+//  let fileName = document.getElementById("file-name");
+  
+  uploadButton.onchange = () => {
+      let reader = new FileReader();
+      reader.readAsDataURL(uploadButton.files[0]);
+      reader.onload = () => {
+          chosenImage.setAttribute("src",reader.result);
+      }
+//      fileName.textContent = uploadButton.files[0].name;
+  }
+  </script>
+  

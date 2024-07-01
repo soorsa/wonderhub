@@ -113,9 +113,19 @@ html {
 body {
     overflow-x: hidden;
     font-family: monospace;
-    background-color: #f5e7fe;
+    /* background-color: #f5e7fe; */
+    background-color: white;
     scrollbar-width: none;
     scrollbar-color: black;
+}
+
+.blue-button {
+    background-color: darkblue;
+    color: white;
+    font-weight: 900;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
 }
 
 button,
@@ -244,7 +254,11 @@ a {
 }
 
 .search-box-wrapper form {
-    display: block;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--pale-purple);
+    border-radius: 5px;
+    padding: 5px 10px;
 }
 
 .search-box-wrapper input {
@@ -252,8 +266,9 @@ a {
     border: none;
     height: 25px;
     width: 200px;
-    background-color: var(--pale-purple);
+    /* background-color: var(--pale-purple); */
     color: var(--primary-color);
+    outline: none;
 }
 
 .search-box-wrapper button {
@@ -1047,7 +1062,7 @@ summary b {
     background-color: white;
     /* box-shadow: 0 0 10px #999; */
     box-shadow: 0 0 10px var(--pale-purple);
-    border-radius: 30px;
+    border-radius: 10px;
     padding: 10px;
 }
 
@@ -1258,7 +1273,7 @@ h2 {
     color: black;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 600px) {
     .course-detail-block {
         width: 100%;
         background-color: var(--primary-midnight);
@@ -1352,6 +1367,7 @@ h2 {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px var(--pale-purple);
+    margin-top: 10px;
 }
 
 .instructor-details-container .instructor-header {
@@ -1391,13 +1407,14 @@ h2 {
     padding: 20px;
     width: fit-content;
     margin: auto;
-    background-color: var(--pale-purple);
+    /* background-color: var(--pale-purple); */
     backdrop-filter: blur(5px);
     color: black;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    box-shadow: 0 0 10px var(--pale-purple);
 }
 
 #id_category label {
@@ -1406,7 +1423,7 @@ h2 {
 
 #id_category label input::before {
     content: "";
-    background-color: white;
+    background-color: var(--pale-purple);
     padding: 1px 8px;
     border-radius: 100px;
     margin-right: 5px;
@@ -1426,6 +1443,70 @@ h2 {
 .form img {
     border-radius: 50%;
     margin: auto;
+}
+
+.preview-video-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chosen-lesson-video-container {
+    background-color: black;
+    color: white;
+    /* box-shadow: 0 0 10px var(--pale-purple); */
+    /* padding-bottom: 20px; */
+    border-radius: 10px;
+    width: 90%;
+    height: fit-content;
+    margin: 0 auto 20px auto;
+    /* margin-bottom: 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.chosen-image-container {
+    background-color: white;
+    box-shadow: 0 0 10px var(--pale-purple);
+    /* padding-bottom: 20px; */
+    border-radius: 10px;
+    width: 90%;
+    height: 300px;
+    margin: 0px auto 20px auto;
+    /* margin-bottom: 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.chosen-lesson-video-container label,
+.chosen-image-container label {
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: darkgreen;
+    color: white;
+    font-weight: 900;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .chosen-image-container {
+        width: 100%;
+    }
+}
+
+.chosen-image-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
 }
 
 .form div {
@@ -1469,7 +1550,7 @@ h2 {
 }
 
 .form button {
-    padding: 5px 0;
+    padding: 10px 0;
     border: none;
     border-radius: 5px;
     width: 300px;
@@ -1479,15 +1560,15 @@ h2 {
 }
 
 fieldset {
-    border: 1px groove white;
+    border: 1px groove var(--pale-purple);
     border-radius: 10px;
 }
 
 .form-control {
-    border: none;
-    background-color: white;
+    border: 1px solid var(--pale-purple);
+    /* background-color: white; */
     border-radius: 5px;
-    padding: 5px;
+    padding: 10px;
 }
 
 .instructor-container {
@@ -1561,13 +1642,13 @@ fieldset {
     margin-bottom: 10px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
     .course-detail-screen-container .flex-col-2 {
         width: 100%;
     }
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 600px) {
     .flex-col-2 {
         /* position: absolute;
         right: 10px;
@@ -1582,7 +1663,7 @@ fieldset {
         width: 400px;
     }
     .dash-enrolled-c {
-        width: 340px;
+        /* width: 340px; */
     }
 }
 
@@ -1646,7 +1727,7 @@ fieldset {
 
 .instructor-update-bubble {
     padding: 10px;
-    width: 340px;
+    /* width: 340px; */
     background-color: lightblue;
     color: darkblue;
     text-align: center;
@@ -1744,8 +1825,8 @@ fieldset {
     padding: 10px;
     color: var(--primary-midnight);
     height: fit-content;
-    max-width: 340px;
-    width: 100%;
+    /* max-width: 340px;
+    width: 100%; */
     margin: auto;
     box-shadow: 0 0 10px var(--pale-purple);
 }
@@ -2254,10 +2335,6 @@ section::-webkit-scrollbar {
     justify-content: center;
 }
 
-.hider {
-    display: none;
-}
-
 .create-container {
     margin: auto;
     padding: 100px 20px;
@@ -2409,13 +2486,15 @@ footer {
     /* background-color: var(--primary-midnight); */
     background-color: white;
     width: 100%;
-    height: 400px;
+    height: fit-content;
     margin-top: 100px;
     display: flex;
-    gap: 5px;
+    gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
     color: var(--primary-midnight);
+    border-top: 1px solid var(--pale-purple);
+    padding: 20px 0;
 }
 
 footer>* {
@@ -2425,6 +2504,8 @@ footer>* {
 
 footer .copyright {
     width: 100%;
+    padding: 20px;
+    text-align: center;
 }
 
 footer .footer-brand img {
@@ -2444,6 +2525,15 @@ footer .footer-brand p {
 .hider {
     display: none;
     transition: 8s ease;
+}
+
+.toast {
+    display: flex;
+    flex-wrap: no-wrap;
+    gap: 4px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -2519,4 +2609,8 @@ footer .footer-brand p {
     .form button {
         width: 100%;
     }
+}
+
+.hider {
+    display: none !important;
 }

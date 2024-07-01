@@ -49,13 +49,21 @@ form {
     margin: auto;
 }
 
-.errorlist {
+/* .errorlist {
     font-size: small;
     color: white;
     background-color: rgba(253, 0, 0, 0.1);
     border-radius: 5px;
     padding: 5px 0;
     padding-inline-start: 40px;
+} */
+.toast {
+    display:flex;
+    flex-wrap:no-wrap;
+    gap:4px;
+    border-radius:5px;
+    align-items:center;
+    justify-content:center;
 }
 
 .form-wrapper {

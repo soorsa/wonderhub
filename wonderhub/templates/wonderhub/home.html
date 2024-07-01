@@ -49,8 +49,8 @@
   
   <div class="top-courses-container">
     <div class="top-courses-header">
-      <div>RECOMENDED COURSES <em>wonder's pick</em></div>
-      <a href="">See All</a>
+      <div>TOP PICKS</div>
+      <a href="{% url 'filtered_courses' %}">See more →</a>
     </div>
     <div class="scroll-btn">
       <button class="prev-btn" onclick="leftScroll('recomended')">◀</button>
@@ -80,7 +80,7 @@
   <div class="top-courses-container">
     <div class="top-courses-header">
       <div>TOP RATED COURSES</div>
-      <a href="">See All</a>
+      <a href="{% url 'filtered_courses' %}">See more →</a>
     </div>
     <div class="scroll-btn">
       <button class="prev-btn" onclick="leftScroll('toprated')">◀</button>
@@ -115,7 +115,7 @@
 <div class="top-courses-container">
   <div class="top-courses-header">
     <div>TOP INSTRUCTORS</div>
-    <a href="">See All</a>
+    <a href="{% url 'all-instructors' %}">See more →</a>
   </div>
   <div class="scroll-btn">
     <button class="prev-btn" onclick="leftScroll('instructor')">◀</button>

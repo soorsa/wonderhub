@@ -55,7 +55,7 @@ urlpatterns = [
     path('register/instructor', auth_views.instructorRegisteration, name='instructor-signup'),
     path("become-an-instructor/", auth_views.becomeInstructorPage, name="become-instructor"),
     path('accounts/', include('allauth.urls')),
-    path('login/', allauth_views.LoginView.as_view(template_name='wonderhub/login.html'), name = 'login'),
+    path('login/', allauth_views.LoginView.as_view(template_name='wonderhub/login-copy.html'), name = 'login'),
     path('logout/', login_views.LogoutView.as_view(template_name='wonderhub/logout.html'), name = 'logout'),
 
 

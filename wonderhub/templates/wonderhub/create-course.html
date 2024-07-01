@@ -5,14 +5,46 @@
 <script>document.title = "Create your course on wonderHUB"</script>
 <div class="cat-body-container">
     <h2>Create New Course</h2>
+
+    <div class="chosen-image-container">
+        <img src="{% static 'img/logo/wonderhub.png' %}" alt="" id="chosen-image">
+        <label for="id_image">select thumbnail</label>
+    </div>
 <form action="" method="post" enctype="multipart/form-data" class='form'>
     {% csrf_token %}
-    {{form.as_div}}
+    {% comment %} {{form.as_div}} {% endcomment %}
+    <div class="hider">{{form.image}}</div>
+    <div>{{form.title}}</div>
+    <div>
+        <fieldset>
+            <legend>Categories</legend>
+            {{form.category}}
+        </fieldset>
+    </div>
+    <div>{{form.price}}</div>
+    <div>{{form.description}}</div>
+    <div class="hider">{{form.preview}}</div>
     <button type="submit">Create</button>
 </form>
 
 </div>
 {% include 'wonderhub/footer.html' %}
-    
+<script>
+    let uploadButton = document.getElementById("id_image");
+    let uploadPreviewButton = document.getElementById("id_preview");
+  let chosenImage = document.getElementById("chosen-image");
+  let previewVideo = document.getElementById("preview-video");
+ // let fileName = document.getElementById("file-name");
+  
+  uploadButton.onchange = () => {
+      let reader = new FileReader();
+      reader.readAsDataURL(uploadButton.files[0]);
+      reader.onload = () => {
+          chosenImage.setAttribute("src",reader.result);
+      }
+//      fileName.textContent = uploadButton.files[0].name;
+  }
+</script>
+  
 {% endblock content %}
     

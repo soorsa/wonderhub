@@ -18,28 +18,83 @@
     </form>
 -->
 <div class="cat-body-container">
-    <form action="" method="post" enctype="multipart/form-data" class='form'>
-        {% csrf_token %}
-        {{form.as_div}}
-        <button type="submit">Create</button>
-    </form>
-
-</div>
-
-<div class="lesson-list-container">
-    <h2>{{course.title|upper}} LESSONS</h2>
-    {% for lesson in lessons %}
-    <div class="lesson-list">
-        <a href="{% url 'lesson-detail' lesson.lesson_id %}">
-            <img src="{{lesson.image.url}}" width='100px' height="100px" alt="">
-            <span> {{lesson.title}}</span>
-        </a>
-        <div class="course-btns-wrapper">
-            <a class="primary" href="{% url 'update-lesson' lesson.lesson_id %}">update</a>
-            <a class="danger" href="">delete</a>
-        </div>
+    <h2>Create lessons for {{course.title}} </h2>
+    <div class="chosen-lesson-video-container">
+        
+        {% if lesson.video %}
+        <video src="{{lesson.video.url}}" alt="" id="chosen-video" width="100%" height="450px" controls></video>
+        {% else %}
+        <video src="" alt="" id="chosen-video" width="100%" height="450px" controls></video>
+        No video uplaoded!
+        {% endif %}
+            
+        <label for="id_video" class="bg-blue-500 w-24 ">Upload lesson video</label>
     </div>
-{% endfor %}
+
+    <div class="update-course-flex">
+
+        <form action="" method="post" enctype="multipart/form-data" class="form">
+            {% csrf_token %}
+            {% comment %} {{form.as_div}} {% endcomment %}
+            <div>{{form.title}}</div>
+            <div>{{form.content}}</div>
+            <div class="hider">{{form.video}}</div>
+            <div class="hider">{{form.audio}}</div>
+            <div class="hider">{{form.note}}</div>
+            <fieldset>
+                <legend>Optional Files</legend>
+                <div class="audio-form-container">
+                    
+                    {% if lesson.audio %}
+                    <audio src="{{lesson.audio.url}}" width="200px" height="200px"></audio>
+                    {% else %}
+                    <audio src="" width="200px" width="200px"></audio>
+                    Audio
+                    {% endif %}
+                        
+                </div>
+                <div class="note-form-container">
+                    Note
+                </div>
+            </fieldset>
+            <button type="submit">Update</button>
+        </form>
+
+        <div class="side-lesson-list">
+            <h3>{{course.title}}'s Lessons</h3>
+            {% for lesson in lessons %}
+            <div class="lesson-list">
+                <a href="{% url 'lesson-detail' lesson.lesson_id %}">
+                    <img src="{{lesson.image.url}}" width='70px' height="70px" alt="">
+                </a>
+                <div class="lesson-list-title-nd-btn">
+                    <a href="{% url 'lesson-detail' lesson.lesson_id %}">{{lesson.title|truncatewords:10}}</a>
+                    <div class="course-btns-wrapper">
+                        <a class="primary" href="{% url 'update-lesson' lesson.lesson_id %}">update</a>
+                        <a class="danger" href="">delete</a>
+                        <a class="warning" href="">submit</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+    </div>
 </div>
 {% include 'wonderhub/footer.html' %}
+<script>
+let uploadButton = document.getElementById('id_video');
+let video = document.getElementById('chosen-video');
+uploadButton.onchange = () => {
+    let reader = new FileReader();
+    reader.readAsDataURL(uploadButton.files[0]);
+    reader.onload = () => {
+        video.setAttribute("src",reader.result);
+        video.classList.remove("hider");
+    }
+//      fileName.textContent = uploadButton.files[0].name;
+}
+
+</script>
 {% endblock content %}
