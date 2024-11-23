@@ -14,6 +14,18 @@
             {% if lesson.video %}<video height="400px" width="100%" src=" {{lesson.video.url}} " controls id="video"></video>{% endif %}
             {% if lesson.audio %} <audio src="{{lesson.audio.url}}" controls></audio>{% endif %}
             <div class="course-block-detail">
+                <div class="lesson-nav-container">
+                    {% if prev_lesson %}
+                    <a href="{% url 'lesson-detail' prev_lesson.lesson_id %}">
+                        <div class="prev-lesson-btn">⏮ Prev</div>
+                    </a>
+                    {% endif %}
+                    {% if next_lesson %}
+                    <a href="{% url 'lesson-detail' next_lesson.lesson_id %}">
+                        <div class="next-lesson-btn">Next ⏭</div>
+                    </a>
+                    {% endif %}
+                </div>
 
                 <div class='student-n-rating'>
                     <img src="http://localhost:8000/static/img/profile.svg" alt="">
@@ -82,8 +94,8 @@
                     {% for c in lesson.course.instructor.courses.all %}
                     <div class="d-e-c-courses">
                         <img src="{{c.image.url}}" alt="">
-                        <div>{{c.title}} <br><br> 
-                            <div style="color: lightgreen;"><span>&check;</span> enrolled</div>
+                        <div class="d-e-c-courses-dt">
+                            <p>{{c.title}}</p>
                         </div>
                     </div>
                     {% endfor %}           
@@ -162,7 +174,7 @@
                     {% for c in my_enrolled_courses %}
                     <div class="d-e-c-courses">
                         <img src="{{c.image.url}}" alt="">
-                        <div>{{c.title}} <br><br> <a href="{% url 'course-detail' c.course_id %}">Continue</a></div>
+                        <div class="d-e-c-courses-dt">{{c.title}}<a href="{% url 'course-detail' c.course_id %}">Continue</a></div>
                     </div>
                     {% endfor %}           
                 </div>

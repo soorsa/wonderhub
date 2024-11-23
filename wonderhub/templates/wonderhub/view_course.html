@@ -65,6 +65,7 @@
                     </a>
                     <div class="lesson-list-title-nd-btn">
                         <a href="{% url 'lesson-detail' lesson.lesson_id %}" class="">{{lesson.title}}</a>
+                        <p>created on: {{lesson.date_created}} </p>
                         {% if user.instructor %}
                         {% if user.instructor == course.instructor %}
                         <div class="course-btns-wrapper">
@@ -102,8 +103,7 @@
                     {% for c in course.instructor.courses.all %}
                     <div class="d-e-c-courses">
                         <img src="{{c.image.url}}" alt="">
-                        <div>{{c.title}} <br><br> 
-                            <div style="color: lightgreen;"><span>&check;</span> enrolled</div>
+                        <div class="d-e-c-courses-dt">{{c.title}}
                         </div>
                     </div>
                     {% endfor %}           
@@ -157,7 +157,10 @@
         
                     {% for review in course.ratings.all %}
                     <div class="review-bubble">
-                        <div class="user-info-b"> <img src="http://localhost:8000/static/img/profile.svg" alt=""><span> {{review.user.student.username}} </span> </div>
+                        <div class="user-info-b"> 
+                            <img src="http://localhost:8000/static/img/profile.svg" alt="">
+                            <span> {{review.user.student.username}} </span> 
+                        </div>
                         <div class="rating-b">
                             {% if review.star == 1 %}⭐ 
                             {% elif review.star == 2 %} ⭐⭐ 
@@ -180,8 +183,7 @@
                     {% for c in my_enrolled_courses %}
                     <div class="d-e-c-courses">
                         <img src="{{c.image.url}}" alt="">
-                        <div>{{c.title}} <br><br> 
-                            <div style="color: lightgreen;"><span>&check;</span> enrolled</div>
+                        <div class="d-e-c-courses-dt">{{c.title}}
                         </div>
                     </div>
                     {% endfor %}           

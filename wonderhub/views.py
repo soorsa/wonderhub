@@ -214,6 +214,7 @@ def delete_lesson(request, lesson_id):
 def view_course(request, course_id):
     try:
         course = Course.objects.get(course_id=course_id)
+        lessons = Lesson.objects.filter(course=course).order_by('date_created')
     except Course.DoesNotExist:
         return HttpResponse('<div style=" background: radial-gradient(#1b0c20, gray) ; height: 100vh; width:100%; display:flex; justify-content:center;" > <div style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));backdrop-filter: blur(5px); width:80%; text-align:center; border-radius:10px; margin-top:150px; height:fit-content;" > <div style="padding-top:50px;padding-bottom:50px;"> <h2 style="color:red;"> Sorry... </h2><p style="color:white;"> This course does not exist </p> </div> </div> </div> ')
     try:
@@ -247,7 +248,7 @@ def view_course(request, course_id):
             'form':form,
             'hide_form': hide_form,
             "my_enrolled_courses":my_enrolled_courses,
-            "lessons" : Lesson.objects.filter(course=course),
+            "lessons" : lessons,
             "quizzes" : Quiz.objects.filter(course=course),
             "discussions" : Discussion.objects.filter(course=course),
         }
@@ -269,7 +270,7 @@ def view_course(request, course_id):
             'categories': Category.objects.filter(parent=None),
             'hide_form':hide_form,
             "my_enrolled_courses":my_enrolled_courses,
-            "lessons" : Lesson.objects.filter(course=course),
+            "lessons" : lessons,
             "quizzes" : Quiz.objects.filter(course=course),
             "discussions" : Discussion.objects.filter(course=course),
         }
@@ -279,6 +280,9 @@ def view_course(request, course_id):
 def view_lesson(request, lesson_id):
     try:
         lesson = Lesson.objects.get(lesson_id=lesson_id)
+        next_lesson = Lesson.objects.filter(date_created__gt=lesson.date_created, course=lesson.course).order_by('date_created').first()
+        prev_lesson = Lesson.objects.filter(date_created__lt=lesson.date_created, course=lesson.course).order_by('date_created').first()
+
     except Lesson.DoesNotExist:
         return HttpResponse('<div style=" background: radial-gradient(#1b0c20, gray) ; height: 100vh; width:100%; display:flex; justify-content:center;" > <div style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));backdrop-filter: blur(5px); width:80%; text-align:center; border-radius:10px; margin-top:150px; height:fit-content;" > <div style="padding-top:50px;padding-bottom:50px;"> <h2 style="color:red;"> Sorry... </h2><p style="color:white;"> This lesson does not exist </p> </div> </div> </div> ')
 
@@ -311,6 +315,8 @@ def view_lesson(request, lesson_id):
             'form':form,
             'hide_form': hide_form,
             "lesson" : lesson,
+            "next_lesson" : next_lesson,
+            "prev_lesson" : prev_lesson,
             "my_enrolled_courses": my_enrolled_courses,
             "lessons" : Lesson.objects.filter(course=lesson.course),
             'categories': Category.objects.filter(parent=None),
@@ -330,6 +336,8 @@ def view_lesson(request, lesson_id):
         context = {
             'form' : RatingForm(),
             "lesson" : lesson,
+            "next_lesson" : next_lesson,
+            "prev_lesson" : prev_lesson,
             "user_review": user_review,
             "hide_form": hide_form,
             "my_enrolled_courses": my_enrolled_courses,
@@ -409,6 +417,7 @@ def instructorDashboard(request):
         'filter_by_date': filter_by_date,
         'withdrawals_filter':withdrawals_filter,
         'categories': Category.objects.filter(parent=None),
+        'instructor_menu':True,
     }
     
     return render(request, 'wonderhub/instructor-dashboard.html', context)

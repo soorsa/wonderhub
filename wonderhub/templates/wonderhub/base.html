@@ -48,17 +48,63 @@
       </div>
       
       <!-- burger menu -->
-        <input type="checkbox" class="checkbox" aria-label="Toggle menu" name="toggle-menu" id="toggle-menu" />
-        <label for="toggle-menu" class="toggle-label bx bxs-category bx-sm material-icons "> menu</label>
-        <label for="toggle-menu" class="toggle-cancel bx bxs-category bx-sm material-icons "> cancel</label>
+      <input type="checkbox" class="checkbox" aria-label="Toggle menu" name="toggle-menu" id="toggle-menu" />
+      <label for="toggle-menu" class="toggle-label bx bxs-category bx-sm material-icons "> menu</label>
+      <label for="toggle-menu" class="toggle-cancel bx bxs-category bx-sm material-icons "> cancel</label>
       <!-- menu items -->
       <div class="menu">
+        {% if instructor_menu %}
+        <ul>
+          <li class="instructor-menu-item">
+            <a href="#home" onclick="showSection('home');">
+              <img src="{% static 'img/school.svg' %}" alt="">
+              <span class="nav-text">
+                  Home
+              </span>
+            </a>
+          </li>
+          <li class="instructor-menu-item">
+            <a href="#MyCourses" onclick="showSection('my courses');">
+              <img src="{% static 'img/school.svg' %}" alt="">
+              <span class="nav-text">
+                My Courses
+              </span>
+            </a>
+          </li>
+          <li class="instructor-menu-item">
+            <a href="#create-course" onclick="showSection('create courses')">
+              <img src="{% static 'img/school.svg' %}" alt="">
+              <span class="nav-text">
+                Create New Courses
+              </span>
+            </a>
+          </li>
+          <li class="instructor-menu-item">
+            <a href="#earnings" onclick="showSection('earnings')">
+              <img src="{% static 'img/school.svg' %}" alt="">
+              <span class="nav-text">
+                Earnings
+              </span>
+            </a>
+          </li>
+          <li class="instructor-menu-item">
+            <a href="#update-profile" onclick="showSection('profile update')">
+              <img src="{% static 'img/school.svg' %}" alt="">
+              <span class="nav-text">
+                Update Profile
+              </span>
+            </a>
+          </li>
+        </ul>
+        {% else %}
         <ul>
           <li>
             <details>
               <summary>
                 Courses
               </summary>
+              
+              
               <ul>
                 <li class="cat-nav"><a href='{% url "filtered_courses" %}'>All courses</a></li>
                 {% for category in categories %}
@@ -75,7 +121,7 @@
                           {{sub_category.title}} 
                         </a></p>
                         {% endfor %}
-      
+                        
                     </div>
                       
                   </details>
@@ -85,7 +131,7 @@
                 {% endif %}
                 {% endfor %}
                 
-      
+                
               </ul>
             </details>
           </li>
@@ -114,6 +160,7 @@
             <a href="{% url 'login' %}"> Login </a>
           </li>
         </ul>
+        {% endif %}
         {% endif %}
       </div>
     </nav>

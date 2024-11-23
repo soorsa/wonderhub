@@ -4,13 +4,65 @@
 <script>
     document.title= "{{user.instructor.full_name}}'s Dashboard"
 </script>
-{% include 'wonderhub/dash-sections.html' %}
 
 
+<div class="dashboard-container">
+    <div class="dash-menu2">
+        <ul>
+            <li>
+                <a href="#home" onclick="showSection('home');">
+                    <img src="{% static 'img/school.svg' %}" alt="">
+                    <span class="nav-text">
+                        Home
+                    </span>
+                </a>
+                
+            </li>
+            <li class="has-subnav">
+                <a href="#MyCourses" onclick="showSection('my courses');">
+                    <img src="{% static 'img/school.svg' %}" alt="">
+                    <span class="nav-text">
+                        My Courses
+                    </span>
+                </a>
+                
+            </li>
+            <li class="has-subnav">
+                <a href="#create-course" onclick="showSection('create courses')">
+                    <img src="{% static 'img/school.svg' %}" alt="">
+                    <span class="nav-text">
+                        Create New Courses
+                    </span>
+                </a>
+                
+            </li>
+            <li class="has-subnav">
+                <a href="#earnings" onclick="showSection('earnings')">
+                    <img src="{% static 'img/school.svg' %}" alt="">
+                    <span class="nav-text">
+                        Earnings
+                    </span>
+                </a>
+                
+            </li>
+            <li>
+                <a href="#update-profile" onclick="showSection('profile update')">
+                    <img src="{% static 'img/school.svg' %}" alt="">
+                    <span class="nav-text">
+                        Update Profile
+                    </span>
+                </a>
+            </li>
+        </ul>
+    
+    </div>
+    {% include 'wonderhub/dash-sections.html' %}
 
-<div class="area">
 </div>
-<nav class="dash-menu">
+
+
+
+{% comment %} <nav class="dash-menu">
     <ul>
         <li>
             <a href="#home" onclick="showSection('home');">
@@ -106,5 +158,6 @@
         </div>
 
 
-</nav>
+</nav> {% endcomment %}
+
 {% endblock content %}
