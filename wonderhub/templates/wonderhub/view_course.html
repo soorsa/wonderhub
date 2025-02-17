@@ -182,8 +182,12 @@
                 <div class="d-e-c-flex">
                     {% for c in my_enrolled_courses %}
                     <div class="d-e-c-courses">
-                        <img src="{{c.image.url}}" alt="">
-                        <div class="d-e-c-courses-dt">{{c.title}}
+                        <img src="{{c.course.image.url}}" alt="">
+                        <div>
+                            <p style="margin-block:5px;">{{c.course.title|truncatechars:20}} </p>
+                            <div>{{c.percentage|floatformat:0}}% complete</div>
+                            <progress value="{{c.percentage|floatformat:0}}" max="100" >{{c.percentage|floatformat:0}}</progress>
+                            <a href="{% url 'course-detail' c.course.course_id %}">Continue</a>
                         </div>
                     </div>
                     {% endfor %}           

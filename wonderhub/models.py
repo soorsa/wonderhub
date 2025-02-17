@@ -151,6 +151,12 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+class WYWL(models.Model):
+    text = models.CharField(max_length=200, blank=True,null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE ,related_name="what_you_will_learn")
+    def __str__(self):
+        return self.text
+
 class Lesson(models.Model):
 
     def folder_name(instance, filename):
@@ -158,16 +164,35 @@ class Lesson(models.Model):
 
     title = models.CharField(max_length=200)
     content = models.TextField()
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE,related_name="lessons")
     video = models.FileField(upload_to= folder_name, blank=True, null=True )
     audio = models.FileField(upload_to= folder_name, blank=True, null=True )
     note = models.FileField( upload_to= folder_name, blank=True, null=True )
     lesson_id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
+    lesson_number = models.PositiveIntegerField(blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self):
         return f'{self.title} - lesson for {self.course} '
+
+class CourseProgress(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="progress")
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="course_progress")
+    completed_lessons = models.ManyToManyField(Lesson,blank=True)
+    last_accessed = models.DateTimeField(auto_now=True)
+
+    @property
+    def percentage(self):
+        total_lessons = self.course.lessons.count()
+        completed = self.completed_lessons.count()
+        cacl = completed/total_lessons * 100
+        if total_lessons > 0 :
+            return cacl
+        return 0
+    
+    def __str__(self):
+        return f"{self.percentage}"
 
 class Enrollments(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)

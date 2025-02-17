@@ -1223,9 +1223,19 @@ small {
 }
 
 /* category filter page */
-
 .cat-body-container {
-  margin-top: 70px;
+  margin: 70px auto 0px auto;
+}
+@media only screen and (min-width: 1300px) {
+  .cat-body-container {
+    width: 1250px;
+  }
+  .home-body-container {
+    width: 1250px;
+  }
+  .menu-container {
+    padding: 10px 100px;
+  }
 }
 
 /* course detail view */
@@ -1434,7 +1444,12 @@ h2 {
 .lesson-list a span {
   margin-top: 25px;
 }
-
+.flex-input-hor {
+  display: flex !important;
+  flex-direction: row;
+  gap: 5px;
+  flex-wrap: nowrap;
+}
 .form {
   padding: 20px;
   width: fit-content;

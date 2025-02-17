@@ -64,15 +64,16 @@ class CreateLessonForm(forms.ModelForm):
 
     class Meta:
         model = Lesson
-        fields = ["title", 'content', 'video', 'audio', 'note']
+        fields = ["lesson_number","title", 'content', 'video', 'audio', 'note']
 
 class UpdateLessonForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Title','id': 'form-control', 'class': 'form-control', 'type':'text'}))
+    lesson_number = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Lesson number", "class":"form-control"}))
     content = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Description','class': 'form-control'}))
 
     class Meta:
         model = Lesson
-        fields = ["title", 'content', 'video', 'audio', 'note']
+        fields = ["lesson_number","title", 'content', 'video', 'audio', 'note']
 
 class UpdateInstructorForm(forms.ModelForm):
       full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Fullname','id': 'form-control', 'class': 'form-control', 'type':'text'}))

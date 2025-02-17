@@ -220,7 +220,8 @@ def view_course(request, course_id):
     try:
         user_std = request.user
         if hasattr(user_std, 'student'):
-            my_enrolled_courses = Course.objects.filter(students=request.user.student)
+            # my_enrolled_courses = Course.objects.filter(students=request.user.student)
+            my_enrolled_courses = CourseProgress.objects.filter(student=request.user.student)
         else:
             my_enrolled_courses = False
     except Course.DoesNotExist:
@@ -278,22 +279,32 @@ def view_course(request, course_id):
 
 @login_required
 def view_lesson(request, lesson_id):
+    # get lessons, next lesson and previous lesson
+
     try:
         lesson = Lesson.objects.get(lesson_id=lesson_id)
-        next_lesson = Lesson.objects.filter(date_created__gt=lesson.date_created, course=lesson.course).order_by('date_created').first()
-        prev_lesson = Lesson.objects.filter(date_created__lt=lesson.date_created, course=lesson.course).order_by('date_created').first()
+        # next_lesson = Lesson.objects.filter(date_created__gt=lesson.date_created, course=lesson.course).order_by('date_created').first()
+        next_lesson = Lesson.objects.filter(lesson_number__gt=lesson.lesson_number, course=lesson.course).order_by('date_created').first()
+        # prev_lesson = Lesson.objects.filter(date_created__lt=lesson.date_created, course=lesson.course).order_by('date_created').first()
+        prev_lesson = Lesson.objects.filter(lesson_number__lt=lesson.lesson_number, course=lesson.course).order_by('date_created').first()
 
     except Lesson.DoesNotExist:
         return HttpResponse('<div style=" background: radial-gradient(#1b0c20, gray) ; height: 100vh; width:100%; display:flex; justify-content:center;" > <div style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));backdrop-filter: blur(5px); width:80%; text-align:center; border-radius:10px; margin-top:150px; height:fit-content;" > <div style="padding-top:50px;padding-bottom:50px;"> <h2 style="color:red;"> Sorry... </h2><p style="color:white;"> This lesson does not exist </p> </div> </div> </div> ')
 
+    # get students enrolled courses
+
     try:
         user_std = request.user
         if hasattr(user_std, 'student'):
-            my_enrolled_courses = Course.objects.filter(students=request.user.student)
+            # my_enrolled_courses = Course.objects.filter(students=request.user.student)
+            my_enrolled_courses = CourseProgress.objects.filter(student=request.user.student)
         else:
             my_enrolled_courses = False
     except Course.DoesNotExist:
         my_enrolled_courses = False
+
+    # show or hide review and ratings form if user already reviewed the course
+
     try:
         user_review=lesson.course.ratings.get(user=request.user.student)
         if user_review:
@@ -306,6 +317,24 @@ def view_lesson(request, lesson_id):
     except AttributeError:
         user_review = False
         hide_form = True
+
+    # save student course progress
+
+    try:
+        if hasattr(request.user, "student"):
+            course_progress = CourseProgress.objects.get(student=request.user.student, course=lesson.course)
+            if not lesson in course_progress.completed_lessons.all():
+                course_progress.completed_lessons.add(lesson)
+                course_progress.save()
+    except CourseProgress.DoesNotExist:
+        if hasattr(request.user, "student"):
+            course_progress = CourseProgress.objects.create(student=request.user.student, course=lesson.course)
+            if not lesson in course_progress.completed_lessons.all():
+                course_progress.completed_lessons.add(lesson)
+                course_progress.save()
+    except AttributeError:
+        return redirect("login")
+    
 
     if request.method == 'POST':
         form = RatingForm(request.POST)
@@ -379,6 +408,8 @@ def enroll_for_course(request, course_id):
     instructor =  course.instructor
     instructor.balance+=course.price - course.price * 0.15
     instructor.save()
+    course_progress = CourseProgress(student=student, course=course)
+    course_progress.save()
     messages.success(request, 'You have successfully enrolled for' + course.title)
     return redirect('student-dashboard')
     
@@ -426,6 +457,7 @@ def instructorDashboard(request):
 @is_student
 def studentDashboard(request):
     my_courses = Course.objects.filter(students=request.user.student)
+    course_progress = CourseProgress.objects.filter(student=request.user.student)
     if request.method == 'POST':
         form= UpdateStudentForm(request.POST,request.FILES, instance=request.user.student)
         if form.is_valid():
@@ -437,6 +469,7 @@ def studentDashboard(request):
     context = {
         'categories': Category.objects.filter(parent=None),
         'my_courses' : my_courses,
+        'course_progress':course_progress,
         'form': form
     }
     
