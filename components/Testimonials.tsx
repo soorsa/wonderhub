@@ -1,0 +1,146 @@
+/* eslint-disable react/no-unescaped-entities */
+// components/Testimonials.tsx
+"use client";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
+const testimonials = [
+  {
+    id: 1,
+    name: "Sarah Johnson",
+    role: "CEO, TechStart Inc.",
+    content:
+      "PixelForge transformed our digital presence completely. The team's attention to detail and creative vision exceeded our expectations. Our conversion rates have doubled since launch!",
+    rating: 5,
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+  },
+  {
+    id: 2,
+    name: "Michael Chen",
+    role: "Founder, GreenLife",
+    content:
+      "Working with PixelForge was an absolute pleasure. They understood our vision and delivered a mobile app that our customers love. Highly recommended!",
+    rating: 5,
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
+  },
+  {
+    id: 3,
+    name: "Emily Rodriguez",
+    role: "Marketing Director, Bloom Cosmetics",
+    content:
+      "The team's expertise in UI/UX design is unparalleled. They created a seamless shopping experience that perfectly represents our brand. Outstanding work!",
+    rating: 5,
+    image:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+  },
+];
+
+const Testimonials = () => {
+  const [current, setCurrent] = useState(0);
+
+  const next = () => {
+    setCurrent((current + 1) % testimonials.length);
+  };
+
+  const prev = () => {
+    setCurrent((current - 1 + testimonials.length) % testimonials.length);
+  };
+
+  useEffect(() => {
+    const timer = setInterval(next, 5000);
+    return () => clearInterval(timer);
+  }, [current]);
+
+  return (
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-base text-purple-600 font-semibold tracking-wide uppercase">
+            Testimonials
+          </h2>
+          <p className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
+            What Our Clients Say
+          </p>
+          <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+            Don't just take our word for it — hear from our satisfied clients.
+          </p>
+        </div>
+
+        <div className="relative max-w-4xl mx-auto">
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${current * 100}%)` }}
+            >
+              {testimonials.map((testimonial) => (
+                <div key={testimonial.id} className="w-full shrink-0 px-4">
+                  <div className="bg-linear-to-br from-gray-50 to-purple-50 rounded-2xl p-8 md:p-12 text-center shadow-sm">
+                    <div className="flex justify-center mb-6">
+                      <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-purple-200">
+                        <Image
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex justify-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`h-5 w-5 ${
+                            i < testimonial.rating && "fill-yellow-400"
+                          } text-yellow-400`}
+                        />
+                      ))}
+                    </div>
+                    <p className="text-gray-700 text-lg italic mb-6">
+                      "{testimonial.content}"
+                    </p>
+                    <h4 className="font-bold text-gray-900">
+                      {testimonial.name}
+                    </h4>
+                    <p className="text-purple-600 text-sm">
+                      {testimonial.role}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button
+            onClick={prev}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-8 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all"
+          >
+            <ChevronLeft className="h-6 w-6 text-gray-600" />
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-8 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all"
+          >
+            <ChevronRight className="h-6 w-6 text-gray-600" />
+          </button>
+
+          <div className="flex justify-center gap-2 mt-8">
+            {testimonials.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrent(idx)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  current === idx ? "w-8 bg-purple-600" : "w-2 bg-gray-300"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Testimonials;
