@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "PixelForge | Web & Mobile Design Studio",
+  title: "Wonderhub | Web & Mobile Design Studio",
   description:
     "Premium web and mobile design agency crafting exceptional digital experiences.",
 };
