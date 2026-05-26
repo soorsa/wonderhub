@@ -1,9 +1,9 @@
 // components/Hero.tsx
 "use client";
 import Navbar from "@/components/NavBar";
+import { STATS } from "@/data/constants";
 import { ArrowRight, Monitor, Smartphone } from "lucide-react";
 import Link from "next/link";
-
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-linear-to-br from-purple-50 via-white to-pink-50">
@@ -11,8 +11,8 @@ const Hero = () => {
 
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-200"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-200"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
@@ -62,12 +62,7 @@ const Hero = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-10 border-t border-gray-200">
-          {[
-            { number: "150+", label: "Projects Delivered" },
-            { number: "98%", label: "Client Satisfaction" },
-            { number: "12", label: "Industry Awards" },
-            { number: "50+", label: "Expert Designers" },
-          ].map((stat, index) => (
+          {STATS.map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-gray-900">
                 {stat.number}

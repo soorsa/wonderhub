@@ -1,4 +1,6 @@
 // components/Process.tsx
+"use client";
+import { motion } from "framer-motion";
 import { Code2, PenTool, Rocket, Search } from "lucide-react";
 
 const steps = [
@@ -39,7 +41,13 @@ const Process = () => {
       className="py-20 bg-linear-to-br from-purple-50 to-pink-50"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false }}
+        >
           <h2 className="text-base text-purple-600 font-semibold tracking-wide uppercase">
             Our Process
           </h2>
@@ -49,7 +57,7 @@ const Process = () => {
           <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
             A transparent, collaborative approach that ensures your success.
           </p>
-        </div>
+        </motion.div>
 
         <div className="relative">
           {/* Connecting Line */}
@@ -57,7 +65,14 @@ const Process = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, index) => (
-              <div key={index} className="relative">
+              <motion.div
+                key={index}
+                className="relative"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
                 <div className="bg-white h-full rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <div className="relative">
                     <div className="absolute -top-19 left-1/2 transform -translate-x-1/2">
@@ -74,7 +89,7 @@ const Process = () => {
                     <p className="text-gray-600">{step.description}</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

@@ -1,7 +1,7 @@
 // app/page.tsx
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import Hero from "@/components/Hero";
+import Hero from "@/components/Hero2";
 import Portfolio from "@/components/Portfolio";
 import Process from "@/components/Process";
 import Services from "@/components/Services";

@@ -26,7 +26,9 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
+        scrolled
+          ? "bg-white/90 backdrop-blur-md shadow-sm text-gray-700"
+          : "bg-transparent text-white"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,7 +46,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-gray-700 hover:text-purple-600 transition-colors duration-200 font-medium"
+                className="hover:text-purple-600 transition-colors duration-200 font-medium"
               >
                 {link.name}
               </Link>
@@ -60,7 +62,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-700"
+            className={`md:hidden ${scrolled ? "text-gray-700" : "text-white"}`}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

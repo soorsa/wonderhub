@@ -1,16 +1,40 @@
 // components/Portfolio.tsx
 "use client";
+import ProjectModal from "@/components/ProjectModal";
 import { CATEGORIES, PROJECTS } from "@/data/constants";
-import { ExternalLink } from "lucide-react";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
 
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
   const filteredProjects =
     activeCategory === "All"
       ? PROJECTS
-      : PROJECTS.filter((p) => p.category === activeCategory);
+      : PROJECTS.filter((p) => p.category.includes(activeCategory));
 
   return (
     <section id="portfolio" className="py-20 bg-white">
@@ -28,8 +52,8 @@ const Portfolio = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="flex items-center mb-12 divide-x divide-gray-300">
-          <div className="pr-4">
+        <div className="flex items-center pb-5 mb-5 text-xs sm:text-base divide-x divide-gray-300 border-b">
+          <div className="pr-2 sm:pr-4">
             <div
               onClick={() => setActiveCategory("All")}
               className={`px-6 py-2 cursor-pointer rounded-lg transition-all duration-200 ${
@@ -41,7 +65,7 @@ const Portfolio = () => {
               All
             </div>
           </div>
-          <div className="flex-1 ml-4 overflow-x-auto scrollbar-hide">
+          <div className="flex-1 ml-2 sm:ml-4 overflow-x-auto scrollbar-hide">
             <div className="flex gap-2">
               {CATEGORIES.map((category) => (
                 <div
@@ -61,39 +85,79 @@ const Portfolio = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <div className="relative h-64 overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-4 left-4 right-4 transform translate-y-lg group-hover:translate-y-0 transition-transform duration-300">
-                  <button className="text-white bg-purple-600 p-2 rounded-lg hover:bg-purple-700 transition">
-                    <ExternalLink size={18} />
-                  </button>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className={`grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3`}
+        >
+          <AnimatePresence mode="wait">
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.id}
+                variants={itemVariants}
+                layout
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                className={`bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer`}
+                onClick={() => setSelectedProject(project)}
+              >
+                <div className="relative overflow-hidden">
+                  <div className="h-48 bg-linear-to-br from-blue-400 to-purple-500 relative">
+                    {/* Project Image Placeholder */}
+                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <span className="text-white font-semibold">
+                        View Project →
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="p-6">
-                <span className="text-sm text-purple-600 font-semibold">
-                  {project.category}
-                </span>
-                <h3 className="text-xl font-bold text-gray-900 mt-1 mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600">{project.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+                <div className="p-6">
+                  <div className="flex justify-between items-start mb-2">
+                    <h4 className="text-lg font-bold text-gray-900 transition-colors duration-300">
+                      {project.title}
+                    </h4>
+                    <span className="text-sm text-gray-500 bg-gray-200 px-2 py-1 rounded">
+                      {project.year}
+                    </span>
+                  </div>
+                  <p className="text-gray-600 mb-4 text-sm">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1 mb-0">
+                    {project.category.slice(0, 4).map((category) => (
+                      <span
+                        key={category}
+                        className="px-2 py-1 bg-gray-200 text-gray-700 rounded text-xs"
+                      >
+                        {category}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
+      {selectedProject && (
+        <ProjectModal
+          selectedProject={selectedProject}
+          setSelectedProject={(project) => {
+            setSelectedProject(project);
+          }}
+        />
+      )}
     </section>
   );
 };
