@@ -65,7 +65,7 @@ export const CATEGORIES = [
 
 export const STATS = [
   { number: "150+", label: "Projects Delivered" },
-  { number: "98%", label: "Client Satisfaction" },
+  { number: "98%", label: "Happy Client" },
   { number: "12", label: "Industry Awards" },
   { number: "50+", label: "Expert Designers" },
 ];

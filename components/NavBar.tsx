@@ -1,6 +1,7 @@
 // components/Navbar.tsx
 "use client";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -25,19 +26,29 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`sticky top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md shadow-sm text-gray-700"
-          : "bg-transparent text-white"
+          ? "bg-white/80 backdrop-blur-md shadow-sm text-gray-700"
+          : "bg-transparent text-gray-700"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link
-            href="/"
-            className="text-2xl font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
-          >
-            PixelForge
+          <Link href="/" className="flex items-center divide-x divide-gray-300">
+            <div className="relative w-10 pr-2">
+              <Image
+                src={`/logo.png`}
+                alt="wonderhub"
+                width={100}
+                height={100}
+              />
+            </div>
+            <div className="pl-2">
+              <div className="text-xl font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent ">
+                WonderHUB
+              </div>
+              <div className="text-gray-500 text-xs">Digital services</div>
+            </div>
           </Link>
 
           {/* Desktop Menu */}
