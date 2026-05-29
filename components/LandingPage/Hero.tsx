@@ -1,6 +1,6 @@
 // components/Hero.tsx
 "use client";
-import Navbar from "@/components/NavBar";
+import Navbar from "@/components/Layout/NavBar";
 import { STATS } from "@/data/constants";
 import { ArrowRight, Monitor, Smartphone } from "lucide-react";
 import Link from "next/link";

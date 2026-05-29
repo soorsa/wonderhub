@@ -44,7 +44,7 @@ const Navbar = () => {
               />
             </div>
             <div className="pl-2">
-              <div className="text-xl font-bold bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent ">
+              <div className="text-xl font-bold bg-linear-to-r from-primary to-pink-600 bg-clip-text text-transparent ">
                 WonderHUB
               </div>
               <div className="text-gray-500 text-xs">Digital services</div>
@@ -57,14 +57,14 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 href={link.href}
-                className="hover:text-purple-600 transition-colors duration-200 font-medium"
+                className="hover:text-primary transition-colors duration-200 font-medium"
               >
                 {link.name}
               </Link>
             ))}
             <Link
               href="#contact"
-              className="bg-linear-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition-shadow duration-200"
+              className="bg-linear-to-r from-primary to-pink-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition-shadow duration-200"
             >
               Get Started
             </Link>
@@ -88,7 +88,7 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block text-gray-700 text-lg hover:text-purple-600 transition-colors py-2"
+                  className="block text-gray-700 text-lg hover:text-primary transition-colors py-2"
                 >
                   {link.name}
                 </Link>
@@ -96,7 +96,7 @@ const Navbar = () => {
               <Link
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="block bg-linear-to-r from-purple-600 to-pink-600 text-white px-10 text-xl font-bold py-2 rounded-lg text-center"
+                className="block bg-linear-to-r from-primary to-pink-600 text-white px-10 text-xl font-bold py-2 rounded-lg text-center"
               >
                 Get Started
               </Link>

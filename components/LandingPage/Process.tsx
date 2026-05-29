@@ -48,13 +48,13 @@ const Process = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: false }}
         >
-          <h2 className="text-base text-purple-600 font-semibold tracking-wide uppercase">
+          <h2 className="text-base text-primary font-semibold tracking-wide uppercase">
             Our Process
           </h2>
-          <p className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
-            How We Bring Ideas to Life
+          <p className="mt-1 sm:mt-2 text-3xl md:text-4xl font-bold text-gray-900">
+            How We Bring Your Ideas to Life
           </p>
-          <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-1 sm:mt-4 sm:text-xl text-gray-600 max-w-2xl mx-auto">
             A transparent, collaborative approach that ensures your success.
           </p>
         </motion.div>
@@ -76,17 +76,19 @@ const Process = () => {
                 <div className="bg-white h-full rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <div className="relative">
                     <div className="absolute -top-19 left-1/2 transform -translate-x-1/2">
-                      <div className="w-16 h-16 bg-linear-to-r from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold rotate-12 shadow-lg">
+                      <div className="w-16 h-16 bg-linear-to-r from-primary to-pink-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold rotate-12 shadow-lg">
                         {step.number}
                       </div>
                     </div>
                     <div className="mt-8 mb-4 flex justify-center">
-                      <div className="text-purple-600">{step.icon}</div>
+                      <div className="text-primary">{step.icon}</div>
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       {step.title}
                     </h3>
-                    <p className="text-gray-600">{step.description}</p>
+                    <p className="text-gray-600 text-sm sm:text-base">
+                      {step.description}
+                    </p>
                   </div>
                 </div>
               </motion.div>

@@ -1,12 +1,12 @@
 // app/page.tsx
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import Hero2 from "@/components/Hero2";
-import Navbar from "@/components/NavBar";
-import Portfolio from "@/components/Portfolio";
-import Process from "@/components/Process";
-import Services from "@/components/Services";
-import Testimonials from "@/components/Testimonials";
+import Contact from "@/components/LandingPage/Contact";
+import Hero2 from "@/components/LandingPage/Hero2";
+import Portfolio from "@/components/LandingPage/Portfolio";
+import Process from "@/components/LandingPage/Process";
+import Services from "@/components/LandingPage/Services";
+import Testimonials from "@/components/LandingPage/Testimonials";
+import Footer from "@/components/Layout/Footer";
+import Navbar from "@/components/Layout/NavBar";
 
 export default function Home() {
   return (

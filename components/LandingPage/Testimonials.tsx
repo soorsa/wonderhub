@@ -58,13 +58,13 @@ const Testimonials = () => {
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-base text-purple-600 font-semibold tracking-wide uppercase">
+          <h2 className="text-base text-primary font-semibold tracking-wide uppercase">
             Testimonials
           </h2>
-          <p className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
+          <p className="mt-1 sm:mt-2 text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
             What Our Clients Say
           </p>
-          <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-1 sm:mt-4 sm:text-xl text-gray-600 max-w-2xl mx-auto">
             Don't just take our word for it — hear from our satisfied clients.
           </p>
         </div>
@@ -76,8 +76,11 @@ const Testimonials = () => {
               style={{ transform: `translateX(-${current * 100}%)` }}
             >
               {testimonials.map((testimonial) => (
-                <div key={testimonial.id} className="w-full shrink-0 px-4">
-                  <div className="bg-linear-to-br from-gray-50 to-purple-50 rounded-2xl p-8 md:p-12 text-center shadow-sm">
+                <div
+                  key={testimonial.id}
+                  className="w-full shrink-0 px-2 sm:px-4"
+                >
+                  <div className="bg-linear-to-br from-gray-50 to-purple-50 rounded-2xl p-4 sm:p-8 md:p-12 text-center shadow-sm">
                     <div className="flex justify-center mb-6">
                       <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-purple-200">
                         <Image
@@ -98,13 +101,13 @@ const Testimonials = () => {
                         />
                       ))}
                     </div>
-                    <p className="text-gray-700 text-lg italic mb-6">
+                    <p className="text-gray-700 text-sm sm:text-lg italic mb-4 sm:mb-6">
                       "{testimonial.content}"
                     </p>
                     <h4 className="font-bold text-gray-900">
                       {testimonial.name}
                     </h4>
-                    <p className="text-purple-600 text-sm">
+                    <p className="text-primary text-xs sm:text-sm">
                       {testimonial.role}
                     </p>
                   </div>
@@ -132,7 +135,7 @@ const Testimonials = () => {
                 key={idx}
                 onClick={() => setCurrent(idx)}
                 className={`h-2 rounded-full transition-all duration-300 ${
-                  current === idx ? "w-8 bg-purple-600" : "w-2 bg-gray-300"
+                  current === idx ? "w-8 bg-primary" : "w-2 bg-gray-300"
                 }`}
               />
             ))}

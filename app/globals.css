@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #55004e;
 }
 
 .scrollbar-hide {
@@ -21,6 +22,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: #55004e;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

@@ -1,6 +1,6 @@
 // components/Portfolio.tsx
 "use client";
-import ProjectModal from "@/components/ProjectModal";
+import ProjectModal from "@/components/LandingPage/ProjectModal";
 import { CATEGORIES, PROJECTS } from "@/data/constants";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import Image from "next/image";
@@ -39,14 +39,14 @@ const Portfolio = () => {
   return (
     <section id="portfolio" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-base text-purple-600 font-semibold tracking-wide uppercase">
+        <div className="text-center mb-6 sm:mb-12">
+          <h2 className="text-base text-primary font-semibold tracking-wide uppercase">
             Our Work
           </h2>
-          <p className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
+          <p className="mt-1 sm:mt-2 text-3xl md:text-4xl font-bold text-gray-900">
             Recent Projects
           </p>
-          <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-2 sm:mt-4 tetxt-base sm:text-xl text-gray-600 max-w-2xl mx-auto">
             Explore our latest creations that have helped businesses grow.
           </p>
         </div>
@@ -58,7 +58,7 @@ const Portfolio = () => {
               onClick={() => setActiveCategory("All")}
               className={`px-6 py-2 cursor-pointer rounded-lg transition-all duration-200 ${
                 activeCategory === "All"
-                  ? "bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-md"
+                  ? "bg-linear-to-r from-primary to-pink-600 text-white shadow-md"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }`}
             >
@@ -73,7 +73,7 @@ const Portfolio = () => {
                   onClick={() => setActiveCategory(category)}
                   className={`px-4 py-2 cursor-pointer text-nowrap rounded-lg transition-all duration-200 ${
                     activeCategory === category
-                      ? "bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-md"
+                      ? "bg-linear-to-r from-primary to-pink-600 text-white shadow-md"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >
@@ -105,7 +105,7 @@ const Portfolio = () => {
                 onClick={() => setSelectedProject(project)}
               >
                 <div className="relative overflow-hidden">
-                  <div className="h-48 bg-linear-to-br from-blue-400 to-purple-500 relative">
+                  <div className="h-48 bg-linear-to-br from-blue-400 to-primary relative">
                     {/* Project Image Placeholder */}
                     <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                       <Image

@@ -32,13 +32,13 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-base text-purple-600 font-semibold tracking-wide uppercase">
+          <h2 className="text-base text-primary font-semibold tracking-wide uppercase">
             Get In Touch
           </h2>
-          <p className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
+          <p className="mt-1 sm:mt-2 text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
             Let's Create Something Amazing
           </p>
-          <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-1 sm:mt-4 sm:text-xl text-gray-600 max-w-2xl mx-auto">
             Ready to transform your digital presence? We'd love to hear about
             your project.
           </p>
@@ -47,38 +47,38 @@ const Contact = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div className="space-y-8">
-            <div className="bg-white rounded-2xl p-8 shadow-sm">
+            <div className="bg-white rounded-2xl p-4 sm:p-8 shadow-sm">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
                 Contact Information
               </h3>
               <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <div className="bg-purple-100 p-3 rounded-full">
-                    <Mail className="h-6 w-6 text-purple-600" />
+                <div className="flex items-center space-x-2 sm:space-x-4">
+                  <div className="bg-purple-100 p-2 sm:p-3 rounded-full">
+                    <Mail className="h-4 w-4 sm:h-6 sm:w-6 text-primary" />
                   </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Email</p>
+                  <div className="text-sm">
+                    <p className=" text-gray-500">Email</p>
                     <p className="text-gray-900 font-medium">
-                      hello@pixelforge.com
+                      wonderhub.dev@gmail.com
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-4">
-                  <div className="bg-purple-100 p-3 rounded-full">
-                    <Phone className="h-6 w-6 text-purple-600" />
+                <div className="flex items-center space-x-2 sm:space-x-4">
+                  <div className="bg-purple-100 p-2 sm:p-3 rounded-full">
+                    <Phone className="h-4 w-4 sm:h-6 sm:w-6 text-primary" />
                   </div>
-                  <div>
+                  <div className="text-sm">
                     <p className="text-sm text-gray-500">Phone</p>
                     <p className="text-gray-900 font-medium">
-                      +1 (555) 123-4567
+                      +234 904 2334 662
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-4">
-                  <div className="bg-purple-100 p-3 rounded-full">
-                    <MapPin className="h-6 w-6 text-purple-600" />
+                <div className="flex items-center space-x-2 sm:space-x-4">
+                  <div className="bg-purple-100 p-2 sm:p-3 rounded-full">
+                    <MapPin className="h-4 w-4 sm:h-6 sm:w-6 text-primary" />
                   </div>
-                  <div>
+                  <div className="text-sm">
                     <p className="text-sm text-gray-500">Office</p>
                     <p className="text-gray-900 font-medium">
                       123 Design Street, Creative District, NY 10001
@@ -88,7 +88,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="bg-linear-to-r from-purple-600 to-pink-600 rounded-2xl p-8 text-white">
+            <div className="bg-linear-to-r from-primary to-pink-600 rounded-2xl p-8 text-white">
               <h3 className="text-2xl font-bold mb-4">Ready to Start?</h3>
               <p className="mb-4 opacity-90">
                 Get a free consultation and quote for your project.
@@ -160,7 +160,7 @@ const Contact = () => {
               </div>
               <button
                 type="submit"
-                className="w-full bg-linear-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-[1.02] flex items-center justify-center gap-2"
+                className="w-full bg-linear-to-r from-primary to-pink-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 transform hover:scale-[1.02] flex items-center justify-center gap-2"
               >
                 Send Message
                 <Send className="h-4 w-4" />

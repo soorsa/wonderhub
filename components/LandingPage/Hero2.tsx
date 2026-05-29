@@ -19,12 +19,12 @@ const Hero2 = () => {
 
   // Animated text options
   const animatedTexts = [
-    "Web & Mobile Design",
-    "UI/UX Excellence",
-    "Digital Innovation",
-    "User-Centric Solutions",
+    "That Drives Sales",
+    "That Drives Growth",
+    "That Drives Leads",
+    "That Drives Trust",
+    "That Drives Results",
   ];
-
   // Change background image every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
@@ -68,22 +68,22 @@ const Hero2 = () => {
         </div>
       </div>
 
-      <div className="z-10 px-4 sm:px-6 lg:px-8 py- w-full max-w-7xl grid sm:grid-cols-2 gap-4 sm:gap-10">
-        <div className="text-left">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-            <span className="text-black">We Create Exceptional</span>
+      <div className="z-10 px-4 sm:px-6 lg:px-8 py- w-full max-w-7xl grid sm:flex gap-4 sm:gap-10">
+        <div className="text-left sm:w-[60%] flex-1">
+          <h1 className="text-4xl min-h-40 md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
+            <span className="text-black">We Build Platforms</span>
             <br />
             <div
               key={animatedTextIndex}
-              className="bg-linear-to-r from-purple-500 to-pink-700 bg-clip-text text-transparent animate-slide-up"
+              className="bg-linear-to-r from-primary to-pink-700 bg-clip-text text-transparent animate-slide-up"
             >
               {animatedTexts[animatedTextIndex]}
             </div>
           </h1>
           <div className="flex flex-col sm:flex-row gap-1 sm:gap-4">
             <Link
-              href="#contact"
-              className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-linear-to-r from-purple-600 to-pink-600 rounded-2xl hover:shadow-lg transition-all duration-200 transform sm:hover:scale-105 hover:shadow-purple-500/30"
+              href="https://wa.me/+2349042334662"
+              className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-linear-to-r from-primary to-pink-600 rounded-2xl hover:shadow-lg transition-all duration-200 transform sm:hover:scale-105 hover:shadow-primary/30"
             >
               Start Your Project
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -96,11 +96,20 @@ const Hero2 = () => {
             </Link>
           </div>
         </div>
-        <div className="">
-          <p className="text-xl text-gray-700 max-w-2xl mx-auto mb-10">
+        <div className="space-y-5 sm:w-[40%]">
+          <p className="text-gray-700">
+            We deliver{" "}
+            <span className="font-semibold text-primary">
+              comprehensive digital solutions
+            </span>{" "}
+            including web & mobile development, e-commerce, digital marketing,
+            and technical consulting that captivate users and drive business
+            growth.
+          </p>
+          {/* <p className="text-xl text-gray-700 max-w-2xl mx-auto mb-10">
             We craft stunning web and mobile experiences that captivate users
             and drive business growth. Your vision, our expertise.
-          </p>
+          </p> */}
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-5 pt-10 border-t border-gray-200">
             {STATS.map((stat, index) => (
@@ -123,7 +132,7 @@ const Hero2 = () => {
             onClick={() => setCurrentImageIndex(index)}
             className={`transition-all duration-300 rounded-full ${
               currentImageIndex === index
-                ? "w-8 h-2 bg-purple-500"
+                ? "w-8 h-2 bg-primary"
                 : "w-2 h-2 bg-white/50 hover:bg-white/80"
             }`}
           />
