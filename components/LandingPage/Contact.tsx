@@ -101,7 +101,7 @@ const Contact = () => {
                   <div className="text-sm">
                     <p className="text-sm text-gray-500">Office</p>
                     <p className="text-gray-900 font-medium">
-                      123 Design Street, Creative District, NY 10001
+                      25 Joe Ayika Street, Inyana Ejigbo, Lagos Nigeria
                     </p>
                   </div>
                 </div>
