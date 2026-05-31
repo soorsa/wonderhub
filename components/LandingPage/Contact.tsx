@@ -2,7 +2,9 @@
 // components/Contact.tsx
 "use client";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
+import { FaWhatsapp } from "react-icons/fa";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -46,7 +48,25 @@ const Contact = () => {
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Info */}
-          <div className="space-y-8">
+          <div className="space-y-4">
+            <div className="">
+              <Link href={`https://wa.me/2349042334662`}>
+                <div className="bg-linear-to-r from-primary to-pink-600 rounded-2xl p-5 sm:p-8 text-white">
+                  <h3 className="text-2xl font-bold mb-4">Ready to Start?</h3>
+                  <p className="mb-4 opacity-90 text-sm sm:text-base">
+                    Click to chat with me on WhatsApp get free consultation and
+                    quote for your project.
+                  </p>
+                  <div className="text-xl sm:text-3xl font-bold flex items-center gap-1 sm:gap-2">
+                    <div className="flex justify-center items-center p-1 rounded-lg border border-gray-100">
+                      <FaWhatsapp className="h-5 w-5 sm:h-7 sm:w-7" />
+                    </div>
+                    <div className="">+234 904 2334 662</div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
             <div className="bg-white rounded-2xl p-4 sm:p-8 shadow-sm">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
                 Contact Information
@@ -86,15 +106,6 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="bg-linear-to-r from-primary to-pink-600 rounded-2xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-4">Ready to Start?</h3>
-              <p className="mb-4 opacity-90">
-                Get a free consultation and quote for your project.
-              </p>
-              <div className="text-3xl font-bold">★ 4.9/5</div>
-              <p className="text-sm opacity-90">Based on 150+ client reviews</p>
             </div>
           </div>
 

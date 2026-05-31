@@ -8,33 +8,30 @@ import { useEffect, useState } from "react";
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    role: "CEO, TechStart Inc.",
+    name: "Dan O. Daniel",
+    role: "CEO, Richtec Ltd.",
     content:
-      "PixelForge transformed our digital presence completely. The team's attention to detail and creative vision exceeded our expectations. Our conversion rates have doubled since launch!",
+      "Wonderhub transformed our digital presence completely. The team's attention to detail and creative vision exceeded our expectations. Our conversion rates have doubled since launch!",
     rating: 5,
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+    image: "/user.jpg",
   },
   {
     id: 2,
-    name: "Michael Chen",
-    role: "Founder, GreenLife",
+    name: "Daniel Miles",
+    role: "Founder, Alaba.Market",
     content:
-      "Working with PixelForge was an absolute pleasure. They understood our vision and delivered a mobile app that our customers love. Highly recommended!",
+      "Working with Wonderhub was an absolute pleasure. They understood our vision and delivered a mobile app that our customers love. Highly recommended!",
     rating: 5,
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
+    image: "/user.jpg",
   },
   {
     id: 3,
-    name: "Emily Rodriguez",
-    role: "Marketing Director, Bloom Cosmetics",
+    name: "Tochuckwu Jason",
+    role: "CEO, Healthify",
     content:
       "The team's expertise in UI/UX design is unparalleled. They created a seamless shopping experience that perfectly represents our brand. Outstanding work!",
     rating: 5,
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+    image: "/user.jpg",
   },
 ];
 

@@ -1,5 +1,4 @@
 // components/Footer.tsx
-import Button from "@/components/General/Button";
 import LinkButton from "@/components/General/LinkButton";
 import { ArrowRight, Copyright, Mail, PhoneCall } from "lucide-react";
 import Image from "next/image";
@@ -23,23 +22,22 @@ const Footer = () => {
             alt="wonderhub"
           />
           <div className="text-center">
-            <div className="font-bold sm:text-2xl">
-              WONDERHUB DIGITAL SERVICES
-            </div>
+            <div className="font-bold sm:text-2xl">DIGITAL SOLUTION AGENCY</div>
             <div className="text-sm sm:text-base">
               Bringing excellence to your business.
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-1 sm:gap-2 text-sm w-full sm:w-2/5">
+          <div className="grid sm:grid-cols-2 gap-1 sm:gap-2 text-sm w-full sm:w-2/5">
             <LinkButton
               link="https://wa.me/+2349042334662"
               label="Start your Project"
               className="no-underline!"
               rightIcon={<ArrowRight size={18} />}
             />
-            <Button
+            <LinkButton
+              link="https://wa.me/+2349042334662"
               label="Book Free Demo"
-              className="bg-purple-700! text-white"
+              className="bg-purple-700! text-white no-underline!"
             />
           </div>
         </div>
@@ -162,7 +160,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-200 text-sm">
+        <div className="border-t border-gray-400 mt-8 pt-8 text-center text-gray-200 text-sm">
           <p className="flex items-center justify-center gap-1">
             wonderHUB <Copyright size={14} />
             {year}. All rights reserved.

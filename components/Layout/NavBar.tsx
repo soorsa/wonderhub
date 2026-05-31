@@ -47,7 +47,9 @@ const Navbar = () => {
               <div className="text-xl font-bold bg-linear-to-r from-primary to-pink-600 bg-clip-text text-transparent ">
                 WonderHUB
               </div>
-              <div className="text-gray-500 text-xs">Digital services</div>
+              <div className="text-gray-500 text-xs">
+                Digital Solution Agency
+              </div>
             </div>
           </Link>
 
@@ -73,7 +75,9 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden ${scrolled ? "text-gray-700" : "text-white"}`}
+            className={`md:hidden ${
+              scrolled ? "text-gray-700" : "text-gray-700"
+            }`}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -81,7 +85,13 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden absolute h-screen top-16 left-0 right-0 bg-white shadow-lg py-4 px-4 flex justify-center items-center">
+          <div
+            onClick={() => setIsOpen(false)}
+            className="md:hidden fixed inset-0 h-screen top-0 left-0 right-0 bg-white shadow-lg py-4 px-4 flex justify-center items-center"
+          >
+            <div className="border absolute top-4 right-4 rounded-lg border-gray-200 flex items-center justify-center p-1 hover:bg-gray-200 cursor-pointer">
+              <X />
+            </div>
             <div className="-mt-20 space-y-3 text-center">
               {navLinks.map((link) => (
                 <Link

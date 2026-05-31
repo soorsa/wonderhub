@@ -70,7 +70,7 @@ const Hero2 = () => {
 
       <div className="z-10 px-4 sm:px-6 lg:px-8 py- w-full max-w-7xl grid sm:flex gap-4 sm:gap-10">
         <div className="text-left sm:w-[60%] flex-1">
-          <h1 className="text-4xl min-h-40 md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
             <span className="text-black">We Build Platforms</span>
             <br />
             <div

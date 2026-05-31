@@ -34,7 +34,7 @@ const Portfolio = () => {
   const filteredProjects =
     activeCategory === "All"
       ? PROJECTS
-      : PROJECTS.filter((p) => p.category.includes(activeCategory));
+      : PROJECTS.filter((p) => p.category.includes(activeCategory, 0));
 
   return (
     <section id="portfolio" className="py-20 bg-white">
@@ -101,18 +101,18 @@ const Portfolio = () => {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                className={`bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer`}
+                className={`bg-white border border-gray-200 rounded-2xl hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer`}
                 onClick={() => setSelectedProject(project)}
               >
                 <div className="relative overflow-hidden">
-                  <div className="h-48 bg-linear-to-br from-blue-400 to-primary relative">
+                  <div className="h-48 bg-white relative">
                     {/* Project Image Placeholder */}
-                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                    <div className="absolute inset-0 flex items-center justify-center">
                       <Image
                         src={project.image}
                         alt={project.title}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -124,14 +124,14 @@ const Portfolio = () => {
                 </div>
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-2">
-                    <h4 className="text-lg font-bold text-gray-900 transition-colors duration-300">
+                    <h4 className="text-lg line-clamp-1 font-bold text-gray-900 transition-colors duration-300">
                       {project.title}
                     </h4>
                     <span className="text-sm text-gray-500 bg-gray-200 px-2 py-1 rounded">
                       {project.year}
                     </span>
                   </div>
-                  <p className="text-gray-600 mb-4 text-sm">
+                  <p className="text-gray-600 mb-4 text-sm line-clamp-2">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-1 mb-0">
