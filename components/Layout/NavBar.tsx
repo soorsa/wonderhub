@@ -22,6 +22,7 @@ const Navbar = () => {
     { name: "Work", href: "#portfolio" },
     { name: "Process", href: "#process" },
     { name: "Contact", href: "#contact" },
+    { name: "Academy", href: "/https://wonderhub-academy.vercel.app" },
   ];
 
   return (
