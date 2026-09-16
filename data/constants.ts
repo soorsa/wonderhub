@@ -1,3 +1,13 @@
+import {
+  BarChartBig,
+  FileText,
+  Globe,
+  HelpCircle,
+  LayoutTemplate,
+  Server,
+  Settings,
+} from "lucide-react";
+
 export const PROJECTS = [
   {
     id: 1,
@@ -111,4 +121,72 @@ export const STATS = [
   { number: "98%", label: "Happy Client" },
   { number: "12", label: "Industry Awards" },
   { number: "50+", label: "Expert Designers" },
+];
+
+class Navigation {
+  workspace = [
+    {
+      label: "Overview",
+      icon: LayoutTemplate,
+      path: "/dashboard",
+    },
+    {
+      label: "Domains",
+      icon: Globe,
+      path: "/dashboard/domains",
+    },
+    {
+      label: "Hosting",
+      icon: Server,
+      path: "/dashboard/hosting",
+    },
+    {
+      label: "invoces",
+      icon: FileText,
+      path: "/dashboard/invoices",
+    },
+  ];
+  system = [
+    {
+      label: " report",
+      icon: BarChartBig,
+      path: "/dashboard/reports",
+    },
+
+    {
+      label: "settings",
+      icon: Settings,
+      path: "/dashboard/settings",
+    },
+    {
+      label: "Surport",
+      icon: HelpCircle,
+      path: "/dashboard/support",
+    },
+  ];
+}
+export const navigation = new Navigation();
+
+export const Hostings = [
+  {
+    type: "Shared Hosting (cPanel)",
+    duration: "1 Year",
+    expires: "10-16-2026",
+    domains: [
+      {
+        domain: "richtecafrica.com",
+        protocol: "https",
+        secured: true,
+        duration: "1 Year",
+        expires: "10-16-2026",
+      },
+      {
+        domain: "alaba.market",
+        protocol: "https",
+        secured: true,
+        duration: "1 Year",
+        expires: "10-21-2026",
+      },
+    ],
+  },
 ];

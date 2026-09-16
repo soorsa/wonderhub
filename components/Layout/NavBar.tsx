@@ -18,11 +18,12 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Services", href: "#services" },
-    { name: "Work", href: "#portfolio" },
-    { name: "Process", href: "#process" },
-    { name: "Contact", href: "#contact" },
-    { name: "Academy", href: "/https://wonderhub-academy.vercel.app" },
+    { name: "our Services", href: "#services" },
+    { name: "Our Portfolio", href: "#portfolio" },
+    { name: "Our Process", href: "#process" },
+    { name: "Contact Us", href: "#contact" },
+    { name: "Web Hosting", href: "/dashboard" },
+    { name: "Academy", href: "https://wonderhub-academy.vercel.app" },
   ];
 
   return (
@@ -65,6 +66,8 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+          </div>
+          <div className="hidden md:flex">
             <Link
               href="#contact"
               className="bg-linear-to-r from-primary to-pink-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition-shadow duration-200"
