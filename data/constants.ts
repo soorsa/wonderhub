@@ -1,11 +1,15 @@
 import {
   BarChartBig,
+  Code2,
   FileText,
   Globe,
   HelpCircle,
   LayoutTemplate,
+  Megaphone,
   Server,
   Settings,
+  ShoppingCart,
+  Smartphone,
 } from "lucide-react";
 
 export const PROJECTS = [
@@ -188,5 +192,161 @@ export const Hostings = [
         expires: "10-21-2026",
       },
     ],
+  },
+];
+
+export const services = [
+  {
+    icon: Code2,
+    title: "Web Development",
+    description:
+      "Responsive, fast, and SEO-friendly websites built with modern technologies.",
+    gradient: "from-blue-500 to-blue-600",
+    features: [
+      "Responsive Design",
+      "React/Next.js Development",
+      "API Integration",
+      "Performance Optimization",
+      "SEO Friendly",
+      "Cross-browser Compatibility",
+    ],
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile Apps",
+    description:
+      "Native and cross-platform mobile applications for iOS and Android.",
+    gradient: "from-green-500 to-green-600",
+    features: [
+      "React Native Development",
+      "iOS & Android Apps",
+      "App Store Deployment",
+      "Push Notifications",
+      "Offline Functionality",
+      "UI/UX Design",
+    ],
+  },
+  {
+    icon: ShoppingCart,
+    title: "E-commerce Solutions",
+    description:
+      "Complete online store development with secure payment integration.",
+    gradient: "from-purple-500 to-purple-600",
+    features: [
+      "Shopping Cart System",
+      "Payment Gateway Integration",
+      "Inventory Management",
+      "Admin Dashboard",
+      "Order Tracking",
+      "Security & SSL",
+    ],
+  },
+  {
+    icon: Settings,
+    title: "Consulting & Maintenance",
+    description:
+      "Expert guidance and strategic consulting to optimize your digital products and technical infrastructure.",
+    gradient: "from-gray-500 to-gray-600",
+    features: [
+      "Code Reviews",
+      "Performance Audits",
+      "Technical Consulting",
+      "Regular Updates",
+      "Bug Fixing",
+      "Security Patches",
+    ],
+  },
+  {
+    icon: Megaphone,
+    title: "Digital Marketing",
+    description:
+      "Data-driven strategies to achieve your business goals and maximize ROI.",
+    gradient: "from-red-500 to-red-600",
+    features: [
+      "SEO Strategy & Implementation",
+      "Content Marketing",
+      "Social Media Management",
+      "Email Marketing Campaigns",
+      "PPC Advertising",
+      "Analytics & Reporting",
+      "Conversion Rate Optimization",
+    ],
+  },
+  // {
+  //   icon: Rocket  ,
+  //   title: "Web Hosting",
+  //   description:
+  //     "Continuous improvement and A/B testing to enhance performance.",
+  //   gradient: "from-indigo-500 to-indigo-600",
+  // },
+  {
+    icon: Server,
+    href: "/dashboard",
+    title: "Web Hosting",
+    description:
+      "Reliable, secure, and scalable hosting solutions with continuous deployment and monitoring.",
+    gradient: "from-indigo-500 to-indigo-600",
+    features: [
+      "Cloud Hosting (AWS/GCP/Azure)",
+      "Database Management",
+      "SSL Certificates",
+      "Domain Management",
+      "Server Monitoring",
+      "24/7 Uptime Monitoring",
+    ],
+  },
+];
+
+export const INVOICES: Invoice[] = [
+  {
+    id: "WH-2026-0042",
+    issueDate: "2026-09-24",
+    dueDate: "2027-10-18",
+    status: "overdue",
+    customer: {
+      name: "Daniel O. Daniel",
+      email: "",
+      phone: "07045591360",
+      address: "",
+    },
+    paymentMethod: { brand: "Paystack" },
+    items: [
+      {
+        id: "1",
+        name: "Domain Registration",
+        type: "domain",
+        quantity: 1,
+        unitPrice: 35800,
+        description: "richtecafrica.com · 1 year",
+      },
+      {
+        id: "2",
+        name: "Domain Registration",
+        type: "domain",
+        quantity: 1,
+        unitPrice: 35800,
+        description: "alaba.market · 1 year",
+      },
+      {
+        id: "3",
+        name: "Privacy Protection & SSL",
+        type: "ssl",
+        quantity: 2,
+        unitPrice: 2500,
+        description: "Domain Privacy Protection & SSL Certificate",
+      },
+      {
+        id: "4",
+        name: "Shared Hosting (cPanel)",
+        type: "hosting",
+        quantity: 1,
+        unitPrice: 86590,
+        description: "4 vCPU · 8GB RAM · 1 year",
+      },
+    ],
+    /** Absolute dollar amount already applied (not a percentage). */
+    discountAmount: 86590,
+    /** Decimal, e.g. 0.0825 for 8.25%. */
+    taxRate: 0.03,
   },
 ];

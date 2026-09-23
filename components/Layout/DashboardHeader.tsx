@@ -1,9 +1,5 @@
 "use client";
 
-import { Building2, Globe, Server, Timer, UserCircle } from "lucide-react";
-import Link from "next/link";
-import * as React from "react";
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,8 +8,13 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import Cookies from "js-cookie";
+import { Building2, Globe, Server, Timer, UserCircle } from "lucide-react";
+import Link from "next/link";
+import * as React from "react";
 
 export function HeaderMenu() {
+  const user = Cookies.get("user");
   return (
     <header className="w-full border-b border-gray-200">
       {/* Navigation */}
@@ -138,7 +139,7 @@ export function HeaderMenu() {
                   strokeWidth={2.2}
                   className="text-primary"
                 />
-                <span>RichTec Professional</span>
+                <span>{user || "Loading..."}</span>
               </div>
             </NavigationMenuTrigger>
 

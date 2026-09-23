@@ -49,7 +49,7 @@ const Hero2 = () => {
     <section className="min-h-screen flex flex-col items-center justify-center overflow-hidden">
       {/* Background Slideshow */}
       <div className="px-2 w-full">
-        <div className="relative h-35 sm:h-75 w-full mb-8 max-w-7xl rounded-2xl sm:rounded-4xl overflow-hidden">
+        <div className="relative h-35 sm:h-75 w-full mb-8 max-w-7xl mx-auto rounded-2xl sm:rounded-4xl overflow-hidden">
           {backgroundImages.map((image, index) => (
             <div
               key={index}

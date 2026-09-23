@@ -1,117 +1,10 @@
 // components/Services.tsx
 "use client";
+import { services } from "@/data/constants";
 import { motion, useInView, Variants } from "framer-motion";
-import {
-  Check,
-  Code2,
-  Megaphone,
-  Server,
-  Settings,
-  ShoppingCart,
-  Smartphone,
-} from "lucide-react";
+import { Check } from "lucide-react";
+import Link from "next/link";
 import { useRef } from "react";
-
-const services = [
-  {
-    icon: <Code2 className="h-8 w-8" />,
-    title: "Web Development",
-    description:
-      "Responsive, fast, and SEO-friendly websites built with modern technologies.",
-    gradient: "from-blue-500 to-blue-600",
-    features: [
-      "Responsive Design",
-      "React/Next.js Development",
-      "API Integration",
-      "Performance Optimization",
-      "SEO Friendly",
-      "Cross-browser Compatibility",
-    ],
-  },
-  {
-    icon: <Smartphone className="h-8 w-8" />,
-    title: "Mobile Apps",
-    description:
-      "Native and cross-platform mobile applications for iOS and Android.",
-    gradient: "from-green-500 to-green-600",
-    features: [
-      "React Native Development",
-      "iOS & Android Apps",
-      "App Store Deployment",
-      "Push Notifications",
-      "Offline Functionality",
-      "UI/UX Design",
-    ],
-  },
-  {
-    icon: <ShoppingCart className="h-8 w-8" />,
-    title: "E-commerce Solutions",
-    description:
-      "Complete online store development with secure payment integration.",
-    gradient: "from-purple-500 to-purple-600",
-    features: [
-      "Shopping Cart System",
-      "Payment Gateway Integration",
-      "Inventory Management",
-      "Admin Dashboard",
-      "Order Tracking",
-      "Security & SSL",
-    ],
-  },
-  {
-    icon: <Settings className="h-8 w-8" />,
-    title: "Consulting & Maintenance",
-    description:
-      "Expert guidance and strategic consulting to optimize your digital products and technical infrastructure.",
-    gradient: "from-gray-500 to-gray-600",
-    features: [
-      "Code Reviews",
-      "Performance Audits",
-      "Technical Consulting",
-      "Regular Updates",
-      "Bug Fixing",
-      "Security Patches",
-    ],
-  },
-  {
-    icon: <Megaphone className="h-8 w-8" />,
-    title: "Digital Marketing",
-    description:
-      "Data-driven strategies to achieve your business goals and maximize ROI.",
-    gradient: "from-red-500 to-red-600",
-    features: [
-      "SEO Strategy & Implementation",
-      "Content Marketing",
-      "Social Media Management",
-      "Email Marketing Campaigns",
-      "PPC Advertising",
-      "Analytics & Reporting",
-      "Conversion Rate Optimization",
-    ],
-  },
-  // {
-  //   icon: <Rocket className="h-8 w-8" />,
-  //   title: "Web Hosting",
-  //   description:
-  //     "Continuous improvement and A/B testing to enhance performance.",
-  //   gradient: "from-indigo-500 to-indigo-600",
-  // },
-  {
-    icon: <Server className="h-8 w-8" />,
-    title: "Web Hosting",
-    description:
-      "Reliable, secure, and scalable hosting solutions with continuous deployment and monitoring.",
-    gradient: "from-indigo-500 to-indigo-600",
-    features: [
-      "Cloud Hosting (AWS/GCP/Azure)",
-      "Database Management",
-      "SSL Certificates",
-      "Domain Management",
-      "Server Monitoring",
-      "24/7 Uptime Monitoring",
-    ],
-  },
-];
 
 const headerVariants: Variants = {
   hidden: { y: -30, opacity: 0 },
@@ -191,7 +84,7 @@ const Services = () => {
               <div
                 className={`inline-flex p-3 rounded-xl bg-linear-to-r ${service.gradient} text-white mb-3 sm:mb-6`}
               >
-                {service.icon}
+                <service.icon className="h-8 w-8" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1.5 sm:mb-3">
                 {service.title}
@@ -216,9 +109,12 @@ const Services = () => {
               </ul>
 
               <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="text-primary text-sm sm:text-base font-medium inline-flex items-center">
+                <Link
+                  href={service.href || "#"}
+                  className="text-primary text-sm sm:text-base font-medium inline-flex items-center"
+                >
                   Learn more →
-                </span>
+                </Link>
               </div>
             </motion.div>
           ))}

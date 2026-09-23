@@ -1,5 +1,4 @@
-import Button from "@/components/General/Button";
-import { Calendar, CheckCircle2, CreditCard, User } from "lucide-react";
+import { Calendar, CheckCircle2, User } from "lucide-react";
 
 export default function InvoiceMeta({ invoice }: { invoice: Invoice }) {
   const statusStyles: Record<Invoice["status"], string> = {
@@ -62,7 +61,7 @@ export default function InvoiceMeta({ invoice }: { invoice: Invoice }) {
           <p className="text-sm text-slate-600">{invoice.customer.phone}</p>
           <p className="text-sm text-slate-600">{invoice.customer.address}</p>
         </div>
-        <div>
+        {/* <div>
           <h4 className="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-3 flex items-center gap-2">
             <CreditCard className="w-3.5 h-3.5" /> Payment method
           </h4>
@@ -71,7 +70,7 @@ export default function InvoiceMeta({ invoice }: { invoice: Invoice }) {
             className="text-lg bg-primary! text-white font-semibold"
             icon={<CreditCard className="w-8 h-8" />}
           />
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -22,7 +22,7 @@ const statusStyles: Record<InvoiceSummary["status"], string> = {
 };
 
 const currency = (n: number) =>
-  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
+  new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(
     n
   );
 
@@ -36,7 +36,7 @@ const formatDate = (d: string) =>
 export default function InvoiceListTable({
   invoices,
 }: {
-  invoices: InvoiceSummary[];
+  invoices: Invoice[];
 }) {
   if (invoices.length === 0) {
     return (
@@ -60,7 +60,7 @@ export default function InvoiceListTable({
               <th className="py-3 px-4">Invoice</th>
               <th className="py-3 px-4">Customer</th>
               <th className="py-3 px-4">Services</th>
-              <th className="py-3 px-4">Issued</th>
+              <th className="py-3 px-4">Expiring</th>
               <th className="py-3 px-4">Status</th>
               <th className="py-3 px-4 text-right">Amount</th>
               <th className="py-3 px-2"></th>
@@ -85,19 +85,19 @@ export default function InvoiceListTable({
                 </td>
                 <td className="py-4 px-4">
                   <p className="font-medium text-slate-800">
-                    {inv.customerName}
+                    {inv.customer.name}
                   </p>
-                  <p className="text-xs text-slate-500">{inv.customerEmail}</p>
+                  <p className="text-xs text-slate-500">{inv.customer.phone}</p>
                 </td>
                 <td className="py-4 px-4">
                   <div className="flex -space-x-1.5">
-                    {inv.serviceTypes.map((t) => {
-                      const Icon = iconMap[t];
+                    {inv.items.map((t, i) => {
+                      const Icon = iconMap[t.type];
                       return (
                         <span
-                          key={t}
+                          key={i}
                           className="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center border border-white"
-                          title={t}
+                          title={t.type}
                         >
                           <Icon className="w-3.5 h-3.5" />
                         </span>
@@ -106,7 +106,7 @@ export default function InvoiceListTable({
                   </div>
                 </td>
                 <td className="py-4 px-4 text-slate-600">
-                  {formatDate(inv.issueDate)}
+                  {formatDate(inv.dueDate)}
                 </td>
                 <td className="py-4 px-4">
                   <span
@@ -118,7 +118,7 @@ export default function InvoiceListTable({
                   </span>
                 </td>
                 <td className="py-4 px-4 text-right font-bold text-slate-900">
-                  {currency(inv.total)}
+                  {currency(inv.discountAmount)}
                 </td>
                 <td className="py-4 px-2 text-right">
                   <Link
@@ -140,7 +140,7 @@ export default function InvoiceListTable({
         {invoices.map((inv) => (
           <li key={inv.id}>
             <Link
-              href={`/invoice/${inv.id}`}
+              href={`/dashboard/invoices/${inv.id}`}
               className="block p-4 hover:bg-slate-50 transition"
             >
               <div className="flex justify-between items-start gap-3">
@@ -149,7 +149,7 @@ export default function InvoiceListTable({
                     #{inv.id}
                   </p>
                   <p className="text-sm text-slate-600 truncate">
-                    {inv.customerName}
+                    {inv.customer.name}
                   </p>
                   <p className="text-xs text-slate-400 mt-1">
                     Issued {formatDate(inv.issueDate)} · Due{" "}
@@ -157,7 +157,7 @@ export default function InvoiceListTable({
                   </p>
                 </div>
                 <div className="text-right shrink-0">
-                  <p className="font-bold">{currency(inv.total)}</p>
+                  <p className="font-bold">{currency(inv.discountAmount)}</p>
                   <span
                     className={`inline-block mt-1 px-2 py-0.5 rounded-full text-[10px] font-bold capitalize ${
                       statusStyles[inv.status]
