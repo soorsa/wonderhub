@@ -36,7 +36,7 @@ const OverviewPage = () => {
     <div>
       <div className="py-5 flex justify-between items-start">
         <div className="">
-          <h3 className="text-3xl font-extrabold">Good Day, Victoria 👋</h3>
+          <h3 className="text-3xl font-extrabold">Good Day, Richtec 👋</h3>
           <div className="">
             Here's what's happening across Sterling Tech today.
           </div>

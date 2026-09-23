@@ -1,3 +1,8 @@
+interface Window {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  fbq: (...args: any[]) => void;
+}
+
 interface Project {
   id: number;
   title: string;
@@ -119,4 +124,9 @@ interface InvoiceTotals {
   discount: number;
   tax: number;
   total: number;
+}
+interface Option {
+  label: string;
+  value: string;
+  description?: string;
 }

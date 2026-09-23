@@ -1,5 +1,6 @@
 import InvoiceListTable from "@/app/dashboard/_components/InvoiceListTable";
 import InvoicePagination from "@/app/dashboard/_components/InvoicePagination";
+import { INVOICES } from "@/data/constants";
 import { listInvoices } from "@/lib/invoice";
 import { FileText, Plus } from "lucide-react";
 import Link from "next/link";
@@ -55,7 +56,7 @@ export default async function InvoicesPage({ searchParams }: PageProps) {
         /> */}
 
         {/* table */}
-        <InvoiceListTable invoices={result.invoices} />
+        <InvoiceListTable invoices={INVOICES} />
 
         {/* pagination */}
         {result.totalPages > 1 && (

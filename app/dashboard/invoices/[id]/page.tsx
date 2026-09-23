@@ -2,7 +2,7 @@ import InvoiceHeader from "@/app/dashboard/_components/InvoiceHeader";
 import InvoiceMeta from "@/app/dashboard/_components/InvoiceMeta";
 import InvoiceTable from "@/app/dashboard/_components/InvoiceTable";
 import InvoiceTotals from "@/app/dashboard/_components/InvoiceTotals";
-import { getInvoice } from "@/lib/invoice";
+import { INVOICES } from "@/data/constants";
 import { notFound } from "next/navigation";
 
 interface PageProps {
@@ -11,7 +11,7 @@ interface PageProps {
 
 export default async function InvoicePage({ params }: PageProps) {
   const { id } = await params;
-  const invoice = await getInvoice(id);
+  const invoice = await INVOICES.find((inv) => inv.id === id);
   console.log("id", id);
   if (!invoice) notFound();
 

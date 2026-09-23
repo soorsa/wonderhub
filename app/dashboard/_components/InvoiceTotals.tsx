@@ -1,20 +1,37 @@
+"use client";
 import Button from "@/components/General/Button";
-import { CreditCard, Download, Lock, Printer } from "lucide-react";
+import { usePaystackPayment } from "@/hooks/payments/usePayment";
+import { CreditCard, Lock } from "lucide-react";
+import toast from "react-hot-toast";
 
 const currency = (n: number) =>
-  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
+  new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(
     n
   );
 
 export default function InvoiceTotals({ invoice }: { invoice: Invoice }) {
+  const paystack = usePaystackPayment();
   const subtotal = invoice.items.reduce(
     (s, i) => s + i.quantity * i.unitPrice,
     0
   );
-  const taxable = subtotal - invoice.discountAmount;
+  const taxable = subtotal;
   const tax = taxable * invoice.taxRate;
   const total = taxable + tax;
-
+  const handlePaystackPayment = () => {
+    paystack({
+      email: invoice.customer.email || "wonderhub.dev@gmail.com",
+      amount: total,
+      reference: invoice.id,
+      phoneNumber: invoice.customer.phone || "",
+      onSuccess() {
+        toast.success("Payment successfull");
+      },
+      onClose() {
+        toast.error("Payment canceled");
+      },
+    });
+  };
   return (
     <section className="space-y-8">
       <div className="grid md:grid-cols-5 gap-6">
@@ -37,7 +54,7 @@ export default function InvoiceTotals({ invoice }: { invoice: Invoice }) {
             />
           )}
           <Row
-            label={`Tax (${(invoice.taxRate * 100).toFixed(2)}%)`}
+            label={`VAT (${(invoice.taxRate * 100).toFixed(2)}%)`}
             value={currency(tax)}
           />
           <div className="flex justify-between items-center pt-4 mt-2 border-t-2 border-slate-200">
@@ -49,17 +66,10 @@ export default function InvoiceTotals({ invoice }: { invoice: Invoice }) {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-between items-center gap-4 pt-4 border-t border-slate-200">
-        <div className="flex gap-3">
-          <button className="inline-flex items-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-slate-800 transition">
-            <Download className="w-4 h-4 text-blue-400" /> Download PDF
-          </button>
-          <button className="inline-flex items-center gap-2 border border-slate-300 px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-slate-50 transition">
-            <Printer className="w-4 h-4 text-blue-500" /> Print
-          </button>
-        </div>
-        <div className="space-y-2">
+      <div className="flex justify-end items-center gap-4 pt-4 border-t border-slate-200">
+        <div className="space-y-2 w-full md:w-1/3">
           <Button
+            onClick={handlePaystackPayment}
             label={`Pay with ${invoice.paymentMethod.brand}`}
             className="bg-primary! text-white font-semibold"
             icon={<CreditCard className="w-8 h-8" />}
