@@ -316,7 +316,7 @@ export const INVOICES: Invoice[] = [
         name: "Domain Registration",
         type: "domain",
         quantity: 1,
-        unitPrice: 35000,
+        unitPrice: 28000,
         description: "richtecafrica.com · 1 year",
       },
       {
