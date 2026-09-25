@@ -9,6 +9,31 @@ export default function InvoiceMeta({ invoice }: { invoice: Invoice }) {
 
   return (
     <section className="space-y-6">
+      {/* billing + payment */}
+      <div className="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 className="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-3 flex items-center gap-2">
+            <User className="w-3.5 h-3.5" /> Billed to
+          </h4>
+          <p className="font-bold text-lg">{invoice.customer.name}</p>
+          <p className="text-sm text-slate-600 mt-1">
+            {invoice.customer.email}
+          </p>
+          <p className="text-sm text-slate-600">{invoice.customer.phone}</p>
+          <p className="text-sm text-slate-600">{invoice.customer.address}</p>
+        </div>
+
+        {/* <div>
+          <h4 className="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-3 flex items-center gap-2">
+            <CreditCard className="w-3.5 h-3.5" /> Payment method
+          </h4>
+          <Button
+            label={`Pay with ${invoice.paymentMethod.brand}`}
+            className="text-lg bg-primary! text-white font-semibold"
+            icon={<CreditCard className="w-8 h-8" />}
+          />
+        </div> */}
+      </div>
       {/* meta grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-slate-50 rounded-2xl border border-slate-100 p-5">
         <div>
@@ -46,31 +71,6 @@ export default function InvoiceMeta({ invoice }: { invoice: Invoice }) {
           </p>
           <p className="font-bold mt-1 text-sm">ch_3PxL9k2eZvKY</p>
         </div>
-      </div>
-
-      {/* billing + payment */}
-      <div className="grid md:grid-cols-2 gap-6">
-        <div>
-          <h4 className="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-3 flex items-center gap-2">
-            <User className="w-3.5 h-3.5" /> Billed to
-          </h4>
-          <p className="font-bold text-lg">{invoice.customer.name}</p>
-          <p className="text-sm text-slate-600 mt-1">
-            {invoice.customer.email}
-          </p>
-          <p className="text-sm text-slate-600">{invoice.customer.phone}</p>
-          <p className="text-sm text-slate-600">{invoice.customer.address}</p>
-        </div>
-        {/* <div>
-          <h4 className="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-3 flex items-center gap-2">
-            <CreditCard className="w-3.5 h-3.5" /> Payment method
-          </h4>
-          <Button
-            label={`Pay with ${invoice.paymentMethod.brand}`}
-            className="text-lg bg-primary! text-white font-semibold"
-            icon={<CreditCard className="w-8 h-8" />}
-          />
-        </div> */}
       </div>
     </section>
   );
