@@ -3,16 +3,10 @@ import InvoiceHeader from "@/app/dashboard/_components/InvoiceHeader";
 import InvoiceMeta from "@/app/dashboard/_components/InvoiceMeta";
 import InvoiceTable from "@/app/dashboard/_components/InvoiceTable";
 import InvoiceTotals from "@/app/dashboard/_components/InvoiceTotals";
-import { useGetInvoice } from "@/hooks/useQuery";
-import { useParams } from "next/navigation";
+import { INVOICES } from "@/data/constants";
 
 const InvoiceDetailPage = () => {
-  const { id } = useParams();
-  const invoice = useGetInvoice(String(id));
-  console.log("id", id);
-  //   if (!invoice) notFound();
-  if (!invoice) return <div>No Invoice</div>;
-
+  const invoice = INVOICES[0];
   return (
     <div className="w-full max-w-4xl bg-white rounded-3xl shadow-sm overflow-hidden">
       <InvoiceHeader invoiceId={invoice.id} />
