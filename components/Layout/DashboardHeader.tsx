@@ -15,6 +15,16 @@ import * as React from "react";
 
 export function HeaderMenu() {
   const user = Cookies.get("user");
+  // const has_paid = Cookies.get("has_paid");
+  // console.log(has_paid);
+  // if (has_paid === "yes") {
+  //   return (
+  //     <div className="">
+  //       <PageLoader text="Renewing services... this may take a while." />
+  //     </div>
+  //   );
+  // }
+
   return (
     <header className="w-full border-b border-gray-200">
       {/* Navigation */}

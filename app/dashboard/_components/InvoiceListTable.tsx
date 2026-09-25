@@ -67,109 +67,125 @@ export default function InvoiceListTable({
             </tr>
           </thead>
           <tbody>
-            {invoices.map((inv) => (
-              <tr
-                key={inv.id}
-                className="border-b border-slate-100 last:border-none hover:bg-slate-50/70 transition"
-              >
-                <td className="py-4 px-4">
-                  <Link
-                    href={`/dashboard/invoices/${inv.id}`}
-                    className="font-semibold text-slate-900 hover:text-blue-600"
-                  >
-                    #{inv.id}
-                  </Link>
-                  <p className="text-xs text-slate-400 mt-0.5">
-                    Due {formatDate(inv.dueDate)}
-                  </p>
-                </td>
-                <td className="py-4 px-4">
-                  <p className="font-medium text-slate-800">
-                    {inv.customer.name}
-                  </p>
-                  <p className="text-xs text-slate-500">{inv.customer.phone}</p>
-                </td>
-                <td className="py-4 px-4">
-                  <div className="flex -space-x-1.5">
-                    {inv.items.map((t, i) => {
-                      const Icon = iconMap[t.type];
-                      return (
-                        <span
-                          key={i}
-                          className="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center border border-white"
-                          title={t.type}
-                        >
-                          <Icon className="w-3.5 h-3.5" />
-                        </span>
-                      );
-                    })}
-                  </div>
-                </td>
-                <td className="py-4 px-4 text-slate-600">
-                  {formatDate(inv.dueDate)}
-                </td>
-                <td className="py-4 px-4">
-                  <span
-                    className={`inline-block px-2.5 py-1 rounded-full text-xs font-bold capitalize ${
-                      statusStyles[inv.status]
-                    }`}
-                  >
-                    {inv.status}
-                  </span>
-                </td>
-                <td className="py-4 px-4 text-right font-bold text-slate-900">
-                  {currency(inv.discountAmount)}
-                </td>
-                <td className="py-4 px-2 text-right">
-                  <Link
-                    href={`/invoice/${inv.id}`}
-                    className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition"
-                    aria-label={`View invoice ${inv.id}`}
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </Link>
-                </td>
-              </tr>
-            ))}
+            {invoices.map((inv) => {
+              const subtotal = inv.items.reduce(
+                (s, i) => s + i.quantity * i.unitPrice,
+                0
+              );
+
+              return (
+                <tr
+                  key={inv.id}
+                  className="border-b border-slate-100 last:border-none hover:bg-slate-50/70 transition"
+                >
+                  <td className="py-4 px-4">
+                    <Link
+                      href={`/dashboard/invoices/${inv.id}`}
+                      className="font-semibold text-slate-900 hover:text-blue-600"
+                    >
+                      #{inv.id}
+                    </Link>
+                    <p className="text-xs text-slate-400 mt-0.5">
+                      Due {formatDate(inv.dueDate)}
+                    </p>
+                  </td>
+                  <td className="py-4 px-4">
+                    <p className="font-medium text-slate-800">
+                      {inv.customer.name}
+                    </p>
+                    <p className="text-xs text-slate-500">
+                      {inv.customer.phone}
+                    </p>
+                  </td>
+                  <td className="py-4 px-4">
+                    <div className="flex -space-x-1.5">
+                      {inv.items.map((t, i) => {
+                        const Icon = iconMap[t.type];
+                        return (
+                          <span
+                            key={i}
+                            className="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center border border-white"
+                            title={t.type}
+                          >
+                            <Icon className="w-3.5 h-3.5" />
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </td>
+                  <td className="py-4 px-4 text-slate-600">
+                    {formatDate(inv.dueDate)}
+                  </td>
+                  <td className="py-4 px-4">
+                    <span
+                      className={`inline-block px-2.5 py-1 rounded-full text-xs font-bold capitalize ${
+                        statusStyles[inv.status]
+                      }`}
+                    >
+                      {inv.status}
+                    </span>
+                  </td>
+                  <td className="py-4 px-4 text-right font-bold text-slate-900">
+                    {currency(subtotal)}
+                  </td>
+                  <td className="py-4 px-2 text-right">
+                    <Link
+                      href={`/dashboard/invoices/${inv.id}`}
+                      className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition"
+                      aria-label={`View invoice ${inv.id}`}
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
 
       {/* mobile cards */}
       <ul className="md:hidden divide-y divide-slate-100">
-        {invoices.map((inv) => (
-          <li key={inv.id}>
-            <Link
-              href={`/dashboard/invoices/${inv.id}`}
-              className="block p-4 hover:bg-slate-50 transition"
-            >
-              <div className="flex justify-between items-start gap-3">
-                <div className="min-w-0">
-                  <p className="font-semibold text-slate-900 truncate">
-                    #{inv.id}
-                  </p>
-                  <p className="text-sm text-slate-600 truncate">
-                    {inv.customer.name}
-                  </p>
-                  <p className="text-xs text-slate-400 mt-1">
-                    Issued {formatDate(inv.issueDate)} · Due{" "}
-                    {formatDate(inv.dueDate)}
-                  </p>
+        {invoices.map((inv) => {
+          const subtotal = inv.items.reduce(
+            (s, i) => s + i.quantity * i.unitPrice,
+            0
+          );
+
+          return (
+            <li key={inv.id}>
+              <Link
+                href={`/dashboard/invoices/${inv.id}`}
+                className="block p-4 hover:bg-slate-50 transition"
+              >
+                <div className="flex justify-between items-start gap-3">
+                  <div className="min-w-0">
+                    <p className="font-semibold text-slate-900 truncate">
+                      #{inv.id}
+                    </p>
+                    <p className="text-sm text-slate-600 truncate">
+                      {inv.customer.name}
+                    </p>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Issued {formatDate(inv.issueDate)} · Due{" "}
+                      {formatDate(inv.dueDate)}
+                    </p>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <p className="font-bold">{currency(subtotal)}</p>
+                    <span
+                      className={`inline-block mt-1 px-2 py-0.5 rounded-full text-[10px] font-bold capitalize ${
+                        statusStyles[inv.status]
+                      }`}
+                    >
+                      {inv.status}
+                    </span>
+                  </div>
                 </div>
-                <div className="text-right shrink-0">
-                  <p className="font-bold">{currency(inv.discountAmount)}</p>
-                  <span
-                    className={`inline-block mt-1 px-2 py-0.5 rounded-full text-[10px] font-bold capitalize ${
-                      statusStyles[inv.status]
-                    }`}
-                  >
-                    {inv.status}
-                  </span>
-                </div>
-              </div>
-            </Link>
-          </li>
-        ))}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

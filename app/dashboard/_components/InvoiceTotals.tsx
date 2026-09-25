@@ -1,7 +1,9 @@
 "use client";
 import Button from "@/components/General/Button";
 import { usePaystackPayment } from "@/hooks/payments/usePayment";
+import Cookies from "js-cookie";
 import { CreditCard, Lock } from "lucide-react";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 const currency = (n: number) =>
@@ -10,6 +12,7 @@ const currency = (n: number) =>
   );
 
 export default function InvoiceTotals({ invoice }: { invoice: Invoice }) {
+  const router = useRouter();
   const paystack = usePaystackPayment();
   const subtotal = invoice.items.reduce(
     (s, i) => s + i.quantity * i.unitPrice,
@@ -23,9 +26,11 @@ export default function InvoiceTotals({ invoice }: { invoice: Invoice }) {
       email: invoice.customer.email || "wonderhub.dev@gmail.com",
       amount: total,
       reference: invoice.id,
-      phoneNumber: invoice.customer.phone || "",
+      // phoneNumber: invoice.customer.phone || "",
       onSuccess() {
         toast.success("Payment successfull");
+        Cookies.set("has_paid", "yes");
+        router.refresh();
       },
       onClose() {
         toast.error("Payment canceled");
@@ -38,9 +43,8 @@ export default function InvoiceTotals({ invoice }: { invoice: Invoice }) {
         <div className="md:col-span-3 bg-slate-50 border border-slate-100 rounded-2xl p-5 text-sm text-slate-600">
           <p className="font-semibold text-slate-800 mb-1">Notes</p>
           <p>
-            Thank you for choosing HostDomain. All services are active. Renewal
-            reminders will be sent 30 days before expiry. Support:
-            help.hostdomain.com
+            Thank you for choosing Wonderhub. All services are active. Support:
+            wonderhub.dev@gmail.com
           </p>
         </div>
 
