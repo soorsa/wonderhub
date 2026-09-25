@@ -1,9 +1,13 @@
+"use client";
 import Rows from "@/app/dashboard/_components/Row";
 import Button from "@/components/General/Button";
 import { formatDate } from "@/lib/utils";
 import { Globe, RefreshCcw } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const DomainListTable = () => {
+  const router = useRouter();
+
   const Domains = [
     {
       domain: "richtecafrica.com",
@@ -37,6 +41,7 @@ const DomainListTable = () => {
           />
           <div className="flex justify-end px-4 pb-1">
             <Button
+              onClick={() => router.push("/dashboard/invoices")}
               label="Renew Domain"
               icon={<RefreshCcw size={14} />}
               className="border border-gray-400 hover:bg-primary/10 w-fit! px-4 text-xs rounded-sm"

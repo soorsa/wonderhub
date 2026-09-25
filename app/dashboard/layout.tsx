@@ -1,4 +1,5 @@
 import { HeaderMenu } from "@/components/Layout/DashboardHeader";
+import { PageLoader } from "@/components/Layout/PageLoader";
 import SideNavBar from "@/components/Layout/SideNav";
 import React from "react";
 interface Prop {
@@ -14,6 +15,7 @@ const dashboardlayout: React.FC<Prop> = ({ children }) => {
 
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto scrollbar-hide">
+        <PageLoader text="Renewing services... this may take a while." />
         <HeaderMenu />
         <div className="py-2 px-2 sm:px-6">{children}</div>
       </main>

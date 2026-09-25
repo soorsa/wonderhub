@@ -1,21 +1,14 @@
 import DomainListTable from "@/app/dashboard/_components/DomainListTable";
-import HostingListTable from "@/app/dashboard/_components/HostingListTable";
 import MetricCard from "@/app/dashboard/_components/MetricCard";
-import { Globe, ReceiptText, Server } from "lucide-react";
+import { Globe, ReceiptText } from "lucide-react";
 
-const OverviewPage = () => {
+const DomainsPage = () => {
   const metrics = [
     {
       title: "Active Domains",
       desc: "Active Domains",
       icon: Globe,
       value: 2,
-    },
-    {
-      title: "Active Hosting",
-      desc: "Active Hosting",
-      icon: Server,
-      value: 1,
     },
     {
       title: "Expiring Domains",
@@ -31,17 +24,16 @@ const OverviewPage = () => {
       href: "/dashboard/invoices",
     },
   ];
+
   return (
     <div>
       <div className="py-5 flex justify-between items-start">
         <div className="">
-          <h3 className="text-3xl font-extrabold">Good Day, Richtec 👋</h3>
-          <div className="">
-            Manage your active and expiring services, scale easily to the world.
-          </div>
+          <h3 className="text-3xl font-extrabold">Manage Domains</h3>
+          <div className="">Here are your domains, manage your domains.</div>
         </div>
       </div>
-      <div className="grid sm:grid-cols-4 gap-2">
+      <div className="grid sm:grid-cols-3 gap-2">
         {metrics.map((item, i) => (
           <MetricCard
             key={i}
@@ -53,12 +45,11 @@ const OverviewPage = () => {
           />
         ))}
       </div>
-      <div className="grid sm:grid-cols-2 gap-4 min-h-[60vh]">
+      <div className="">
         <DomainListTable />
-        <HostingListTable />
       </div>
     </div>
   );
 };
 
-export default OverviewPage;
+export default DomainsPage;
