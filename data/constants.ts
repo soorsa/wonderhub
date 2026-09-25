@@ -300,8 +300,8 @@ export const services = [
 export const INVOICES: Invoice[] = [
   {
     id: "WH-2026-0042",
-    issueDate: "2026-09-24",
-    dueDate: "2027-10-9",
+    issueDate: "2025-09-24",
+    dueDate: "2026-10-9",
     status: "overdue",
     customer: {
       name: "Daniel O. Daniel",
