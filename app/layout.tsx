@@ -1,4 +1,6 @@
 // app/layout.tsx
+import Footer from "@/components/Layout/Footer";
+import Navbar from "@/components/Layout/NavBar";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
@@ -40,7 +42,11 @@ export default function RootLayout({
         }}
       />
 
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
